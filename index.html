@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+    <link rel="icon" type="image/png" href="./images/icon.ico" />
+    <title>Lazada</title>
+</head>
+<body>
+
+  <!-- Top strip -->
+    <div class="top-strip">
+        <div class="container">
+            <div class="top-links">
+                <a href="#">Chăm sóc khách hàng</a>
+                <a href="#">Kiểm tra đơn hàng</a>
+            </div>
+            <div class="top-actions">
+                <a href="#">Đăng nhập</a>
+                <a href="#">Đăng ký</a>
+            </div>
+        </div>
+    </div>
+
+  <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <!-- Logo lazada -->
+            <div class="logo">
+                <!-- Thay bằng logo thật -->
+                <img src="./images/lazada_icon.png" alt="Logo">
+            </div>
+
+            <!-- Search bar -->
+            <div class="search-wrap">
+                <div class="search-row">
+                    <input type="text" placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..." aria-label="Tìm kiếm" class="search-input">
+                    <button aria-label="Tìm kiếm" class="search-btn">Tìm kiếm</button>
+                </div>
+            </div>
+
+            <!-- Cart -->
+            <div class="cart">
+                <button class="cart-btn" aria-label="Giỏ hàng">
+                    <img src="./images/shopping_cart.png" alt="Giỏ hàng">
+                </button>
+                <div class="badge">3</div>
+            </div>
+        </div>
+
+        <!-- Mini features -->
+        <div>
+            <div class="mini-features" aria-hidden="true">
+                <span>🔖 LazMall</span>
+                <span>🏷 Mã Giảm Giá</span>
+                <span>💳 Nạp Thẻ & eVoucher</span>
+                <span>🌍 LazGlobal</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Carousel -->
+    <section class="carousel" aria-label="Quảng cáo">
+    <div class="container">
+        <div class="slides" id="carousel">
+            <div class="track" id="track">
+                <div class="slide">
+                    <img src="./images/banner_1.png" alt="Banner 1" style="max-width: 100%;border-radius: 20px;">
+                </div>
+                <div class="slide">
+                    <img src="./images/banner_2.png" alt="Banner 2" style="max-width: 100%;border-radius: 20px;">
+                </div>
+                <div class="slide">
+                    <img src="./images/banner_3.png" alt="Banner 3" style="max-width: 100%;border-radius: 20px;">
+                </div>
+            </div>
+        </div>
+
+        <button class="arrow left" id="prev" aria-label="Trước">‹</button>
+        <button class="arrow right" id="next" aria-label="Tiếp">›</button>
+
+        <div class="dots" id="dots" aria-hidden="false">
+            <button data-index="0" class="active"></button>
+            <button data-index="1"></button>
+            <button data-index="2"></button>
+        </div>
+    </div>
+    </section>
+
+    <!-- Categories row -->
+    <section class="categories" aria-label="Danh mục chính">
+        <div class="cat-row" id="catRow">
+            <!-- Thêm/giảm danh mục tuỳ ý -->
+            <div class="cat">
+                <div class="thumb"><img src="./images/clothes-hanger.png" alt=""></div>
+                <div class="label">Quần áo</div>
+            </div>
+
+            <div class="cat">
+                <div class="thumb"><img src="./images/cosmetics.png" alt=""></div>
+                <div class="label">Mỹ phẩm</div>
+            </div>
+            
+            <div class="cat">
+                <div class="thumb"><img src="./images/electronics.png" alt=""></div>
+                <div class="label">Đồ gia dụng</div>
+            </div>
+            
+            <div class="cat">
+                <div class="thumb"><img src="./images/desktop.png" alt=""></div>
+                <div class="label">Thiết bị điện tử</div>
+            </div>
+            
+            <div class="cat">
+                <div class="thumb"><img src="./images/basketball.png" alt=""></div>
+                <div class="label">Thể thao</div>
+            </div>
+            
+            <div class="cat">
+                <div class="thumb"><img src="./images/healthcare.png" alt=""></div>
+                <div class="label">Sức khỏe</div>
+            </div>
+
+            <div class="cat">
+                <div class="thumb"><img src="./images/clock.png" alt=""></div>
+                <div class="label">Đồng hồ</div>
+            </div>
+            
+            <div class="cat">
+                <div class="thumb"><img src="./images/handbag.png" alt=""></div>
+                <div class="label">Túi xách</div>
+            </div>
+            <!-- ... -->
+        </div>
+    </section>
+
+<!-- Chuyển banner -->
+<script>
+  // Simple carousel
+  (function(){
+    const track = document.getElementById('track');
+    const slides = track.children;
+    const dots = document.getElementById('dots').children;
+    let index = 0, total = slides.length;
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    let timer;
+
+    function go(i){
+      if(i < 0) i = total - 1;
+      if(i >= total) i = 0;
+      index = i;
+      const x = - index * 101;
+      track.style.transform = 'translateX(' + x + '%)';
+      for(let d of dots) d.classList.remove('active');
+      dots[index].classList.add('active');
+    }
+
+    prev.addEventListener('click', ()=>{ go(index-1); resetTimer(); });
+    next.addEventListener('click', ()=>{ go(index+1); resetTimer(); });
+
+    for(let d of dots){
+      d.addEventListener('click', (e)=>{ go(parseInt(e.target.dataset.index)); resetTimer(); });
+    }
+
+    function resetTimer(){
+      clearInterval(timer);
+      timer = setInterval(()=> go(index+1), 4500);
+    }
+
+    // start autoplay
+    timer = setInterval(()=> go(index+1), 4500);
+
+    // pause on hover
+    const carousel = document.querySelector('.carousel .container');
+    carousel.addEventListener('mouseenter', ()=> clearInterval(timer));
+    carousel.addEventListener('mouseleave', ()=> resetTimer());
+
+    // initial
+    go(0);
+  })();
+</script>
+
+</body>
+</html>
