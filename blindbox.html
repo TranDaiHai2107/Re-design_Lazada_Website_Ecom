@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./css/blind_box.css"
+    />
+    <link rel="icon" type="image/png" href="./images/icon.ico" />
+    <!-- <script src="./js/spin.js"></script> -->
+    <title>Lazada</title>
+  </head>
+  <body>
+    <!-- Top strip -->
+    <div class="top-strip">
+      <div class="container">
+        <div class="top-links">
+          <a href="#">Chăm sóc khách hàng</a>
+          <a href="./orderdetail.html">Kiểm tra đơn hàng</a>
+        </div>
+        <div class="top-actions">
+          <a href="#">Đăng nhập</a>
+          <a href="#">Đăng ký</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+      <div class="container">
+        <!-- Logo lazada -->
+        <div class="logo">
+          <!-- Thay bằng logo thật -->
+          <a href="./index.html" aria-label="Trang chủ Lazada">
+            <img src="./images/lazada_icon.png" alt="Logo" />
+          </a>
+        </div>
+
+        <!-- Search bar -->
+        <div class="search-wrap">
+          <div class="search-row">
+            <input
+              type="text"
+              placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..."
+              aria-label="Tìm kiếm"
+              class="search-input"
+            />
+            <button aria-label="Tìm kiếm" class="search-btn">Tìm kiếm</button>
+          </div>
+        </div>
+
+        <!-- Cart -->
+        <div class="cart">
+          <button class="cart-btn" aria-label="Giỏ hàng">
+            <img src="./images/shopping_cart.png" alt="Giỏ hàng" />
+          </button>
+        </div>
+      </div>
+
+      <!-- Mini features -->
+      <div>
+        <div class="mini-features" aria-hidden="true">
+          <span>🔖 LazMall</span>
+          <span>🏷 Mã Giảm Giá</span>
+          <span>💳 Nạp Thẻ & eVoucher</span>
+          <span>🌍 LazGlobal</span>
+        </div>
+      </div>
+    </header>
+    
+    </div>
+    <!-- ...existing code... -->
+    <main class="blindbox-main">
+        <h1>Chơi Vòng Quay May</h1>
+        <div class="container">
+            <div class="wheel">
+                <div class="number" style="--i:1;--clr:#db7093;"> <span>1</span></div>
+                <div class="number" style="--i:2;--clr:#ff6347;"> <span>2</span></div>
+                <div class="number" style="--i:3;--clr:#ff8c00;"> <span>3</span></div>
+                <div class="number" style="--i:4;--clr:#ffd700;"> <span>4</span></div>
+                <div class="number" style="--i:5;--clr:#90ee90;"> <span>5</span></div>
+                <div class="number" style="--i:6;--clr:#1e90ff;"> <span>6</span></div>
+                <div class="number" style="--i:7;--clr:#9370db;"> <span>7</span></div>
+                <div class="number" style="--i:8;--clr:#ff69b4;"> <span>8</span></div>
+            </div>
+            <div class="spinBtn">Spin</div>
+    </main>
+    <!-- Popup kết quả quay -->
+    <div id="resultPopup" class="result-popup" style="display:none;">
+        <div class="result-popup-content">
+            <span id="resultText"></span>
+            <button class="result-popup-close" onclick="closeResultPopup()">Đóng</button>
+            <div id="confettiContainer" class="confetti-container"></div>
+        </div>
+    </div>
+<!-- ...existing code... -->
+  </body>
+  <script>
+    let wheel = document.querySelector(".wheel");
+    let spinBtn = document.querySelector(".spinBtn");
+    let value = Math.ceil(Math.random() * 3600);
+    let confettiContainer = document.getElementById("confettiContainer");
+
+    spinBtn.onclick = function () {
+    wheel.style.transform = "rotate(" + value + "deg)";
+    spinBtn.style.pointerEvents = "none";
+    setTimeout(() => {
+        spinBtn.style.pointerEvents = "auto";
+        // Hiện popup kết quả
+        showResultPopup();
+    }, 5000);
+    value += Math.ceil(Math.random() * 3600);
+    };
+
+    function showResultPopup() {
+        // Tính phần trúng dựa trên góc quay
+        const numbers = document.querySelectorAll('.number');
+        const segCount = numbers.length;
+        let currentDeg = value % 360;
+        let idx = segCount - Math.floor((currentDeg % 360) / (360 / segCount)) - 1;
+        if (idx < 0) idx += segCount;
+        let prize = numbers[idx].textContent.trim();
+        document.getElementById('resultText').innerHTML = `Bạn đã quay trúng: <b>${prize}</b> 🎉`;
+        document.getElementById('resultPopup').style.display = 'flex';
+        showConfetti();
+    }
+    function showConfetti() {
+        const container = document.getElementById('confettiContainer');
+        container.innerHTML = "";
+        for (let i = 0; i < 32; i++) {
+            let conf = document.createElement("div");
+            conf.className = "confetti";
+            conf.style.left = (60 + Math.random() * 180) + "px";
+            conf.style.bottom = "0px";
+            conf.style.background = randomColor();
+            container.appendChild(conf);
+        }
+        setTimeout(() => {
+            container.innerHTML = "";
+        }, 1300);
+    }
+    function randomColor() {
+        const colors = ["#db7093","#ff6347","#ff8c00","#ffd700","#90ee90","#1e90ff","#9370db","#ff69b4"];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+    function closeResultPopup() {
+        document.getElementById('resultPopup').style.display = 'none';
+    }
+  </script>
+</html>

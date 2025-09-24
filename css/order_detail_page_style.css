@@ -1,0 +1,541 @@
+:root {
+  --accent: #ff6a00; /* màu cam nút tìm kiếm */
+  --muted: #f5f6f8;
+  --text: #222;
+  --maxw: 1200px;
+  --radius: 10px;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+  color: var(--text);
+  background: white;
+}
+/* Ẩn scrollbar trên Chrome, Safari */
+.element::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ẩn scrollbar trên Firefox */
+.element {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE, Edge */
+}
+
+/* --- Top strip --- */
+.top-strip {
+  background: #f2f3f5;
+  font-size: 13px;
+  padding: 8px 16px;
+  border-bottom: 1px solid #e6e6e6;
+}
+.top-strip .container {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.top-links {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+.top-links a {
+  color: #333;
+  text-decoration: none;
+}
+.top-actions a {
+  margin-left: 12px;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* --- Header: logo + search + cart --- */
+header.main-header {
+  padding: 14px 16px;
+  border-bottom: 1px solid #eee;
+}
+header .container {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 140px;
+}
+.logo img {
+  height: 80px;
+}
+.search-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.search-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.search-input {
+  flex: 1;
+  padding: 14px 16px;
+  border-radius: 28px;
+  border: 1px solid #e0e0e0;
+  font-size: 15px;
+  outline: none;
+  background: #fff;
+  /* Nếu muốn icon search là ảnh, dùng dòng dưới */
+  /* background: url('../images/search.png') no-repeat 16px center; */
+  /* padding-left: 40px; */
+}
+
+.search-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 28px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.mini-features {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  color: #555;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center; /* căn giữa các phần tử */
+}
+
+.cart {
+  min-width: 70px;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+.cart .cart-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cart .cart-btn img {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+}
+.order-detail-main {
+  max-width: 1100px;
+  margin: 38px auto 0 auto;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 28px 24px;
+  margin-bottom: 20px;
+}
+.order-detail-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ff2d55;
+  margin-bottom: 24px;
+  letter-spacing: 0.5px;
+}
+.order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.order-card {
+  background: #f7f7fa;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(255,106,0,0.08);
+  padding: 22px 18px;
+  margin-bottom: 0;
+}
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 1.08rem;
+}
+.order-id {
+  font-weight: 700;
+  color: #222;
+  margin-right: 18px;
+}
+.order-date {
+  color: #888;
+  font-size: 0.98rem;
+}
+.order-status {
+  font-weight: 800;
+  font-size: 1.08rem;
+  padding: 6px 18px;
+  border-radius: 18px;
+  background: #ffe3f0;
+  color: #ff2d55;
+  letter-spacing: 0.5px;
+}
+.status-shipping {
+  background: linear-gradient(90deg, #ff6a00 70%, #ff2d55 100%);
+  color: #fff;
+}
+.status-success {
+  background: #e3ffe3;
+  color: #00c853;
+}
+
+.order-products {
+  margin-bottom: 12px;
+}
+.order-product {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px 12px;
+  box-shadow: 0 2px 8px rgba(255,106,0,0.06);
+  margin-bottom: 8px;
+}
+.order-thumb {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #f7f7fa;
+}
+.order-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.order-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0052ff;
+  text-decoration: none;
+  margin-bottom: 2px;
+  transition: color 0.18s;
+}
+.order-name:hover {
+  color: #ff2d55;
+  text-decoration: underline;
+}
+.order-variant {
+  font-size: 0.98rem;
+  color: #888;
+}
+.order-qty {
+  font-size: 0.98rem;
+  color: #222;
+}
+.order-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+.order-price-current {
+  color: #ff2d55;
+  font-size: 1.08rem;
+  font-weight: 800;
+}
+.order-price-old {
+  color: #bbb;
+  font-size: 0.95rem;
+  text-decoration: line-through;
+  font-weight: 500;
+}
+.order-payment, .order-shipping, .order-summary {
+  font-size: 0.98rem;
+  color: #222;
+  margin-bottom: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+.order-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+}
+.order-btn {
+  background: #fff;
+  color: #ff2d55;
+  border: 2px solid #ff2d55;
+  border-radius: 18px;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 8px 24px;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+.order-btn:hover {
+  background: #ff2d55;
+  color: #fff;
+}
+.order-btn-cancel {
+  background: #fffbe3;
+  color: #ff6a00;
+  border-color: #ff6a00;
+}
+.order-btn-cancel:hover {
+  background: #ff6a00;
+  color: #fff;
+}
+.order-btn-track {
+  background: linear-gradient(90deg, #ff6a00 70%, #ff2d55 100%);
+  color: #fff;
+  border: none;
+}
+.order-btn-track:hover {
+  background: linear-gradient(90deg, #ff2d55 70%, #ff6a00 100%);
+}
+.order-btn-rate {
+  background: #e3ffe3;
+  color: #00c853;
+  border-color: #00c853;
+}
+.order-btn-rate:hover {
+  background: #00c853;
+  color: #fff;
+}
+.order-btn-reorder {
+  background: #ffe3f0;
+  color: #ff2d55;
+  border-color: #ff2d55;
+}
+.order-btn-reorder:hover {
+  background: #ff2d55;
+  color: #fff;
+}
+.order-btn-contact {
+  background: #f7f7fa;
+  color: #0052ff;
+  border-color: #0052ff;
+}
+.order-btn-contact:hover {
+  background: #0052ff;
+  color: #fff;
+}
+@media (max-width: 900px) {
+  .order-detail-main {
+    padding: 10px 4px;
+  }
+  .order-card {
+    padding: 10px 4px;
+  }
+  .order-header {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .order-products {
+    margin-bottom: 6px;
+  }
+}
+.track-order-modal {
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.track-order-content {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(255,106,0,0.18);
+  max-width: 820px;
+  width: 98vw;
+  padding: 32px 28px 24px 28px;
+  position: relative;
+  animation: fadeIn 0.2s;
+}
+@keyframes fadeIn { from { opacity: 0; transform: scale(0.96);} to { opacity: 1; transform: scale(1);} }
+.track-order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.track-order-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ff2d55;
+}
+.track-order-close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #888;
+  cursor: pointer;
+  font-weight: 700;
+  transition: color 0.18s;
+}
+.track-order-close:hover { color: #ff2d55; }
+.track-order-progress {
+  margin-bottom: 18px;
+}
+.track-progress-bar {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  font-size: 1rem;
+  justify-content: space-between;
+}
+.track-step {
+  font-weight: 700;
+  color: #888;
+  padding: 0 8px;
+  position: relative;
+}
+.track-step.active {
+  color: #ff2d55;
+  border-bottom: 3px solid #ff2d55;
+}
+.track-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #eee;
+  margin: 0 2px;
+  display: inline-block;
+  position: relative;
+  top: 2px;
+}
+.track-dot.active {
+  background: linear-gradient(90deg, #ff6a00 70%, #ff2d55 100%);
+  box-shadow: 0 2px 8px rgba(255,106,0,0.12);
+}
+.track-order-body {
+  display: flex;
+  gap: 24px;
+  margin-top: 8px;
+}
+.track-order-info {
+  background: #f7f7fa;
+  border-radius: 12px;
+  padding: 18px 16px;
+  flex: 1;
+  min-width: 220px;
+}
+.track-order-info h4 {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 10px;
+}
+.track-info-row {
+  font-size: 0.98rem;
+  color: #222;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.track-copy-btn {
+  background: #fff;
+  border: 1px solid #ff6a00;
+  color: #ff6a00;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 2px 8px;
+  margin-left: 4px;
+  transition: background 0.18s, color 0.18s;
+}
+.track-copy-btn:hover {
+  background: #ff6a00;
+  color: #fff;
+}
+.track-order-timeline {
+  background: #f7f7fa;
+  border-radius: 12px;
+  padding: 18px 16px;
+  flex: 2;
+  min-width: 320px;
+}
+.track-order-timeline h4 {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 10px;
+}
+.track-timeline-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+.track-timeline-date {
+  background: #ff6a00;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 8px;
+  padding: 4px 12px;
+  min-width: 90px;
+  text-align: center;
+  margin-top: 2px;
+}
+.track-timeline-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.track-timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.98rem;
+  color: #222;
+  line-height: 1.5;
+}
+.track-timeline-item.latest {
+  font-weight: 700;
+  color: #ff2d55;
+}
+.track-timeline-time {
+  color: #888;
+  font-size: 0.98rem;
+  min-width: 48px;
+  font-weight: 600;
+}
+.track-timeline-desc b {
+  color: #ff6a00;
+  font-weight: 700;
+}
+@media (max-width: 900px) {
+  .track-order-content {
+    padding: 10px 4px;
+    max-width: 98vw;
+  }
+  .track-order-body {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

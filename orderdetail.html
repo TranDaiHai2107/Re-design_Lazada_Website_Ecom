@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./css/order_detail_page_style.css"
+    />
+    <link rel="icon" type="image/png" href="./images/icon.ico" />
+    <title>Lazada</title>
+  </head>
+  <body>
+    <!-- Top strip -->
+    <div class="top-strip">
+      <div class="container">
+        <div class="top-links">
+          <a href="#">Chăm sóc khách hàng</a>
+          <a href="./orderdetail.html">Kiểm tra đơn hàng</a>
+        </div>
+        <div class="top-actions">
+          <a href="#">Đăng nhập</a>
+          <a href="#">Đăng ký</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+      <div class="container">
+        <!-- Logo lazada -->
+        <div class="logo">
+          <!-- Thay bằng logo thật -->
+          <a href="./index.html" aria-label="Trang chủ Lazada">
+            <img src="./images/lazada_icon.png" alt="Logo" />
+          </a>
+        </div>
+
+        <!-- Search bar -->
+        <div class="search-wrap">
+          <div class="search-row">
+            <input
+              type="text"
+              placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..."
+              aria-label="Tìm kiếm"
+              class="search-input"
+            />
+            <button aria-label="Tìm kiếm" class="search-btn">Tìm kiếm</button>
+          </div>
+        </div>
+
+        <!-- Cart -->
+        <div class="cart">
+          <button class="cart-btn" aria-label="Giỏ hàng">
+            <img src="./images/shopping_cart.png" alt="Giỏ hàng" />
+          </button>
+        </div>
+      </div>
+
+      <!-- Mini features -->
+      <div>
+        <div class="mini-features" aria-hidden="true">
+          <span>🔖 LazMall</span>
+          <span>🏷 Mã Giảm Giá</span>
+          <span>💳 Nạp Thẻ & eVoucher</span>
+          <span>🌍 LazGlobal</span>
+        </div>
+      </div>
+    </header>
+    <main class="order-detail-main">
+    <h1 class="order-detail-title">Chi tiết đơn hàng</h1>
+    <div class="order-list">
+      <!-- Đơn 1: Đang giao -->
+      <section class="order-card">
+        <div class="order-header">
+          <div>
+            <span class="order-id">Mã đơn: #LDZ20250901A</span>
+            <span class="order-date">Đặt ngày: 24/09/2025</span>
+          </div>
+          <span class="order-status status-shipping">Đang giao</span>
+        </div>
+        <div class="order-products">
+          <div class="order-product">
+            <img src="./images/fy_autumncake.webp" alt="Bánh Trung Thu Hữu Nghị" class="order-thumb">
+            <div class="order-info">
+              <a href="./mooncake.html" class="order-name">Bánh Trung Thu Hữu Nghị Tinh Hoa (4 bánh nướng 150G-180G)</a>
+              <div class="order-variant">Combo: Truyền thống 1</div>
+              <div class="order-qty">Số lượng: 2</div>
+            </div>
+            <div class="order-price">
+              <span class="order-price-current">216.000đ</span>
+              <span class="order-price-old">320.000đ</span>
+            </div>
+          </div>
+        </div>
+        <div class="order-payment">
+          <div><b>Phương thức thanh toán:</b> COD</div>
+          <div><b>Trạng thái thanh toán:</b> Chưa thanh toán</div>
+        </div>
+        <div class="order-shipping">
+          <div><b>Nhận hàng:</b> Nguyễn Văn A, 0901234567</div>
+          <div><b>Địa chỉ:</b> KTX Khu A, Đường Tạ Quang Bửu, Khu phố 33, Dĩ An, Hồ Chí Minh</div>
+          <div><b>Đơn vị vận chuyển:</b> Giao hàng nhanh - Mã vận đơn: GHN123456789</div>
+          <div><b>Phí ship:</b> 25.000đ &nbsp; <b>Dự kiến giao:</b> 26/09/2025</div>
+        </div>
+        <div class="order-summary">
+          <div><b>Tổng tiền:</b> 457.000đ</div>
+          <div><b>Voucher đã dùng:</b> LAZADA2025</div>
+        </div>
+        <div class="order-actions">
+          <button class="order-btn order-btn-cancel">Hủy đơn</button>
+          <button class="order-btn order-btn-track">Theo dõi đơn hàng</button>
+          <button class="order-btn order-btn-contact">Liên hệ CSKH</button>
+        </div>
+      </section>
+      <!-- Đơn 2: Đã giao thành công -->
+      <section class="order-card">
+        <div class="order-header">
+          <div>
+            <span class="order-id">Mã đơn: #LDZ20250821B</span>
+            <span class="order-date">Đặt ngày: 21/08/2025</span>
+          </div>
+          <span class="order-status status-success">Hoàn tất</span>
+        </div>
+        </div>
+        <div class="order-products">
+          <div class="order-product">
+            <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-mbx5fbrxluoea1" alt="Combo 3 Bánh kem xốp Tipo" class="order-thumb">
+            <div class="order-info">
+              <a href="#" class="order-name">COMBO 3 Bánh kem xốp Trứng muối Tipo</a>
+              <div class="order-variant">Combo: Loại đặc biệt</div>
+              <div class="order-qty">Số lượng: 1</div>
+            </div>
+            <div class="order-price">
+              <span class="order-price-current">21.000đ</span>
+              <span class="order-price-old">33.000đ</span>
+            </div>
+          </div>
+        </div>
+        <div class="order-payment">
+          <div><b>Phương thức thanh toán:</b> Ví điện tử</div>
+          <div><b>Trạng thái thanh toán:</b> Đã thanh toán</div>
+        </div>
+        <div class="order-shipping">
+          <div><b>Nhận hàng:</b> Nguyễn Văn B, 0909876543</div>
+          <div><b>Địa chỉ:</b> KTX Khu A, Đường Tạ Quang Bửu, Khu phố 33, Dĩ An, Hồ Chí Minh</div>
+          <div><b>Đơn vị vận chuyển:</b> Viettel Post - Mã vận đơn: VT123456789</div>
+          <div><b>Phí ship:</b> 18.000đ &nbsp; <b>Đã giao:</b> 23/08/2025</div>
+        </div>
+        <div class="order-summary">
+          <div><b>Tổng tiền:</b> 39.000đ</div>
+          <div><b>Voucher đã dùng:</b> TIPO2025</div>
+        </div>
+        <div class="order-actions">
+          <button class="order-btn order-btn-rate">Đánh giá sản phẩm</button>
+          <button class="order-btn order-btn-reorder">Mua lại</button>
+          <button class="order-btn order-btn-contact">Liên hệ CSKH</button>
+        </div>
+      </section>
+      <!-- Đơn 3: Đã giao thành công -->
+      <section class="order-card">
+        <div class="order-header">
+          <div>
+            <span class="order-id">Mã đơn: #LDZ20250810C</span>
+            <span class="order-date">Đặt ngày: 10/08/2025</span>
+          </div>
+          <span class="order-status status-success">Hoàn tất</span>
+        </div>
+        </div>
+        <div class="order-products">
+          <div class="order-product">
+            <img src="https://down-vn.img.susercontent.com/file/sg-11134201-824ge-mf0omj5rtq1586" alt="Bánh Trung thu Kinh Đô" class="order-thumb">
+            <div class="order-info">
+              <a href="#" class="order-name">Bánh Trung thu Kinh Đô - Bánh nướng nhân đậu xanh 1 trứng</a>
+              <div class="order-variant">Combo: Đặc biệt</div>
+              <div class="order-qty">Số lượng: 3</div>
+            </div>
+            <div class="order-price">
+              <span class="order-price-current">69.000đ</span>
+              <span class="order-price-old">77.000đ</span>
+            </div>
+          </div>
+        </div>
+        <div class="order-payment">
+          <div><b>Phương thức thanh toán:</b> Thẻ tín dụng</div>
+          <div><b>Trạng thái thanh toán:</b> Đã thanh toán</div>
+        </div>
+        <div class="order-shipping">
+          <div><b>Nhận hàng:</b> Nguyễn Văn C, 0901122334</div>
+          <div><b>Địa chỉ:</b> KTX Khu A, Đường Tạ Quang Bửu, Khu phố 33, Dĩ An, Hồ Chí Minh</div>
+          <div><b>Đơn vị vận chuyển:</b> J&T Express - Mã vận đơn: JT123456789</div>
+          <div><b>Phí ship:</b> 20.000đ &nbsp; <b>Đã giao:</b> 12/08/2025</div>
+        </div>
+        <div class="order-summary">
+          <div><b>Tổng tiền:</b> 227.000đ</div>
+          <div><b>Voucher đã dùng:</b> KINHDO2025</div>
+        </div>
+        <div class="order-actions">
+          <button class="order-btn order-btn-rate">Đánh giá sản phẩm</button>
+          <button class="order-btn order-btn-reorder">Mua lại</button>
+          <button class="order-btn order-btn-contact">Liên hệ CSKH</button>
+        </div>
+      </section>
+    </div>
+  </main>
+  <!-- Popup Theo dõi đơn hàng -->
+<div id="trackOrderModal" class="track-order-modal" style="display:none;">
+  <div class="track-order-content">
+    <div class="track-order-header">
+      <span class="track-order-title">Chi tiết đơn hàng</span>
+      <button class="track-order-close" id="closeTrackOrder" title="Đóng">×</button>
+    </div>
+    <div class="track-order-progress">
+      <div class="track-progress-bar">
+        <span class="track-step active">Chờ đóng gói</span>
+        <span class="track-dot active"></span>
+        <span class="track-step active">Chờ lấy hàng</span>
+        <span class="track-dot active"></span>
+        <span class="track-step">Chờ giao hàng</span>
+        <span class="track-dot"></span>
+        <span class="track-step">Đang vận chuyển</span>
+        <span class="track-dot"></span>
+        <span class="track-step">Giao hàng thành công</span>
+      </div>
+    </div>
+    <div class="track-order-body">
+      <div class="track-order-info">
+        <h4>Thông tin kiện hàng</h4>
+        <div class="track-info-row"><b>Mã vận đơn:</b> <span id="trackOrderId">515286016918551</span> <button class="track-copy-btn" onclick="navigator.clipboard.writeText('515286016918551')">📋</button></div>
+        <div class="track-info-row"><b>Người nhận hàng:</b> Nguyễn Văn A</div>
+        <div class="track-info-row"><b>Hình thức giao hàng:</b> Standard</div>
+        <div class="track-info-row"><b>Ngày khách hàng tạo đơn hàng:</b> 23/9/2025</div>
+        <div class="track-info-row"><b>Ngày nhận hàng dự kiến:</b> 25/9/2025</div>
+      </div>
+      <div class="track-order-timeline">
+        <h4>Lịch sử vận chuyển</h4>
+        <div class="track-timeline-row">
+          <div class="track-timeline-date">24/9/2025</div>
+          <div class="track-timeline-list">
+            <div class="track-timeline-item latest">
+              <span class="track-timeline-time">16:43</span>
+              <span class="track-timeline-desc">Đơn hàng đã được nhận tại trạm giao nhận <b>[Hồ Chí Minh - Thủ Đức]</b></span>
+            </div>
+            <div class="track-timeline-item">
+              <span class="track-timeline-time">8:59</span>
+              <span class="track-timeline-desc">Đơn hàng rời khỏi trung tâm phân loại <b>[Hồ Chí Minh - Tân Bình]</b></span>
+            </div>
+            <div class="track-timeline-item">
+              <span class="track-timeline-time">7:12</span>
+              <span class="track-timeline-desc">Đơn hàng đã được nhận tại trung tâm phân loại <b>[Hồ Chí Minh - Tân Bình]</b></span>
+            </div>
+          </div>
+        </div>
+        <div class="track-timeline-row">
+          <div class="track-timeline-date">23/9/2025</div>
+          <div class="track-timeline-list">
+            <div class="track-timeline-item">
+              <span class="track-timeline-time">15:27</span>
+              <span class="track-timeline-desc">Đơn vị vận chuyển đã lấy hàng</span>
+            </div>
+            <div class="track-timeline-item">
+              <span class="track-timeline-time">13:52</span>
+              <span class="track-timeline-desc">Người gửi đang chuẩn bị hàng</span>
+            </div>
+            <div class="track-timeline-item">
+              <span class="track-timeline-time">13:36</span>
+              <span class="track-timeline-desc">Đơn hàng đã được đặt</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    </div>
+  </body>
+<script>
+  // Hiện popup khi bấm nút Theo dõi đơn hàng
+  document.querySelectorAll('.order-btn-track').forEach(btn => {
+    btn.onclick = function() {
+      document.getElementById('trackOrderModal').style.display = 'flex';
+    };
+  });
+  // Đóng popup
+  document.getElementById('closeTrackOrder').onclick = function() {
+    document.getElementById('trackOrderModal').style.display = 'none';
+  };
+  // Đóng khi click ra ngoài
+  document.getElementById('trackOrderModal').onclick = function(e) {
+    if (e.target === this) this.style.display = 'none';
+  };
+</script>
+</html>
