@@ -11,7 +11,8 @@ Making new version of UI/UX of Lazada Website
 - Supply detail
 - Customer review
 - Suggestion Product
-== Finish
+
+# == Finish
 
 # Search suggestion
 # Cart page
