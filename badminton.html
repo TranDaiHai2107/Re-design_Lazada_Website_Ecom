@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="./css/search.css" />
+  <link rel="icon" type="image/png" href="./images/icon.ico" />
+  <title>Vợt Cầu Lông</title>
+  <script>
+    window.__IS_SEARCH_PAGE__ = true;
+  </script>
+  <style>
+    /* Tối ưu layout riêng cho trang vợt cầu lông */
+    .page .grid { grid-template-columns: 260px 1fr; }
+    .results { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .header .logo img { height: 56px; }
+
+    /* Left filter - minimal card look */
+    .left { background: #fff; border: 1px solid #eee; border-radius: 14px; padding: 12px; box-shadow: 0 6px 18px rgba(0,0,0,0.04); position: sticky; top: 12px; height: fit-content; }
+    .left .title { font-weight: 800; font-size: 15px; margin-bottom: 8px; }
+    .left .section { border-top: 1px dashed #eee; padding-top: 10px; margin-top: 10px; }
+    .left .section:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+    .left .section-title { font-weight: 700; color: #333; margin-bottom: 8px; }
+    .left .list { display: grid; gap: 8px; }
+    .check-pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #e6e6e6; border-radius: 999px; background: #fff; cursor: pointer; transition: border 0.2s, background 0.2s, color 0.2s; user-select: none; }
+    .check-pill:hover { border-color: var(--accent); background: #fff7f1; }
+    .check-pill input { accent-color: var(--accent); }
+    .check-pill input:checked + span { color: var(--accent); font-weight: 700; }
+    #sortSelect { border: 1px solid #e6e6e6; border-radius: 10px; background: #fff; }
+
+    /* Card hover focus and actions */
+    .results .card { position: relative; transition: box-shadow .18s, transform .18s; outline: none; }
+    .results .card:hover { box-shadow: 0 10px 24px rgba(0,0,0,.12); transform: translateY(-3px); }
+    .results .card:focus-within { box-shadow: 0 0 0 3px rgba(255,106,0,.25); }
+    .card-meta { display: flex; align-items: center; gap: 12px; color: #666; font-size: 13px; margin-top: 6px; }
+    .card-meta .star { color: #ffc107; font-weight: 800; }
+    .card-actions { display: flex; gap: 10px; margin-top: 10px; opacity: 0; transition: opacity .18s; align-items: center; }
+    .results .card:hover .card-actions, .results .card:focus-within .card-actions { opacity: 1; }
+    .btn-cart { background: var(--accent); color: #fff; border: none; border-radius: 10px; padding: 10px 16px; font-weight: 800; cursor: pointer; }
+    .btn-wish { background: #fff; color: var(--accent); border: 2px solid var(--accent); width: 42px; height: 42px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; font-size: 18px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="container">
+      <a class="logo" href="./index.html"><img src="./images/lazada_icon.png" alt="Lazada"></a>
+      <div class="search-row">
+        <input type="text" id="pageSearch" class="search-input" placeholder="Tìm kiếm trong vợt cầu lông..." />
+        <button id="pageSearchBtn" class="search-btn">Tìm kiếm</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="grid">
+      <aside class="left">
+        <div class="title">Bộ lọc</div>
+        <div class="section">
+          <div class="section-title">Hãng</div>
+          <ul class="list" id="brandFilter">
+            <li><label class="check-pill"><input type="checkbox" value="Yonex"/><span>Yonex</span></label></li>
+            <li><label class="check-pill"><input type="checkbox" value="Li-Ning"/><span>Li-Ning</span></label></li>
+            <li><label class="check-pill"><input type="checkbox" value="Victor"/><span>Victor</span></label></li>
+            <li><label class="check-pill"><input type="checkbox" value="Kawasaki"/><span>Kawasaki</span></label></li>
+            <li><label class="check-pill"><input type="checkbox" value="Adidas"/><span>Adidas</span></label></li>
+          </ul>
+        </div>
+        <div class="section">
+          <div class="section-title">Giảm giá</div>
+          <ul class="list" id="discountFilter">
+            <li><label class="check-pill"><input type="checkbox" value="10"/><span>Từ 10%</span></label></li>
+            <li><label class="check-pill"><input type="checkbox" value="20"/><span>Từ 20%</span></label></li>
+            <li><label class="check-pill"><input type="checkbox" value="30"/><span>Từ 30%</span></label></li>
+            <li><label class="check-pill"><input type="checkbox" value="40"/><span>Từ 40%</span></label></li>
+          </ul>
+        </div>
+        <div class="section">
+          <div class="section-title">Nơi bán</div>
+          <ul class="list" id="locationFilter">
+            <li><label class="check-pill"><input type="checkbox" value="Hồ Chí Minh"/><span>Hồ Chí Minh</span></label></li>
+            <li><label class="check-pill"><input type="checkbox" value="Hà Nội"/><span>Hà Nội</span></label></li>
+            <li><label class="check-pill"><input type="checkbox" value="Đà Nẵng"/><span>Đà Nẵng</span></label></li>
+          </ul>
+        </div>
+        <div class="section">
+          <div class="section-title">Sắp xếp</div>
+          <select id="sortSelect" style="width:100%; padding:8px;">
+            <option value="pop">Phổ biến</option>
+            <option value="priceAsc">Giá tăng dần</option>
+            <option value="priceDesc">Giá giảm dần</option>
+            <option value="discountDesc">Giảm giá nhiều</option>
+          </select>
+        </div>
+      </aside>
+
+      <section class="right">
+        <h3 class="results-title" id="resultsTitle">Vợt cầu lông</h3>
+        <div class="results" id="resultsGrid"></div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const products = [
+        {name:'Vợt cầu lông Yonex Astrox', brand:'Yonex', img:'./images/Badminton/Badminton1.jpg'},
+        {name:'Vợt cầu lông Victor Thruster', brand:'Victor', img:'./images/Badminton/Badminton2.jpg'},
+        {name:'Vợt cầu lông Li-Ning Turbo', brand:'Li-Ning', img:'./images/Badminton/Badminton3.jpg'},
+        {name:'Vợt cầu lông Kawasaki Power', brand:'Kawasaki', img:'./images/Badminton/Badminton4.jpg'},
+        {name:'Vợt cầu lông Adidas Spieler', brand:'Adidas', img:'./images/Badminton/Badminton5.jpg'},
+        {name:'Vợt cầu lông Yonex Nanoflare', brand:'Yonex', img:'./images/Badminton/Badminton6.jpg'},
+        {name:'Vợt cầu lông Pro Speed 7', brand:'Victor', img:'./images/Badminton/Badminton7.png'},
+        {name:'Vợt cầu lông Light Pro 8', brand:'Yonex', img:'./images/Badminton/Badminton8.png'},
+        {name:'Vợt cầu lông Control 9', brand:'Li-Ning', img:'./images/Badminton/Badminton9.png'},
+        {name:'Hộp 3 dây cuốn vợt cầu lông', brand:'Kawasaki', img:'./images/Badminton/Badminton10.png'},
+        {name:'Vợt cầu lông Ultra 11', brand:'Adidas', img:'./images/Badminton/Badminton11.png'},
+        {name:'Vợt cầu lông Elite 12', brand:'Yonex', img:'./images/Badminton/Badminton12.png'}
+      ].map((p, idx) => {
+        const price = Math.floor(399000 + Math.random()*1600000);
+        const discount = [0,10,15,20,25,30,35,40][Math.floor(Math.random()*8)];
+        const location = ['Hồ Chí Minh','Hà Nội','Đà Nẵng'][Math.floor(Math.random()*3)];
+        const pop = Math.floor(Math.random()*1000);
+        const rating = (4 + Math.random()*1).toFixed(1);
+        const reviews = Math.floor(200 + Math.random()*3000);
+        const sold = Math.floor(200 + Math.random()*5000);
+        return {id:idx+1, ...p, price, discount, location, pop, rating: Number(rating), reviews, sold};
+      });
+
+      // Persist randomized product data so detail pages can reuse prices
+      try { localStorage.setItem('lz_badminton_products_v1', JSON.stringify(products)); } catch {}
+
+      const grid = document.getElementById('resultsGrid');
+      const brandFilter = document.getElementById('brandFilter');
+      const discountFilter = document.getElementById('discountFilter');
+      const locationFilter = document.getElementById('locationFilter');
+      const sortSelect = document.getElementById('sortSelect');
+      const pageSearch = document.getElementById('pageSearch');
+      const pageSearchBtn = document.getElementById('pageSearchBtn');
+
+      function formatPrice(v){
+        return v.toLocaleString('vi-VN') + ' ₫';
+      }
+
+      function getCheckedValues(root){
+        return Array.from(root.querySelectorAll('input[type="checkbox"]:checked')).map(i=>i.value);
+      }
+
+      function matchesFilters(p){
+        const brands = getCheckedValues(brandFilter);
+        const dcs = getCheckedValues(discountFilter).map(Number);
+        const locs = getCheckedValues(locationFilter);
+        if (brands.length && !brands.includes(p.brand)) return false;
+        if (dcs.length && Math.max(...dcs) > p.discount) return false; // require at least selected threshold
+        if (locs.length && !locs.includes(p.location)) return false;
+        return true;
+      }
+
+      function sortProducts(list){
+        const mode = sortSelect.value;
+        const arr = list.slice();
+        if (mode === 'priceAsc') arr.sort((a,b)=>a.price-b.price);
+        else if (mode === 'priceDesc') arr.sort((a,b)=>b.price-a.price);
+        else if (mode === 'discountDesc') arr.sort((a,b)=>b.discount-a.discount);
+        else arr.sort((a,b)=>b.pop-a.pop);
+        return arr;
+      }
+
+      function formatSold(v){
+        if (v >= 1000) return 'Đã bán ' + Math.floor(v/1000) + 'k+';
+        return 'Đã bán ' + v;
+      }
+
+      function render(){
+        const q = (pageSearch.value||'').toLowerCase().trim();
+        let list = products.filter(p => (!q || p.name.toLowerCase().includes(q)) && matchesFilters(p));
+        list = sortProducts(list);
+        grid.innerHTML = '';
+        list.forEach(p=>{
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.tabIndex = 0;
+          card.innerHTML = `
+            <div class="thumb"><img src="${p.img}" alt="${p.name}" onerror="this.closest('div.card').style.display='none'"></div>
+            <div class="name" title="${p.name}">${p.name}</div>
+            <div class="price">${formatPrice(Math.floor(p.price*(100-p.discount)/100))}</div>
+            <div class="card-meta"><span class="star">★ ${p.rating}</span><span>(${p.reviews.toLocaleString('vi-VN')})</span><span style="color:#00bcd4; font-weight:700;">${formatSold(p.sold)}</span></div>
+            <div class="card-actions">
+              <button class="btn-cart">Thêm vào giỏ</button>
+              <button class="btn-wish" title="Yêu thích">♥</button>
+            </div>
+          `;
+          if (p.name.toLowerCase().includes('yonex astrox')) {
+            card.addEventListener('click', function(e){
+              if(!e.target.closest('button')) {
+                try { localStorage.setItem('lz_selected_product_key', 'yonex_astrox'); } catch {}
+                window.location.href = './yonex_astrox.html';
+              }
+            });
+          }
+          card.addEventListener('mouseenter', function(){ card.focus(); });
+          grid.appendChild(card);
+        });
+        document.getElementById('resultsTitle').textContent = `Vợt cầu lông (${list.length})`;
+      }
+
+      brandFilter.addEventListener('change', render);
+      discountFilter.addEventListener('change', render);
+      locationFilter.addEventListener('change', render);
+      sortSelect.addEventListener('change', render);
+      pageSearchBtn.addEventListener('click', render);
+      pageSearch.addEventListener('keyup', function(e){ if(e.key==='Enter') render(); });
+
+      render();
+    })();
+  </script>
+</body>
+</html>
+
+

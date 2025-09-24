@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./css/search.css" />
+    <link rel="icon" type="image/png" href="./images/icon.ico" />
+    <title>Tìm kiếm</title>
+    <script>
+      // Pass a flag so scripts.js knows this is the search page
+      window.__IS_SEARCH_PAGE__ = true;
+    </script>
+    <script src="./js/scripts.js" defer></script>
+</head>
+<body>
+  <div class="header">
+    <div class="container">
+      <a class="logo" href="./index.html"><img src="./images/lazada_icon.png" alt="Lazada"></a>
+      <div class="search-row">
+        <input type="text" class="search-input" placeholder="Tìm kiếm sản phẩm, thương hiệu..." />
+        <button class="search-btn">Tìm kiếm</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="grid">
+      <aside class="left">
+        <div class="title">Lịch sử tìm kiếm <button class="clear" id="clearHistory">Xóa</button></div>
+        <ul class="history" id="historyList"></ul>
+      </aside>
+
+      <section class="mid">
+        <div class="section">
+          <div class="section-title">Danh mục liên quan</div>
+          <ul class="list" id="relatedCats">
+            <li>Vợt đánh cầu lông</li>
+            <li>Vợt quần vợt</li>
+            <li>Quả cầu lông</li>
+            <li>Quấn vợt & keo dán cầu lông</li>
+          </ul>
+        </div>
+        <div class="section">
+          <div class="section-title">Thương hiệu</div>
+          <ul class="list two-col" id="brandFilter">
+            <li><label><input type="checkbox" value="Alpsport"/> ALPSPORT</label></li>
+            <li><label><input type="checkbox" value="Kumpoo"/> Kumpoo</label></li>
+            <li><label><input type="checkbox" value="Yonex"/> Yonex</label></li>
+            <li><label><input type="checkbox" value="Kaisike"/> Kaisike</label></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="right">
+        <h3 class="results-title" id="resultsTitle">Kết quả</h3>
+        <div class="results" id="resultsGrid"></div>
+      </section>
+    </div>
+  </div>
+
+</body>
+</html>
+

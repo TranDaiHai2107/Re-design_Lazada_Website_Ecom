@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+    <link rel="icon" type="image/png" href="./images/icon.ico" />
+    <title>Lazada</title>
+    <script>
+      // Ensure this exists early for <img onerror="faceFallback(...)"/>
+      function faceFallback(img, step) {
+        try {
+          if (step === 0) {
+            img.onerror = function () {
+              faceFallback(img, 1);
+            };
+            img.src = (img.src || "").replace(".png", ".jpg");
+            return;
+          }
+        } catch (e) {}
+        img.onerror = null;
+        img.src = "./images/lazada_icon.png";
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Top strip -->
+    <div class="top-strip">
+      <div class="container">
+        <div class="top-links">
+          <a href="#">Chăm sóc khách hàng</a>
+          <a href="#">Kiểm tra đơn hàng</a>
+        </div>
+        <div class="top-actions">
+          <a href="#" style="color: #ff6a00; font-weight: 600">Đăng nhập</a>
+          <a href="#" style="color: #ff6a00; font-weight: 600">Đăng ký</a>
+        </div>
+      </div>
+    </div>
+    <!-- Header -->
+    <header class="main-header" style="background: #fff">
+      <div class="container">
+        <div class="logo">
+          <a href="./index.html" aria-label="Trang chủ Lazada">
+            <img src="./images/lazada_icon.png" alt="Logo" />
+          </a>
+        </div>
+        <div class="search-wrap" style="flex: 1">
+          <div class="search-row">
+            <input
+              type="text"
+              placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..."
+              aria-label="Tìm kiếm"
+              class="search-input"
+            />
+            <button aria-label="Tìm kiếm" class="search-btn">Tìm kiếm</button>
+          </div>
+        </div>
+        <button
+          class="cart-btn"
+          id="cartBtn"
+          aria-label="Giỏ hàng"
+          style="
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 18px;
+          "
+        >
+          <img
+            src="./images/shopping_cart.png"
+            alt="Giỏ hàng"
+            style="height: 40px"
+          />
+        </button>
+      </div>
+      <div>
+        <div class="mini-features" aria-hidden="true">
+          <span>🔖 LazMall</span>
+          <span>🏷 Mã Giảm Giá</span>
+          <span>💳 Nạp Thẻ & eVoucher</span>
+          <span>🌍 LazGlobal</span>
+        </div>
+      </div>
+    </header>
+    <div class="cart-main">
+      <!-- Left: Cart Items -->
+      <div class="cart-list-block">
+        <div class="cart-list-title">
+          <input
+            type="checkbox"
+            id="selectAll"
+            style="
+              accent-color: #ff6a00;
+              vertical-align: middle;
+              margin-right: 8px;
+            "
+          />
+          CHỌN TẤT CẢ (<span id="cartCount">0</span> SẢN PHẨM)
+        </div>
+        <div id="cartList" class="cart-list"></div>
+      </div>
+      <!-- Right: Order Summary & Address -->
+      <div class="cart-summary-side">
+        <div class="cart-address-block">
+          <div class="cart-address-title">
+            <span
+              style="color: #ff6a00; font-size: 22px; vertical-align: middle"
+              >&#x1F4CD;</span
+            >
+            <span
+              style="
+                color: #ff6a00;
+                font-weight: 700;
+                font-size: 17px;
+                margin-left: 4px;
+              "
+              >Địa Chỉ Nhận Hàng</span
+            >
+          </div>
+          <div
+            class="cart-address-info"
+            style="margin: 8px 0 0 0; line-height: 1.6"
+          >
+            <span style="font-weight: 600">Nguyễn Văn A</span>
+            <span style="color: #222">(+84) 375 126 779</span><br />
+            <span style="color: #222">Phường Linh Xuân, Thủ Đức, TP.HCM</span>
+          </div>
+          <a
+            href="#"
+            class="cart-address-edit"
+            style="
+              color: #00bcd4;
+              font-size: 14px;
+              float: right;
+              margin-top: 4px;
+            "
+            >Thay Đổi</a
+          >
+        </div>
+        <div class="cart-summary-block" id="orderSummary"></div>
+      </div>
+    </div>
+    <script>
+      function renderCart() {
+        const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        const cartList = document.getElementById("cartList");
+        const orderSummary = document.getElementById("orderSummary");
+        const cartCount = document.getElementById("cartCount");
+        let total = 0,
+          selectedCount = 0,
+          selectedQty = 0;
+        cartList.innerHTML = "";
+        if (cart.length === 0) {
+          cartList.innerHTML =
+            '<div style="padding:32px 0;text-align:center;color:#888;">Chưa có sản phẩm nào trong giỏ hàng.</div>';
+        }
+        cart.forEach((item, idx) => {
+          // Nếu chưa có thuộc tính checked thì mặc định là true
+          if (typeof item.checked === "undefined") item.checked = true;
+          cartList.innerHTML += `
+            <div class="cart-item">
+              <input
+                type="checkbox"
+                class="item-checkbox"
+                data-idx="${idx}"
+                ${item.checked ? "checked" : ""}
+                style="accent-color:#ff6a00; margin-right:10px"
+              />
+              <img src="${item.img}" alt="${item.name}" class="cart-item-img" />
+              <div class="cart-item-info">
+                <div class="cart-item-title">${item.name}</div>
+                <div class="cart-item-meta">${item.shop || ""}</div>
+                <div class="cart-item-price">${item.price.toLocaleString()} ₫</div>
+              </div>
+              <div class="cart-item-actions">
+                <button class="cart-qty-btn" onclick="updateQty(${idx}, -1)">-</button>
+                <input type="text" class="cart-qty-input" value="${
+                  item.qty
+                }" readonly />
+                <button class="cart-qty-btn" onclick="updateQty(${idx}, 1)">+</button>
+                <button class="cart-remove-btn" onclick="removeItem(${idx})">&#128465;</button>
+              </div>
+            </div>
+          `;
+          if (item.checked) {
+            total += item.price * item.qty;
+            selectedQty += item.qty;
+            selectedCount++;
+          }
+        });
+        cartCount.textContent = cart.length;
+        orderSummary.innerHTML = `
+          <div class="cart-summary-title" style="font-size:18px;font-weight:700;margin-bottom:14px;">Thông tin đơn hàng</div>
+          <div class="cart-summary-row" style="color:#888;">
+            <span>Tạm tính (<span style="font-weight:600;">${selectedQty} sản phẩm</span>)</span>
+            <span style="font-weight:600;">${total.toLocaleString()}đ</span>
+          </div>
+          <div class="cart-summary-row" style="color:#888;">
+            <span>Phí vận chuyển</span>
+            <span style="font-weight:600;">${
+              selectedQty > 0 ? "30.000 đ" : "0 đ"
+            }</span>
+          </div>
+          <div class="cart-voucher-row" style="display:flex;gap:8px;margin:12px 0;">
+            <input
+              type="text"
+              class="cart-voucher-input"
+              placeholder="Nhập mã voucher"
+              style="
+                flex: 1;
+                padding: 8px 10px;
+                border-radius: 5px;
+                border: 1px solid #ddd;
+                font-size: 15px;
+              "
+            />
+            <button
+              class="cart-voucher-btn"
+              style="
+                background: #00bcd4;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                font-weight: 700;
+                font-size: 15px;
+                padding: 8px 18px;
+                cursor: pointer;
+              "
+            >
+              ÁP DỤNG
+            </button>
+          </div>
+          <div class="cart-summary-total" style="font-size:22px;font-weight:700;color:#ff6a00;margin:18px 0 2px 0;">
+            <span>Tổng cộng</span>
+            <span>${
+              selectedQty > 0 ? (total + 30000).toLocaleString() : 0
+            } đ</span>
+          </div>
+          <div class="cart-summary-note" style="color:#888;font-size:13px;margin-bottom:10px;">Đã bao gồm VAT (nếu có)</div>
+          <button
+            class="cart-checkout-btn"
+            style="
+              width: 100%;
+              background: #ff6a00;
+              color: #fff;
+              border: none;
+              border-radius: 7px;
+              font-weight: 700;
+              font-size: 20px;
+              padding: 13px 0;
+              cursor: pointer;
+              margin-top: 6px;
+              transition: background 0.2s;
+              letter-spacing: 1px;
+            "
+            ${
+              selectedQty === 0
+                ? "disabled style='opacity:0.6;cursor:not-allowed;'"
+                : ""
+            }
+          >
+            THANH TOÁN(${selectedQty})
+          </button>
+        `;
+
+        // Sự kiện cho các checkbox sản phẩm
+        document.querySelectorAll(".item-checkbox").forEach((cb) => {
+          cb.onchange = function () {
+            const idx = +this.getAttribute("data-idx");
+            cart[idx].checked = this.checked;
+            localStorage.setItem("cart", JSON.stringify(cart));
+            renderCart();
+          };
+        });
+
+        // Sự kiện cho checkbox chọn tất cả
+        const selectAll = document.getElementById("selectAll");
+        selectAll.checked =
+          cart.length > 0 && cart.every((item) => item.checked);
+        selectAll.onchange = function () {
+          cart.forEach((item) => (item.checked = selectAll.checked));
+          localStorage.setItem("cart", JSON.stringify(cart));
+          renderCart();
+        };
+      }
+      function updateQty(idx, delta) {
+        let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        cart[idx].qty += delta;
+        if (cart[idx].qty < 1) cart[idx].qty = 1;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+      }
+      function removeItem(idx) {
+        let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        cart.splice(idx, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+      }
+      document.getElementById("cartBtn").onclick = function () {
+        window.location.href = "./shoppingcart.html";
+      };
+      window.onload = renderCart;
+    </script>
+  </body>
+</html>

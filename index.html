@@ -6,6 +6,19 @@
     <link rel="stylesheet" type="text/css" href="./css/styles.css" />
     <link rel="icon" type="image/png" href="./images/icon.ico" />
     <title>Lazada</title>
+    <script>
+      // Ensure this exists early for <img onerror="faceFallback(...)"/>
+      function faceFallback(img, step){
+        try {
+          if (step === 0) {
+            img.onerror = function(){ faceFallback(img,1); };
+            img.src = (img.src || '').replace('.png', '.jpg');
+            return;
+          }
+        } catch(e) {}
+        img.onerror = null; img.src = './images/lazada_icon.png';
+      }
+    </script>
 </head>
 <body>
 
@@ -86,7 +99,6 @@
         </div>
     </div>
     </section>
-
     <!-- Categories row -->
     <section class="categories" aria-label="Danh mục chính">
         <div class="cat-row" id="catRow">
@@ -336,6 +348,8 @@
         </div>
       </div>
     </section>
+
+    
 
 <!-- Chuyển banner -->
 <script>
@@ -653,8 +667,43 @@
         document.getElementById("loginModal").style.display = "flex";
       };
     </script>
+    <div class="faces-banner">
+      <img src="./images/banner_4.png" alt="Tải ngay ứng dụng Lazada" onerror="this.style.display='none'">
+    </div>
+    <!-- Faces Marquee at bottom -->
+    <section class="faces-section" aria-label="About Us">
+      <h3 class="faces-title"><span class="spark">★</span> About Us <span class="faces-badge">HOT</span></h3>
+      <div class="faces-marquee">
+        <div class="faces-track">
+          <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Ha_Yen_Linh.png" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Hà Yến Linh</div></div>
+          <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Ha_Yen_Linh.png" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Trần Hoàng Ngọc Lan</div></div>
+          <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Ha_Yen_Linh.png" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Phạm Phương Ái Linh</div></div>
+          <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Ha_Yen_Linh.png" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Vũ Thị Khánh Linh</div></div>
+          <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Ha_Yen_Linh.png" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Nguyễn Phan Thùy Linh</div></div>
+          <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Ha_Yen_Linh.png" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Phạm Tuyết Ngân</div></div>
+          <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Ha_Yen_Linh.png" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Mai Nguyễn Bảo Duy</div></div>
+          <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Ha_Yen_Linh.png" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Lê Nguyễn Thành Công</div></div>
+          <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Ha_Yen_Linh.png" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Trần Đại Hải</div></div>
+        </div>
+      </div>
+    </section>
     <!-- Thêm vào cuối file trước </body> -->
     <script>
+      // Hover name: pause marquee, highlight and enlarge avatar + name
+      (function(){
+        const marquee = document.querySelector('.faces-marquee');
+        document.querySelectorAll('.faces-section .face-card .name').forEach(function(nameEl){
+          const card = nameEl.closest('.face-card');
+          nameEl.addEventListener('mouseenter', function(){
+            marquee.classList.add('paused');
+            card.classList.add('zoom','highlight');
+          });
+          nameEl.addEventListener('mouseleave', function(){
+            marquee.classList.remove('paused');
+            card.classList.remove('zoom','highlight');
+          });
+        });
+      })();
       document.querySelectorAll('.product-card').forEach(card => {
         card.addEventListener('click', function(e) {
           // Chỉ chuyển trang nếu không nhấn vào nút trong card
@@ -663,6 +712,129 @@
           }
         });
       });
+    </script>
+    <footer class="site-footer" aria-label="Thông tin Lazada">
+      <div class="footer-top">
+        <div class="footer-highlight">
+          <div class="icon">🏬</div>
+          <div class="text"><div class="title">Hệ thống gian hàng chính hãng</div><div class="sub">Uy tín - đa dạng - giá tốt</div></div>
+        </div>
+        <div class="footer-highlight">
+          <div class="icon">🚚</div>
+          <div class="text"><div class="title">Giao hàng nhanh</div><div class="sub">Toàn quốc, theo dõi đơn dễ dàng</div></div>
+        </div>
+        <div class="footer-highlight">
+          <div class="icon">↩️</div>
+          <div class="text"><div class="title">Đổi trả linh hoạt</div><div class="sub">Miễn phí trong 15 ngày</div></div>
+        </div>
+        <div class="footer-highlight">
+          <div class="icon">🔒</div>
+          <div class="text"><div class="title">Thanh toán an toàn</div><div class="sub">Nhiều hình thức, bảo mật</div></div>
+        </div>
+      </div>
+      <div class="footer-main">
+        <div class="footer-col">
+          <div class="col-title">Trợ giúp</div>
+          <ul>
+            <li><a href="#">Trung tâm hỗ trợ</a></li>
+            <li><a href="#">Hướng dẫn mua hàng</a></li>
+            <li><a href="#">Theo dõi đơn hàng</a></li>
+            <li><a href="#">Chính sách đổi trả</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div class="col-title">Về Lazada</div>
+          <ul>
+            <li><a href="#">Giới thiệu</a></li>
+            <li><a href="#">Tuyển dụng</a></li>
+            <li><a href="#">Điều khoản sử dụng</a></li>
+            <li><a href="#">Bảo mật thông tin</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div class="col-title">Liên hệ</div>
+          <ul>
+            <li>Email: support@lazada.vn</li>
+            <li>Hotline: 1900 1000</li>
+            <li>8:00 - 22:00 (T2 - CN)</li>
+          </ul>
+          <div class="socials">
+            <a href="#" aria-label="Facebook" class="social"><img src="./images/facebook_icon.png" alt="Facebook"></a>
+            <a href="#" aria-label="Zalo" class="social"><img src="./images/zalo_icon.png" alt="Zalo"></a>
+            <a href="#" aria-label="Google" class="social"><img src="./images/google_icon.png" alt="Google"></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <div class="col-title">Đăng ký nhận tin</div>
+          <div class="newsletter">
+            <input type="email" placeholder="Nhập email của bạn" aria-label="Email">
+            <button>Đăng ký</button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">© 2025 Lazada — Một dự án demo giao diện.</div>
+      </div>
+    </footer>
+
+    <!-- Search dropdown overlay -->
+    <div id="searchOverlay" class="search-overlay" style="display: none">
+      <div class="search-overlay-inner">
+        <div class="search-overlay-header">
+          <a class="overlay-logo" href="./index.html"><img src="./images/lazada_icon.png" alt="Lazada"></a>
+          <div style="flex:1">
+            <div class="search-row overlay-autocomplete">
+              <input type="text" id="overlaySearchInput" class="search-input" placeholder="Tìm kiếm sản phẩm, thương hiệu..." />
+              <button id="overlaySearchBtn" class="search-btn">Tìm kiếm</button>
+              <ul id="overlaySuggest" class="autocomplete-panel" style="display:none"></ul>
+            </div>
+          </div>
+          <button id="overlayClose" class="overlay-close" aria-label="Đóng">×</button>
+        </div>
+        <div class="search-overlay-body">
+          <aside class="search-left">
+            <div class="left-title">Lịch sử tìm kiếm <button class="link-clear" id="clearHistory">Xóa</button></div>
+            <ul class="history-list" id="historyList"></ul>
+          </aside>
+          <section class="search-middle">
+            <div class="middle-section">
+              <div class="middle-title">Từ khóa phổ biến</div>
+              <ul class="middle-list two-col">
+                <li>áo thể thao</li>
+                <li>giày chạy bộ</li>
+                <li>đồng hồ thông minh</li>
+                <li>tai nghe bluetooth</li>
+                <li>kem chống nắng</li>
+                <li>điện thoại</li>
+              </ul>
+            </div>
+            <div class="middle-section">
+              <div class="middle-title">Danh mục gợi ý</div>
+              <ul class="middle-list">
+                <li>Quần áo</li>
+                <li>Mỹ phẩm</li>
+                <li>Thiết bị điện tử</li>
+                <li>Thể thao</li>
+              </ul>
+            </div>
+          </section>
+          <section class="search-right">
+            <h3 class="results-title" id="resultsTitle">Sản phẩm phổ biến</h3>
+            <div class="results-grid" id="resultsGrid"></div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <script src="./js/scripts.js"></script>
+    <script>
+      document.getElementById('cartBtn').onclick = function() {
+    window.location.href = './shoppingcart.html';
+  };
+    </script>
+    <script>
+    document.querySelector('.cart-btn').onclick = function() {
+  window.location.href = './shoppingcart.html';
+};
     </script>
   </body>
 </html>
