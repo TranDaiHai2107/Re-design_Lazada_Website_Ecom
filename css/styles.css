@@ -756,6 +756,16 @@ header .container {
   .search-overlay-body { grid-template-columns: 1fr; }
 }
 
+/* Faces marquee */
+.faces-section { padding: 12px 0 24px; }
+.faces-marquee { overflow: hidden; }
+.faces-track { display: flex; gap: 18px; width: max-content; animation: facesScroll 24s linear infinite; padding: 0 12px; }
+.face-card { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid #eee; border-radius: 999px; padding: 6px 12px; box-shadow: 0 6px 18px rgba(0,0,0,0.04); }
+.face-card .avatar { width: 38px; height: 38px; border-radius: 50%; overflow: hidden; background: #f7f7fa; display:flex; align-items:center; justify-content:center; }
+.face-card .avatar img { width: 100%; height: 100%; object-fit: cover; }
+.face-card .name { font-weight: 700; white-space: nowrap; }
+@keyframes facesScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
 /* Autocomplete for overlay search */
 .overlay-autocomplete { position: relative; }
 .autocomplete-panel {
