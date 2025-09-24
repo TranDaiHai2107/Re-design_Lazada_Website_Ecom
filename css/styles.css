@@ -791,7 +791,7 @@ header .container {
 .socials { display: flex; gap: 8px; margin-top: 10px; }
 .social img { width: 22px; height: 22px; }
 .newsletter { display: flex; gap: 8px; }
-.newsletter input { flex: 1; padding: 10px 12px; border-radius: 8px; border: 1px solid #334155; background: #0b1220; color: #e5e7eb; }
+.newsletter input { flex: 1; padding: 10px 12px; border-radius: 8px; border: 1px solid #334155; background: #5e6268; color: #e5e7eb; }
 .newsletter button { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 10px 14px; font-weight: 800; cursor: pointer; }
 .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding: 12px; font-size: 13px; color: #94a3b8; text-align: center; }
 
