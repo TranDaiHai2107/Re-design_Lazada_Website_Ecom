@@ -760,7 +760,9 @@ header .container {
 .faces-section { padding: 12px 0 0; }
 .faces-banner { max-width: var(--maxw); margin: 0 auto 8px auto; padding: 0 12px; }
 .faces-banner img { width: 100%; height: auto; border-radius: 12px; display: block; }
-.faces-title { max-width: var(--maxw); margin: 0 auto 8px auto; padding: 0 12px; font-size: 18px; font-weight: 800; color: #222; }
+.faces-title { max-width: var(--maxw); margin: 0 auto 8px auto; padding: 0 12px; font-size: 22px; font-weight: 900; color: #111; letter-spacing: 0.3px; display: flex; align-items: center; gap: 10px; }
+.faces-title .spark { color: #ff6a00; filter: drop-shadow(0 2px 6px rgba(255,106,0,0.35)); }
+.faces-title .faces-badge { background: linear-gradient(90deg,#ff6a00,#ff2d55); color: #fff; font-size: 12px; font-weight: 900; padding: 3px 10px; border-radius: 999px; letter-spacing: 0.8px; }
 .faces-marquee { overflow: hidden; }
 .faces-track { display: flex; gap: 18px; width: max-content; animation: facesScroll 24s linear infinite; animation-play-state: running; padding: 0 12px; }
 .faces-marquee.paused .faces-track { animation-play-state: paused; }
