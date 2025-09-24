@@ -666,6 +666,54 @@
         });
       });
     </script>
+    <!-- Search dropdown overlay -->
+    <div id="searchOverlay" class="search-overlay" style="display: none">
+      <div class="search-overlay-inner">
+        <div class="search-overlay-header">
+          <a class="overlay-logo" href="./index.html"><img src="./images/lazada_icon.png" alt="Lazada"></a>
+          <div style="flex:1">
+            <div class="search-row overlay-autocomplete">
+              <input type="text" id="overlaySearchInput" class="search-input" placeholder="Tìm kiếm sản phẩm, thương hiệu..." />
+              <button id="overlaySearchBtn" class="search-btn">Tìm kiếm</button>
+              <ul id="overlaySuggest" class="autocomplete-panel" style="display:none"></ul>
+            </div>
+          </div>
+          <button id="overlayClose" class="overlay-close" aria-label="Đóng">×</button>
+        </div>
+        <div class="search-overlay-body">
+          <aside class="search-left">
+            <div class="left-title">Lịch sử tìm kiếm <button class="link-clear" id="clearHistory">Xóa</button></div>
+            <ul class="history-list" id="historyList"></ul>
+          </aside>
+          <section class="search-middle">
+            <div class="middle-section">
+              <div class="middle-title">Từ khóa phổ biến</div>
+              <ul class="middle-list two-col">
+                <li>áo thể thao</li>
+                <li>giày chạy bộ</li>
+                <li>đồng hồ thông minh</li>
+                <li>tai nghe bluetooth</li>
+                <li>kem chống nắng</li>
+                <li>điện thoại</li>
+              </ul>
+            </div>
+            <div class="middle-section">
+              <div class="middle-title">Danh mục gợi ý</div>
+              <ul class="middle-list">
+                <li>Quần áo</li>
+                <li>Mỹ phẩm</li>
+                <li>Thiết bị điện tử</li>
+                <li>Thể thao</li>
+              </ul>
+            </div>
+          </section>
+          <section class="search-right">
+            <h3 class="results-title" id="resultsTitle">Sản phẩm phổ biến</h3>
+            <div class="results-grid" id="resultsGrid"></div>
+          </section>
+        </div>
+      </div>
+    </div>
     <script src="./js/scripts.js"></script>
   </body>
 </html>

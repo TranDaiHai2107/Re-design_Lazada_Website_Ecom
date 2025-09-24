@@ -98,19 +98,23 @@ function setupProductSearch() {
   // --- Overlay logic ---
   const overlay = document.getElementById('searchOverlay');
   const overlayClose = document.getElementById('overlayClose');
-  const overlayQuery = document.getElementById('overlayQuery');
+  const overlaySearchInput = document.getElementById('overlaySearchInput');
+  const overlaySearchBtn = document.getElementById('overlaySearchBtn');
   const resultsGrid = document.getElementById('resultsGrid');
   const resultsTitle = document.getElementById('resultsTitle');
   const historyList = document.getElementById('historyList');
   const clearHistoryBtn = document.getElementById('clearHistory');
+  const suggestPanel = document.getElementById('overlaySuggest');
 
   function openOverlay(queryRaw) {
     const q = (queryRaw || '').trim();
     overlay.style.display = 'block';
     document.body.style.overflow = 'hidden';
-    overlayQuery.textContent = q ? q : 'Tìm kiếm';
+    if (overlaySearchInput) {
+      overlaySearchInput.value = q;
+      setTimeout(() => overlaySearchInput.focus(), 0);
+    }
     renderResults(q);
-    rememberQuery(q);
     renderHistory();
   }
 
@@ -124,20 +128,109 @@ function setupProductSearch() {
     if (e.target === overlay) closeOverlay();
   });
 
+  // Overlay input interactions
+  if (overlaySearchBtn) overlaySearchBtn.addEventListener('click', function(){
+    const q = overlaySearchInput ? overlaySearchInput.value : '';
+    if (q && normalizeToAscii(q).includes('vot cau long')) {
+      window.location.href = './badminton.html';
+      return;
+    }
+    renderResults(q);
+    rememberQuery(q);
+    if (searchInput) searchInput.value = q;
+    renderHistory();
+    hideSuggest();
+  });
+  if (overlaySearchInput) overlaySearchInput.addEventListener('keyup', function(e){
+    if (e.key === 'Enter') {
+      const q = overlaySearchInput.value;
+      if (q && normalizeToAscii(q).includes('vot cau long')) {
+        window.location.href = './badminton.html';
+        return;
+      }
+      renderResults(q);
+      rememberQuery(q);
+      if (searchInput) searchInput.value = q;
+      renderHistory();
+      hideSuggest();
+      return;
+    }
+    // Navigation for suggestions
+    if (suggestPanel && suggestPanel.style.display !== 'none') {
+      const items = Array.from(suggestPanel.querySelectorAll('.autocomplete-item'));
+      const activeIndex = items.findIndex(it => it.classList.contains('active'));
+      if (e.key === 'ArrowDown') {
+        const next = activeIndex < items.length - 1 ? activeIndex + 1 : 0;
+        items.forEach(it => it.classList.remove('active'));
+        if (items[next]) items[next].classList.add('active');
+        e.preventDefault();
+        return;
+      }
+      if (e.key === 'ArrowUp') {
+        const prev = activeIndex > 0 ? activeIndex - 1 : items.length - 1;
+        items.forEach(it => it.classList.remove('active'));
+        if (items[prev]) items[prev].classList.add('active');
+        e.preventDefault();
+        return;
+      }
+      if (e.key === 'Escape') {
+        hideSuggest();
+        return;
+      }
+    }
+    renderResults(overlaySearchInput.value);
+    updateSuggest(overlaySearchInput.value);
+  });
+
+  // Suggestion helpers
+  function updateSuggest(queryRaw) {
+    if (!suggestPanel) return;
+    const q = normalizeToAscii(queryRaw);
+    if (!q) { hideSuggest(); return; }
+    // Special suggestion to go to badminton page
+    if ('vot cau long'.includes(q) || q.includes('vot cau long')) {
+      suggestPanel.innerHTML = '';
+      const li = document.createElement('li');
+      li.className = 'autocomplete-item active';
+      li.textContent = 'Vợt cầu lông - Mở trang sản phẩm';
+      li.addEventListener('click', function(){ window.location.href = './badminton.html'; });
+      suggestPanel.appendChild(li);
+      suggestPanel.style.display = 'block';
+      return;
+    }
+    const titles = productCards.map(card => (card.querySelector('.product-title')?.textContent || '').trim());
+    const unique = Array.from(new Set(titles));
+    const matched = unique.filter(t => normalizeToAscii(t).includes(q)).slice(0, 8);
+    if (matched.length === 0) { hideSuggest(); return; }
+    suggestPanel.innerHTML = '';
+    matched.forEach((text, idx) => {
+      const li = document.createElement('li');
+      li.className = 'autocomplete-item' + (idx === 0 ? ' active' : '');
+      li.textContent = text;
+      li.addEventListener('click', function(){
+        if (overlaySearchInput) overlaySearchInput.value = text;
+        renderResults(text);
+        rememberQuery(text);
+        if (searchInput) searchInput.value = text;
+        renderHistory();
+        hideSuggest();
+      });
+      suggestPanel.appendChild(li);
+    });
+    suggestPanel.style.display = 'block';
+  }
+  function hideSuggest(){ if (suggestPanel) suggestPanel.style.display = 'none'; }
+
   function renderResults(queryRaw) {
     const q = normalizeToAscii(queryRaw);
     resultsGrid.innerHTML = '';
     let matches = 0;
 
-    productCards.forEach((card) => {
+    // Helper to add a product card into results
+    function appendFromCard(card) {
       const titleEl = card.querySelector('.product-title');
       const priceEl = card.querySelector('.price-current');
       const imgEl = card.querySelector('.product-thumb img');
-      const haystack = cardSearchText.get(card) || '';
-      const isMatch = q ? haystack.includes(q) : true;
-      if (!isMatch) return;
-      matches++;
-
       const item = document.createElement('div');
       item.className = 'result-card';
       item.innerHTML = `
@@ -146,13 +239,32 @@ function setupProductSearch() {
         <div class="price">${priceEl ? priceEl.textContent : ''}</div>
       `;
       item.addEventListener('click', function(){
-        // Điều hướng sang trang sản phẩm chi tiết như hiện đang làm
         window.location.href = './mooncake.html';
       });
       resultsGrid.appendChild(item);
+    }
+
+    if (!q) {
+      // No query: show recommended/popular products (first 8 cards)
+      const popular = productCards.slice(0, 8);
+      popular.forEach((card) => {
+        matches++;
+        appendFromCard(card);
+      });
+      resultsTitle.textContent = 'Sản phẩm phổ biến';
+      return;
+    }
+
+    // With query: filter and show matches
+    productCards.forEach((card) => {
+      const haystack = cardSearchText.get(card) || '';
+      const isMatch = haystack.includes(q);
+      if (!isMatch) return;
+      matches++;
+      appendFromCard(card);
     });
 
-    resultsTitle.textContent = matches ? `Kết quả (${matches})` : 'Không tìm thấy kết quả';
+    resultsTitle.textContent = matches ? `Sản phẩm phổ biến (${matches})` : 'Không tìm thấy kết quả';
   }
 
   const HISTORY_KEY = 'lz_search_history_v1';
@@ -176,8 +288,8 @@ function setupProductSearch() {
       const li = document.createElement('li');
       li.textContent = text;
       li.addEventListener('click', function(){
-        searchInput.value = text;
-        overlayQuery.textContent = text;
+        if (searchInput) searchInput.value = text;
+        if (overlaySearchInput) overlaySearchInput.value = text;
         renderResults(text);
       });
       historyList.appendChild(li);

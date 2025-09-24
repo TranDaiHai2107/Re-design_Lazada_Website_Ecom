@@ -755,3 +755,24 @@ header .container {
 @media (max-width: 1000px) {
   .search-overlay-body { grid-template-columns: 1fr; }
 }
+
+/* Autocomplete for overlay search */
+.overlay-autocomplete { position: relative; }
+.autocomplete-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 110px; /* keep clear of the button */
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  margin-top: 6px;
+  padding: 6px 6px;
+  list-style: none;
+  max-height: 280px;
+  overflow: auto;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  z-index: 10;
+}
+.autocomplete-item { padding: 10px 10px; border-radius: 8px; cursor: pointer; }
+.autocomplete-item:hover, .autocomplete-item.active { background: #f5f6f8; }
