@@ -133,6 +133,36 @@
             </div>
             <!-- ... -->
         </div>
+<<<<<<< Updated upstream
+=======
+
+        <div class="cat">
+          <div class="thumb"><img src="./images/desktop.png" alt="" /></div>
+          <div class="label">Thiết bị điện tử</div>
+        </div>
+
+        <div class="cat">
+          <div class="thumb"><img src="./images/basketball.png" alt="" /></div>
+          <div class="label">Thể thao</div>
+        </div>
+
+        <div class="cat">
+          <div class="thumb"><img src="./images/healthcare.png" alt="" /></div>
+          <div class="label">Sức khỏe</div>
+        </div>
+
+        <div class="cat">
+          <div class="thumb"><img src="./images/clock.png" alt="" /></div>
+          <div class="label">Đồng hồ</div>
+        </div>
+
+        <div class="cat">
+          <div class="thumb"><img src="./images/handbag.png" alt="" /></div>
+          <div class="label">Túi xách</div>
+        </div>
+        <!-- ... -->
+      </div>
+>>>>>>> Stashed changes
     </section>
 
 <!-- Chuyển banner -->
@@ -177,10 +207,288 @@
     carousel.addEventListener('mouseenter', ()=> clearInterval(timer));
     carousel.addEventListener('mouseleave', ()=> resetTimer());
 
+<<<<<<< Updated upstream
     // initial
     go(0);
   })();
 </script>
 
 </body>
+=======
+        // initial
+        go(0);
+      })();
+    </script>
+    <!-- Popup Đăng nhập  -->
+    <div id="loginModal" class="modal" style="display: none">
+      <div class="modal-content login-modal-content">
+        <span class="close" id="closeLogin">&times;</span>
+        <div class="login-modal-header">
+          <div class="login-modal-tabs">
+            <span class="active" id="tabPassword">Password</span>
+            <span>|</span>
+            <span id="tabPhone">Phone Number</span>
+          </div>
+        </div>
+        <!-- Form đăng nhập bằng mật khẩu -->
+        <form class="login-modal-form" id="formPassword">
+          <input
+            type="text"
+            placeholder="Please enter your Phone or Email"
+            required
+          />
+          <input
+            type="password"
+            placeholder="Please enter your password"
+            required
+          />
+          <div class="login-modal-forgot">
+            <a href="#">Forgot password?</a>
+          </div>
+          <button type="submit" class="login-modal-btn">LOGIN</button>
+        </form>
+        <!-- Form đăng nhập bằng số điện thoại -->
+        <form class="login-modal-form" id="formPhone" style="display: none">
+          <div style="display: flex; gap: 8px">
+            <input
+              type="text"
+              value="VN+84"
+              readonly
+              style="
+                width: 80px;
+                text-align: center;
+                background: #f5f6f8;
+                border: 1.5px solid #e0e0e0;
+                font-weight: 600;
+              "
+            />
+            <input
+              type="text"
+              placeholder="Please enter your phone number"
+              required
+              style="flex: 1"
+            />
+          </div>
+          <button
+            type="button"
+            class="login-modal-btn"
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 8px;
+            "
+          >
+            <img
+              src="./images/zalo_icon.png"
+              alt="Zalo"
+              style="width: 22px; height: 22px"
+            />
+
+            Gửi mã OTP qua Zalo
+          </button>
+          <button
+            type="button"
+            class="login-modal-btn"
+            style="
+              background: #fff;
+              color: #ff6a00;
+              border: 1.5px solid #ff6a00;
+              margin-top: 8px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 8px;
+            "
+          >
+            <img
+              src="./images/sms_icon.png"
+              alt="SMS"
+              style="width: 20px; height: 20px"
+            />
+
+            Gửi mã qua SMS
+          </button>
+        </form>
+        <div class="login-modal-footer">
+          <span>Don’t have an account? <a href="#">Sign up</a></span>
+          <div class="login-modal-or">Or, login with</div>
+          <div class="login-modal-socials">
+            <button type="button" class="login-modal-social-btn">
+              <img src="./images/google_icon.png" alt="Google" /> Google
+            </button>
+            <button type="button" class="login-modal-social-btn">
+              <img src="./images/facebook_icon.png" alt="Facebook" /> Facebook
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="registerModal" class="modal" style="display: none">
+      <div class="modal-content login-modal-content">
+        <span class="close" id="closeRegister">&times;</span>
+        <h2 style="text-align: center; margin-bottom: 18px">Sign up</h2>
+        <form class="login-modal-form" id="formRegister">
+          <div style="display: flex; gap: 8px">
+            <input
+              type="text"
+              value="VN+84"
+              readonly
+              style="
+                width: 80px;
+                text-align: center;
+                background: #f5f6f8;
+                border: 1.5px solid #e0e0e0;
+                font-weight: 600;
+              "
+            />
+            <input
+              type="text"
+              placeholder="Please enter your phone number"
+              required
+              style="flex: 1"
+            />
+          </div>
+          <div style="margin: 10px 0 0 0; font-size: 14px; color: #888">
+            <label style="display: flex; align-items: flex-start; gap: 6px">
+              <input type="checkbox" required style="margin-top: 2px" />
+              <span>
+                By creating and/or using your account, you agree to our
+                <a href="#" style="color: #00bcd4; font-weight: 600"
+                  >Terms of Use</a
+                >
+                and
+                <a href="#" style="color: #00bcd4; font-weight: 600"
+                  >Privacy Policy</a
+                >.
+              </span>
+            </label>
+          </div>
+          <button
+            type="button"
+            class="login-modal-btn"
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 8px;
+              margin-top: 14px;
+            "
+          >
+            <img
+              src="./images/zalo_icon.png"
+              alt="Zalo"
+              style="width: 22px; height: 22px"
+            />
+            Gửi mã OTP qua Zalo
+          </button>
+          <button
+            type="button"
+            class="login-modal-btn"
+            style="
+              background: #fff;
+              color: #ff6a00;
+              border: 1.5px solid #ff6a00;
+              margin-top: 8px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 8px;
+            "
+          >
+            <img
+              src="./images/sms_icon.png"
+              alt="SMS"
+              style="width: 20px; height: 20px"
+            />
+            Gửi mã qua SMS
+          </button>
+        </form>
+        <div class="login-modal-footer">
+          <span
+            >Already have an account?
+            <a href="#" id="loginNowLink">Log in Now</a></span
+          >
+          <div class="login-modal-or">Or, login with</div>
+          <div class="login-modal-socials">
+            <button type="button" class="login-modal-social-btn">
+              <img src="./images/google_icon.png" alt="Google" /> Google
+            </button>
+            <button type="button" class="login-modal-social-btn">
+              <img src="./images/facebook_icon.png" alt="Facebook" /> Facebook
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document
+        .querySelectorAll(".top-actions a")[0]
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          document.getElementById("loginModal").style.display = "flex";
+        });
+      document.getElementById("closeLogin").onclick = function () {
+        document.getElementById("loginModal").style.display = "none";
+      };
+      window.onclick = function (event) {
+        const modal = document.getElementById("loginModal");
+        if (event.target === modal) modal.style.display = "none";
+      };
+
+      // Chuyển tab Password/Phone Number
+      document.getElementById("tabPassword").onclick = function () {
+        this.classList.add("active");
+        document.getElementById("tabPhone").classList.remove("active");
+        document.getElementById("formPassword").style.display = "";
+        document.getElementById("formPhone").style.display = "none";
+      };
+      document.getElementById("tabPhone").onclick = function () {
+        this.classList.add("active");
+        document.getElementById("tabPassword").classList.remove("active");
+        document.getElementById("formPassword").style.display = "none";
+        document.getElementById("formPhone").style.display = "";
+      };
+
+      // Đăng ký
+      document
+        .querySelectorAll(".top-actions a")[1]
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          document.getElementById("registerModal").style.display = "flex";
+        });
+
+      // Mở popup đăng ký khi nhấn "Sign up" trong popup đăng nhập
+      document
+        .querySelectorAll(".login-modal-footer a")
+        .forEach(function (link) {
+          if (link.textContent.trim().toLowerCase().includes("sign up")) {
+            link.onclick = function (e) {
+              e.preventDefault();
+              document.getElementById("loginModal").style.display = "none";
+              document.getElementById("registerModal").style.display = "flex";
+            };
+          }
+        });
+
+      // Đóng popup đăng ký
+      document.getElementById("closeRegister").onclick = function () {
+        document.getElementById("registerModal").style.display = "none";
+      };
+
+      // Đóng popup khi click ra ngoài
+      window.addEventListener("click", function (event) {
+        const modal = document.getElementById("registerModal");
+        if (event.target === modal) modal.style.display = "none";
+      });
+
+      // Quay lại đăng nhập khi nhấn "Log in Now"
+      document.getElementById("loginNowLink").onclick = function (e) {
+        e.preventDefault();
+        document.getElementById("registerModal").style.display = "none";
+        document.getElementById("loginModal").style.display = "flex";
+      };
+    </script>
+  </body>
+>>>>>>> Stashed changes
 </html>
