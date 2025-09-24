@@ -233,8 +233,9 @@ header .container {
 
 /* --- Category icons row --- */
 .categories {
-  margin-top: 18px;
-  padding: 22px 0 40px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding: 22px 0 12px; /* giảm khoảng dưới */
 }
 .cat-row {
   max-width: var(--maxw);
@@ -477,8 +478,8 @@ header .container {
 
 /* Dành cho bạn - Đẹp hơn, hiện đại hơn */
 .for-you-section {
-  margin-top: 14px;
-  padding: 36px 0 48px;
+  margin-top: 0px;
+  padding: 20px 0 48px; /* giảm khoảng trên */
   border-radius: 18px;
 }
 .for-you-title {
@@ -758,7 +759,7 @@ header .container {
 
 /* Faces marquee */
 .faces-section { padding: 12px 0 0; }
-.faces-banner { max-width: var(--maxw); margin: 0 auto 8px auto; padding: 0 12px; }
+.faces-banner { max-width: var(--maxw); margin: 0 auto 30px; padding: 0 12px; }
 .faces-banner img { width: 100%; height: auto; border-radius: 12px; display: block; }
 .faces-title { max-width: var(--maxw); margin: 0 auto 8px auto; padding: 0 12px; font-size: 22px; font-weight: 900; color: #111; letter-spacing: 0.3px; display: flex; align-items: center; gap: 10px; }
 .faces-title .spark { color: #ff6a00; filter: drop-shadow(0 2px 6px rgba(255,106,0,0.35)); }
@@ -776,16 +777,16 @@ header .container {
 @keyframes facesScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* --- Footer --- */
-.site-footer { background: #0f172a; color: #e5e7eb; margin-top: 0; }
-.site-footer a { color: #cbd5e1; text-decoration: none; }
-.site-footer a:hover { color: #fff; }
+.site-footer { background: #fdeae7; color: black; margin-top: 0; }
+.site-footer a { color: black; text-decoration: none; }
+.site-footer a:hover { color: black; }
 .footer-top { max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding: 18px 12px; border-bottom: 1px solid rgba(255,255,255,0.08); }
 .footer-highlight { display: flex; gap: 12px; align-items: center; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 12px; }
 .footer-highlight .icon { font-size: 22px; }
-.footer-highlight .title { font-weight: 800; color: #fff; }
-.footer-highlight .sub { font-size: 13px; color: #cbd5e1; }
+.footer-highlight .title { font-weight: 800; color: black; }
+.footer-highlight .sub { font-size: 13px; color: black; }
 .footer-main { max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; padding: 18px 12px; }
-.footer-col .col-title { font-weight: 800; color: #fff; margin-bottom: 10px; }
+.footer-col .col-title { font-weight: 800; color:black; margin-bottom: 10px; }
 .footer-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .socials { display: flex; gap: 8px; margin-top: 10px; }
 .social img { width: 22px; height: 22px; }
