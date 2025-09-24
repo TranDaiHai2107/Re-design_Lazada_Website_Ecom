@@ -693,3 +693,65 @@ header .container {
   background: linear-gradient(90deg, #ff2d55 70%, #ff6a00 100%);
   transform: translateY(-2px) scale(1.04);
 }
+
+/* --- Search Overlay --- */
+.search-overlay {
+  position: fixed;
+  z-index: 9998;
+  inset: 0;
+  background: #fff;
+}
+.search-overlay-inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 12px 12px 24px 12px;
+}
+.search-overlay-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+.overlay-logo img { height: 36px; }
+.overlay-query { flex: 1; font-weight: 700; color: #333; }
+.overlay-close {
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 20px;
+  width: 36px; height: 36px; cursor: pointer;
+}
+.search-overlay-body {
+  display: grid;
+  grid-template-columns: 260px 300px 1fr;
+  gap: 16px;
+  margin-top: 14px;
+}
+.search-left {
+  background: #fafafa; border: 1px solid #eee; border-radius: 8px; padding: 10px;
+}
+.left-title { font-weight: 700; font-size: 14px; display: flex; justify-content: space-between; align-items: center; }
+.link-clear { background: none; border: none; color: #ff6a00; cursor: pointer; font-weight: 700; }
+.history-list { list-style: none; margin: 8px 0 0 0; padding: 0; max-height: 60vh; overflow: auto; }
+.history-list li { padding: 10px 8px; border-bottom: 1px solid #eee; cursor: pointer; }
+
+.search-middle { border: 1px solid #eee; border-radius: 8px; padding: 10px; background: #fff; }
+.middle-section { margin-bottom: 14px; }
+.middle-title { font-weight: 700; margin-bottom: 8px; }
+.middle-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.middle-list.two-col { grid-template-columns: 1fr 1fr; }
+.middle-list li { font-size: 14px; color: #333; }
+
+.search-right { min-height: 60vh; }
+.results-title { margin: 0 0 10px 0; font-size: 18px; font-weight: 800; }
+.results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+.result-card { border: 1px solid #eee; border-radius: 10px; padding: 10px; background: #fff; cursor: pointer; }
+.result-card .thumb { width: 100%; padding-top: 100%; position: relative; overflow: hidden; border-radius: 8px; background: #f7f7fa; }
+.result-card .thumb img { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; height: 90%; object-fit: contain; }
+.result-card .name { font-size: 14px; font-weight: 600; margin-top: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.result-card .price { color: #ff6a00; font-weight: 800; margin-top: 6px; }
+
+@media (max-width: 1000px) {
+  .search-overlay-body { grid-template-columns: 1fr; }
+}
