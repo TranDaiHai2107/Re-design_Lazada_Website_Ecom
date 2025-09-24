@@ -6,6 +6,19 @@
     <link rel="stylesheet" type="text/css" href="./css/styles.css" />
     <link rel="icon" type="image/png" href="./images/icon.ico" />
     <title>Lazada</title>
+    <script>
+      // Ensure this exists early for <img onerror="faceFallback(...)"/>
+      function faceFallback(img, step){
+        try {
+          if (step === 0) {
+            img.onerror = function(){ faceFallback(img,1); };
+            img.src = (img.src || '').replace('.png', '.jpg');
+            return;
+          }
+        } catch(e) {}
+        img.onerror = null; img.src = './images/lazada_icon.png';
+      }
+    </script>
 </head>
 <body>
 
