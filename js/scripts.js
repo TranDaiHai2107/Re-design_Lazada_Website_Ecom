@@ -110,6 +110,9 @@ function setupProductSearch() {
     const q = (queryRaw || '').trim();
     overlay.style.display = 'block';
     document.body.style.overflow = 'hidden';
+    // Ẩn nút chuyển ngôn ngữ khi overlay mở
+  const langSwitcher = document.querySelector('.lang-switcher');
+  if (langSwitcher) langSwitcher.style.display = 'none';
     if (overlaySearchInput) {
       overlaySearchInput.value = q;
       setTimeout(() => overlaySearchInput.focus(), 0);
@@ -121,6 +124,9 @@ function setupProductSearch() {
   function closeOverlay() {
     overlay.style.display = 'none';
     document.body.style.overflow = '';
+    // Hiện lại nút chuyển ngôn ngữ khi overlay đóng
+  const langSwitcher = document.querySelector('.lang-switcher');
+  if (langSwitcher) langSwitcher.style.display = '';
   }
 
   if (overlayClose) overlayClose.addEventListener('click', closeOverlay);
@@ -251,7 +257,7 @@ function setupProductSearch() {
         matches++;
         appendFromCard(card);
       });
-      resultsTitle.textContent = 'Sản phẩm phổ biến';
+      resultsTitle.textContent = document.documentElement.lang === 'en' ? 'Popular products' : 'Sản phẩm phổ biến';
       return;
     }
 
@@ -264,7 +270,13 @@ function setupProductSearch() {
       appendFromCard(card);
     });
 
-    resultsTitle.textContent = matches ? `Sản phẩm phổ biến (${matches})` : 'Không tìm thấy kết quả';
+    resultsTitle.textContent = matches
+      ? (document.documentElement.lang === 'en'
+        ? `Popular products (${matches})`
+        : `Sản phẩm phổ biến (${matches})`)
+      : (document.documentElement.lang === 'en'
+        ? 'No results found'
+        : 'Không tìm thấy kết quả');
   }
 
   const HISTORY_KEY = 'lz_search_history_v1';

@@ -26,7 +26,7 @@
   <div class="page">
     <div class="grid">
       <aside class="left">
-        <div class="title">Lịch sử tìm kiếm <button class="clear" id="clearHistory">Xóa</button></div>
+        <div class="title" data-i18n="Lịch sử tìm kiếm">Lịch sử tìm kiếm <button class="clear" id="clearHistory">Xóa</button></div>
         <ul class="history" id="historyList"></ul>
       </aside>
 
@@ -41,7 +41,7 @@
           </ul>
         </div>
         <div class="section">
-          <div class="section-title">Thương hiệu</div>
+          <div class="section-title" data-i18n="Thương hiệu">Thương hiệu</div>
           <ul class="list two-col" id="brandFilter">
             <li><label><input type="checkbox" value="Alpsport"/> ALPSPORT</label></li>
             <li><label><input type="checkbox" value="Kumpoo"/> Kumpoo</label></li>
@@ -52,12 +52,15 @@
       </section>
 
       <section class="right">
-        <h3 class="results-title" id="resultsTitle">Kết quả</h3>
+        <h3 class="results-title" id="resultsTitle" data-i18n="Kết quả">Kết quả</h3>
         <div class="results" id="resultsGrid"></div>
       </section>
     </div>
   </div>
-
+            <div class="lang-switcher">
+              <button id="langToggleBtn">EN</button>
+            </div>
 </body>
+<script src="./js/translate_script.js" defer></script>
 </html>
 

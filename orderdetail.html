@@ -15,16 +15,19 @@
     <!-- Top strip -->
     <div class="top-strip">
       <div class="container">
-        <div class="top-links">
-          <a href="#">Chăm sóc khách hàng</a>
-          <a href="./orderdetail.html">Kiểm tra đơn hàng</a>
-        </div>
-        <div class="top-actions">
-          <a href="#">Đăng nhập</a>
-          <a href="#">Đăng ký</a>
+          <div class="top-links">
+              <a href="#" data-i18n="Chăm sóc khách hàng">Chăm sóc khách hàng</a>
+              <a href="./orderdetail.html" data-i18n="Kiểm tra đơn hàng">Kiểm tra đơn hàng</a>
+          </div>
+          <div class="top-actions">
+              <a href="#" data-i18n="Đăng nhập">Đăng nhập</a>
+              <a href="#"data-i18n="Đăng ký">Đăng ký</a>
+          </div>
+          <div class="lang-switcher">
+            <button id="langToggleBtn">EN</button>
+          </div>
         </div>
       </div>
-    </div>
 
     <!-- Header -->
     <header class="main-header">
@@ -45,8 +48,9 @@
               placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..."
               aria-label="Tìm kiếm"
               class="search-input"
+              data-i18n-placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..."
             />
-            <button aria-label="Tìm kiếm" class="search-btn">Tìm kiếm</button>
+            <button aria-label="Tìm kiếm" class="search-btn" data-i18n="Tìm kiếm">Tìm kiếm</button>
           </div>
         </div>
 
@@ -62,23 +66,23 @@
       <div>
         <div class="mini-features" aria-hidden="true">
           <span>🔖 LazMall</span>
-          <span>🏷 Mã Giảm Giá</span>
-          <span>💳 Nạp Thẻ & eVoucher</span>
+          <span data-i18n="Mã giảm giá">🏷 Mã Giảm Giá</span>
+          <span data-i18n="Nạp thẻ">💳 Nạp Thẻ & eVoucher</span>
           <span>🌍 LazGlobal</span>
         </div>
       </div>
     </header>
     <main class="order-detail-main">
-    <h1 class="order-detail-title">Chi tiết đơn hàng</h1>
+    <h1 class="order-detail-title" data-i18n="Chi tiết đơn hàng">Chi tiết đơn hàng</h1>
     <div class="order-list">
       <!-- Đơn 1: Đang giao -->
       <section class="order-card">
         <div class="order-header">
           <div>
-            <span class="order-id">Mã đơn: #LDZ20250901A</span>
-            <span class="order-date">Đặt ngày: 24/09/2025</span>
+            <span class="order-id" data-i18n="Mã đơn">Mã đơn:</span><span class="order-id">#LDZ20250901A</span>
+            <span class="order-date" data-i18n="Đặt ngày">Đặt ngày:</span> <span class="order-date">24/09/2025</span>
           </div>
-          <span class="order-status status-shipping">Đang giao</span>
+          <span class="order-status status-shipping" data-i18n="Đang giao">Đang giao</span>
         </div>
         <div class="order-products">
           <div class="order-product">
@@ -86,7 +90,7 @@
             <div class="order-info">
               <a href="./mooncake.html" class="order-name">Bánh Trung Thu Hữu Nghị Tinh Hoa (4 bánh nướng 150G-180G)</a>
               <div class="order-variant">Combo: Truyền thống 1</div>
-              <div class="order-qty">Số lượng: 2</div>
+              <div class="order-qty" ><span data-i18n="Số lượng">Số lượng:</span><span class="order-qty"> 2</span></div>
             </div>
             <div class="order-price">
               <span class="order-price-current">216.000đ</span>
@@ -95,33 +99,33 @@
           </div>
         </div>
         <div class="order-payment">
-          <div><b>Phương thức thanh toán:</b> COD</div>
-          <div><b>Trạng thái thanh toán:</b> Chưa thanh toán</div>
+          <div><b data-i18n="Phương thức thanh toán">Phương thức thanh toán:</b> COD</div>
+          <div><b data-i18n="Trạng thái thanh toán">Trạng thái thanh toán:</b ><b data-i18n="Chưa thanh toán"> Chưa thanh toán</b></div>
         </div>
         <div class="order-shipping">
-          <div><b>Nhận hàng:</b> Nguyễn Văn A, 0901234567</div>
-          <div><b>Địa chỉ:</b> KTX Khu A, Đường Tạ Quang Bửu, Khu phố 33, Dĩ An, Hồ Chí Minh</div>
-          <div><b>Đơn vị vận chuyển:</b> Giao hàng nhanh - Mã vận đơn: GHN123456789</div>
-          <div><b>Phí ship:</b> 25.000đ &nbsp; <b>Dự kiến giao:</b> 26/09/2025</div>
+          <div><b data-i18n="Nhận hàng">Nhận hàng:</b> Nguyễn Văn A, 0901234567</div>
+          <div><b data-i18n="Địa chỉ:">Địa chỉ:</b> KTX Khu A, Đường Tạ Quang Bửu, Khu phố 33, Dĩ An, Hồ Chí Minh</div>
+          <div><b data-i18n="Đơn vị vận chuyển">Đơn vị vận chuyển:</b> Giao hàng nhanh - <b data-i18n="Mã vận đơn:">Mã vận đơn:</b> GHN123456789</div>
+          <div><b data-i18n="Phí ship:">Phí ship:</b> 25.000đ &nbsp; <b>Dự kiến giao:</b> 26/09/2025</div>
         </div>
         <div class="order-summary">
-          <div><b>Tổng tiền:</b> 457.000đ</div>
-          <div><b>Voucher đã dùng:</b> LAZADA2025</div>
+          <div><b data-i18n="Tổng tiền:">Tổng tiền:</b> 457.000đ</div>
+          <div><b data-i18n="Voucher đã dùng:">Voucher đã dùng:</b> LAZADA2025</div>
         </div>
         <div class="order-actions">
-          <button class="order-btn order-btn-cancel">Hủy đơn</button>
-          <button class="order-btn order-btn-track">Theo dõi đơn hàng</button>
-          <button class="order-btn order-btn-contact">Liên hệ CSKH</button>
+          <button class="order-btn order-btn-cancel" data-i18n="Hủy đơn">Hủy đơn</button>
+          <button class="order-btn order-btn-track" data-i18n="Theo dõi đơn hàng">Theo dõi đơn hàng</button>
+          <button class="order-btn order-btn-contact" data-i18n="Liên hệ CSKH">Liên hệ CSKH</button>
         </div>
       </section>
       <!-- Đơn 2: Đã giao thành công -->
       <section class="order-card">
         <div class="order-header">
           <div>
-            <span class="order-id">Mã đơn: #LDZ20250821B</span>
-            <span class="order-date">Đặt ngày: 21/08/2025</span>
+            <span class="order-id" data-i18n="Mã đơn">Mã đơn:</span><span class="order-id">#LDZ20250821B</span>
+            <span class="order-date" data-i18n="Đặt ngày">Đặt ngày:</span> <span class="order-date">21/08/2025</span>
           </div>
-          <span class="order-status status-success">Hoàn tất</span>
+          <span class="order-status status-success" data-i18n="Hoàn tất">Hoàn tất</span>
         </div>
         </div>
         <div class="order-products">
@@ -130,7 +134,7 @@
             <div class="order-info">
               <a href="#" class="order-name">COMBO 3 Bánh kem xốp Trứng muối Tipo</a>
               <div class="order-variant">Combo: Loại đặc biệt</div>
-              <div class="order-qty">Số lượng: 1</div>
+              <div class="order-qty" ><span data-i18n="Số lượng">Số lượng:</span><span class="order-qty"> 1</span></div>
             </div>
             <div class="order-price">
               <span class="order-price-current">21.000đ</span>
@@ -139,33 +143,33 @@
           </div>
         </div>
         <div class="order-payment">
-          <div><b>Phương thức thanh toán:</b> Ví điện tử</div>
-          <div><b>Trạng thái thanh toán:</b> Đã thanh toán</div>
+          <div><b data-i18n="Phương thức thanh toán">Phương thức thanh toán:</b> Ví điện tử</div>
+          <div><b data-i18n="Trạng thái thanh toán">Trạng thái thanh toán:</b > <b data-i18n="Đã thanh toán">Đã thanh toán</b></div>
         </div>
         <div class="order-shipping">
-          <div><b>Nhận hàng:</b> Nguyễn Văn B, 0909876543</div>
-          <div><b>Địa chỉ:</b> KTX Khu A, Đường Tạ Quang Bửu, Khu phố 33, Dĩ An, Hồ Chí Minh</div>
-          <div><b>Đơn vị vận chuyển:</b> Viettel Post - Mã vận đơn: VT123456789</div>
-          <div><b>Phí ship:</b> 18.000đ &nbsp; <b>Đã giao:</b> 23/08/2025</div>
+          <div><b data-i18n="Nhận hàng">Nhận hàng:</b> Nguyễn Văn B, 0909876543</div>
+          <div><b data-i18n="Địa chỉ:">Địa chỉ:</b> KTX Khu A, Đường Tạ Quang Bửu, Khu phố 33, Dĩ An, Hồ Chí Minh</div>
+          <div><b data-i18n="Đơn vị vận chuyển">Đơn vị vận chuyển:</b> Viettel Post - <b data-i18n="Mã vận đơn:">Mã vận đơn:</b> VT123456789</div>
+          <div><b data-i18n="Phí ship:">Phí ship:</b> 18.000đ &nbsp; <b data-i18n="Đã giao:">Đã giao:</b> 23/08/2025</div>
         </div>
         <div class="order-summary">
-          <div><b>Tổng tiền:</b> 39.000đ</div>
-          <div><b>Voucher đã dùng:</b> TIPO2025</div>
+          <div><b data-i18n="Tổng tiền:">Tổng tiền:</b> 39.000đ</div>
+          <div><b data-i18n="Voucher đã dùng:">Voucher đã dùng:</b> TIPO2025</div>
         </div>
         <div class="order-actions">
-          <button class="order-btn order-btn-rate">Đánh giá sản phẩm</button>
-          <button class="order-btn order-btn-reorder">Mua lại</button>
-          <button class="order-btn order-btn-contact">Liên hệ CSKH</button>
+          <button class="order-btn order-btn-rate" data-i18n="Đánh giá sản phẩm">Đánh giá sản phẩm</button>
+          <button class="order-btn order-btn-reorder" data-i18n="Mua lại">Mua lại</button>
+          <button class="order-btn order-btn-contact" data-i18n="Liên hệ CSKH">Liên hệ CSKH</button>
         </div>
       </section>
       <!-- Đơn 3: Đã giao thành công -->
       <section class="order-card">
         <div class="order-header">
           <div>
-            <span class="order-id">Mã đơn: #LDZ20250810C</span>
-            <span class="order-date">Đặt ngày: 10/08/2025</span>
+            <span class="order-id" data-i18n="Mã đơn">Mã đơn:</span><span class="order-id">#LDZ20250810C</span>
+            <span class="order-date" data-i18n="Đặt ngày">Đặt ngày:</span> <span class="order-date">10/08/2025</span>
           </div>
-          <span class="order-status status-success">Hoàn tất</span>
+          <span class="order-status status-success" data-i18n="Hoàn tất">Hoàn tất</span>
         </div>
         </div>
         <div class="order-products">
@@ -174,7 +178,7 @@
             <div class="order-info">
               <a href="#" class="order-name">Bánh Trung thu Kinh Đô - Bánh nướng nhân đậu xanh 1 trứng</a>
               <div class="order-variant">Combo: Đặc biệt</div>
-              <div class="order-qty">Số lượng: 3</div>
+              <div class="order-qty" ><span data-i18n="Số lượng">Số lượng:</span><span class="order-qty"> 3</span></div>
             </div>
             <div class="order-price">
               <span class="order-price-current">69.000đ</span>
@@ -183,23 +187,23 @@
           </div>
         </div>
         <div class="order-payment">
-          <div><b>Phương thức thanh toán:</b> Thẻ tín dụng</div>
-          <div><b>Trạng thái thanh toán:</b> Đã thanh toán</div>
+          <div><b data-i18n="Phương thức thanh toán">Phương thức thanh toán:</b> Thẻ tín dụng</div>
+          <div><b data-i18n="Trạng thái thanh toán">Trạng thái thanh toán:</b ><b data-i18n="Đã thanh toán"> Đã thanh toán</b></div>
         </div>
         <div class="order-shipping">
-          <div><b>Nhận hàng:</b> Nguyễn Văn C, 0901122334</div>
-          <div><b>Địa chỉ:</b> KTX Khu A, Đường Tạ Quang Bửu, Khu phố 33, Dĩ An, Hồ Chí Minh</div>
-          <div><b>Đơn vị vận chuyển:</b> J&T Express - Mã vận đơn: JT123456789</div>
-          <div><b>Phí ship:</b> 20.000đ &nbsp; <b>Đã giao:</b> 12/08/2025</div>
+          <div><b data-i18n="Nhận hàng">Nhận hàng:</b> Nguyễn Văn C, 0901122334</div>
+          <div><b data-i18n="Địa chỉ:">Địa chỉ:</b> KTX Khu A, Đường Tạ Quang Bửu, Khu phố 33, Dĩ An, Hồ Chí Minh</div>
+          <div><b data-i18n="Đơn vị vận chuyển">Đơn vị vận chuyển:</b> J&T Express - <b data-i18n="Mã vận đơn:">Mã vận đơn:</b> JT123456789</div>
+          <div><b data-i18n="Phí ship:">Phí ship:</b> 20.000đ &nbsp; <b data-i18n="Đã giao:">Đã giao:</b> 12/08/2025</div>
         </div>
         <div class="order-summary">
-          <div><b>Tổng tiền:</b> 227.000đ</div>
-          <div><b>Voucher đã dùng:</b> KINHDO2025</div>
+          <div><b data-i18n="Tổng tiền:">Tổng tiền:</b> 227.000đ</div>
+          <div><b data-i18n="Voucher đã dùng:">Voucher đã dùng:</b> KINHDO2025</div>
         </div>
         <div class="order-actions">
-          <button class="order-btn order-btn-rate">Đánh giá sản phẩm</button>
-          <button class="order-btn order-btn-reorder">Mua lại</button>
-          <button class="order-btn order-btn-contact">Liên hệ CSKH</button>
+          <button class="order-btn order-btn-rate" data-i18n="Đánh giá sản phẩm">Đánh giá sản phẩm</button>
+          <button class="order-btn order-btn-reorder" data-i18n="Mua lại">Mua lại</button>
+          <button class="order-btn order-btn-contact" data-i18n="Liên hệ CSKH">Liên hệ CSKH</button>
         </div>
       </section>
     </div>
@@ -208,47 +212,47 @@
 <div id="trackOrderModal" class="track-order-modal" style="display:none;">
   <div class="track-order-content">
     <div class="track-order-header">
-      <span class="track-order-title">Chi tiết đơn hàng</span>
+      <span class="track-order-title" data-i18n="Chi tiết đơn hàng">Chi tiết đơn hàng</span>
       <button class="track-order-close" id="closeTrackOrder" title="Đóng">×</button>
     </div>
     <div class="track-order-progress">
       <div class="track-progress-bar">
-        <span class="track-step active">Chờ đóng gói</span>
+        <span class="track-step active" data-i18n="Chờ đóng gói">Chờ đóng gói</span>
         <span class="track-dot active"></span>
-        <span class="track-step active">Chờ lấy hàng</span>
+        <span class="track-step active" data-i18n="Chờ lấy hàng">Chờ lấy hàng</span>
         <span class="track-dot active"></span>
-        <span class="track-step">Chờ giao hàng</span>
+        <span class="track-step" data-i18n="Chờ giao hàng">Chờ giao hàng</span>
         <span class="track-dot"></span>
-        <span class="track-step">Đang vận chuyển</span>
+        <span class="track-step" data-i18n="Đang vận chuyển">Đang vận chuyển</span>
         <span class="track-dot"></span>
-        <span class="track-step">Giao hàng thành công</span>
+        <span class="track-step" data-i18n="Giao hàng thành công">Giao hàng thành công</span>
       </div>
     </div>
     <div class="track-order-body">
       <div class="track-order-info">
-        <h4>Thông tin kiện hàng</h4>
-        <div class="track-info-row"><b>Mã vận đơn:</b> <span id="trackOrderId">515286016918551</span> <button class="track-copy-btn" onclick="navigator.clipboard.writeText('515286016918551')">📋</button></div>
-        <div class="track-info-row"><b>Người nhận hàng:</b> Nguyễn Văn A</div>
-        <div class="track-info-row"><b>Hình thức giao hàng:</b> Standard</div>
-        <div class="track-info-row"><b>Ngày khách hàng tạo đơn hàng:</b> 23/9/2025</div>
-        <div class="track-info-row"><b>Ngày nhận hàng dự kiến:</b> 25/9/2025</div>
+        <h4 data-i18n="Thông tin kiện hàng">Thông tin kiện hàng</h4>
+        <div class="track-info-row"><b data-i18n="Mã vận đơn:">Mã vận đơn:</b> <span id="trackOrderId">515286016918551</span> <button class="track-copy-btn" onclick="navigator.clipboard.writeText('515286016918551')">📋</button></div>
+        <div class="track-info-row"><b data-i18n="Người nhận hàng:">Người nhận hàng:</b> Nguyễn Văn A</div>
+        <div class="track-info-row"><b data-i18n="Hình thức giao hàng">Hình thức giao hàng:</b> Standard</div>
+        <div class="track-info-row"><b data-i18n="Ngày khách hàng tạo đơn hàng:">Ngày khách hàng tạo đơn hàng:</b> 23/9/2025</div>
+        <div class="track-info-row"><b data-i18n="Ngày nhận hàng dự kiến:">Ngày nhận hàng dự kiến:</b> 25/9/2025</div>
       </div>
       <div class="track-order-timeline">
-        <h4>Lịch sử vận chuyển</h4>
+        <h4 data-i18n="Lịch sử vận chuyển">Lịch sử vận chuyển</h4>
         <div class="track-timeline-row">
           <div class="track-timeline-date">24/9/2025</div>
           <div class="track-timeline-list">
             <div class="track-timeline-item latest">
               <span class="track-timeline-time">16:43</span>
-              <span class="track-timeline-desc">Đơn hàng đã được nhận tại trạm giao nhận <b>[Hồ Chí Minh - Thủ Đức]</b></span>
+              <span class="track-timeline-desc" ><b data-i18n="Đơn hàng đã được nhận tại trạm giao nhận">Đơn hàng đã được nhận tại trạm giao nhận </b><b> [Hồ Chí Minh - Thủ Đức]</b></span>
             </div>
             <div class="track-timeline-item">
               <span class="track-timeline-time">8:59</span>
-              <span class="track-timeline-desc">Đơn hàng rời khỏi trung tâm phân loại <b>[Hồ Chí Minh - Tân Bình]</b></span>
+              <span class="track-timeline-desc" ><b data-i18n="Đơn hàng rời khỏi trung tâm phân loại">Đơn hàng rời khỏi trung tâm phân loại</b> <b> [Hồ Chí Minh - Tân Bình]</b></span>
             </div>
             <div class="track-timeline-item">
               <span class="track-timeline-time">7:12</span>
-              <span class="track-timeline-desc">Đơn hàng đã được nhận tại trung tâm phân loại <b>[Hồ Chí Minh - Tân Bình]</b></span>
+              <span class="track-timeline-desc" ><b data-i18n="Đơn hàng đã được nhận tại trung tâm phân loại">Đơn hàng đã được nhận tại trung tâm phân loại </b><b> [Hồ Chí Minh - Tân Bình]</b></span>
             </div>
           </div>
         </div>
@@ -257,15 +261,15 @@
           <div class="track-timeline-list">
             <div class="track-timeline-item">
               <span class="track-timeline-time">15:27</span>
-              <span class="track-timeline-desc">Đơn vị vận chuyển đã lấy hàng</span>
+              <span class="track-timeline-desc" data-i18n="Đơn vị vận chuyển đã lấy hàng">Đơn vị vận chuyển đã lấy hàng</span>
             </div>
             <div class="track-timeline-item">
               <span class="track-timeline-time">13:52</span>
-              <span class="track-timeline-desc">Người gửi đang chuẩn bị hàng</span>
+              <span class="track-timeline-desc" data-i18n="Người gửi đang chuẩn bị hàng">Người gửi đang chuẩn bị hàng</span>
             </div>
             <div class="track-timeline-item">
               <span class="track-timeline-time">13:36</span>
-              <span class="track-timeline-desc">Đơn hàng đã được đặt</span>
+              <span class="track-timeline-desc" data-i18n="Đơn hàng đã được đặt">Đơn hàng đã được đặt</span>
             </div>
           </div>
         </div>
@@ -293,4 +297,5 @@
     if (e.target === this) this.style.display = 'none';
   };
 </script>
+<script src="./js/translate_script.js"></script>
 </html>
