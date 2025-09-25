@@ -27,7 +27,7 @@
         <div class="container">
             <div class="top-links">
                 <a href="#">Chăm sóc khách hàng</a>
-                <a href="#">Kiểm tra đơn hàng</a>
+                <a href="./orderdetail.html">Kiểm tra đơn hàng</a>
             </div>
             <div class="top-actions">
                 <a href="#">Đăng nhập</a>
@@ -826,5 +826,15 @@
       </div>
     </div>
     <script src="./js/scripts.js"></script>
+    <script>
+      document.getElementById('cartBtn').onclick = function() {
+    window.location.href = './shoppingcart.html';
+  };
+    </script>
+    <script>
+    document.querySelector('.cart-btn').onclick = function() {
+  window.location.href = './shoppingcart.html';
+};
+    </script>
   </body>
 </html>
