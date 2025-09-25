@@ -1,6 +1,6 @@
 # Re-design_Lazada_Website_Ecom
-Link Web Demo: https://trandaihai2107.github.io/Re-design_Lazada_Website_Ecom/
-Making new version of UI/UX of Lazada Website
+- Link Web Demo: https://trandaihai2107.github.io/Re-design_Lazada_Website_Ecom/
+- Making new version of UI/UX of Lazada Website
 # Main page
 - Search bar
 - Banner
