@@ -15,16 +15,19 @@
     <!-- Top strip -->
     <div class="top-strip">
       <div class="container">
-        <div class="top-links">
-          <a href="#">Chăm sóc khách hàng</a>
-          <a href="./orderdetail.html">Kiểm tra đơn hàng</a>
-        </div>
-        <div class="top-actions">
-          <a href="#">Đăng nhập</a>
-          <a href="#">Đăng ký</a>
+          <div class="top-links">
+              <a href="#" data-i18n="Chăm sóc khách hàng">Chăm sóc khách hàng</a>
+              <a href="./orderdetail.html" data-i18n="Kiểm tra đơn hàng">Kiểm tra đơn hàng</a>
+          </div>
+          <div class="top-actions">
+              <a href="#" data-i18n="Đăng nhập">Đăng nhập</a>
+              <a href="#"data-i18n="Đăng ký">Đăng ký</a>
+          </div>
+          <div class="lang-switcher">
+            <button id="langToggleBtn">EN</button>
+          </div>
         </div>
       </div>
-    </div>
 
     <!-- Header -->
     <header class="main-header">
@@ -45,8 +48,9 @@
               placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..."
               aria-label="Tìm kiếm"
               class="search-input"
+              data-i18n-placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..."
             />
-            <button aria-label="Tìm kiếm" class="search-btn">Tìm kiếm</button>
+            <button aria-label="Tìm kiếm" class="search-btn" data-i18n="Tìm kiếm">Tìm kiếm</button>
           </div>
         </div>
 
@@ -62,8 +66,8 @@
       <div>
         <div class="mini-features" aria-hidden="true">
           <span>🔖 LazMall</span>
-          <span>🏷 Mã Giảm Giá</span>
-          <span>💳 Nạp Thẻ & eVoucher</span>
+          <span data-i18n="Mã giảm giá">🏷 Mã Giảm Giá</span>
+          <span data-i18n="Nạp thẻ">💳 Nạp Thẻ & eVoucher</span>
           <span>🌍 LazGlobal</span>
         </div>
       </div>
@@ -72,9 +76,9 @@
     <!-- Main content -->
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
-      <a href="#">Bách hóa</a> &gt; <a href="#">Bánh ăn sáng</a> &gt;
-      <a href="#">Đồ nướng & tráng miệng</a> &gt;
-      <a href="#">Bánh trung thu</a> &gt;
+      <a href="#" data-i18n="Bách hóa">Bách hóa</a> &gt; <a href="#" data-i18n="Bánh ăn sáng">Bánh ăn sáng</a> &gt;
+      <a href="#" data-i18n="Đồ nướng & tráng miệng">Đồ nướng & tráng miệng</a> &gt;
+      <a href="#" data-i18n="Bánh trung thu">Bánh trung thu</a> &gt;
       <span>BÁNH TRUNG THU HỮU NGHỊ HỘP TRUYỀN THỐNG</span>
     </nav>
 
@@ -98,24 +102,24 @@
         <div class="gallery-thumbs">
           <button class="thumb-arrow left">&lt;</button>
           <img
-            src="https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-mdk6izbjk3zj8d"
+            src="https://down-vn.img.susercontent.com/file/vn-11134207-820l4-metss7bd0irnfe"
             class="thumb active"
-            alt="Ảnh bánh loại 1"
+            alt="Ảnh bánh chính"
+          />
+          <img
+            src="https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-mdk6izbjk3zj8d"
+            class="thumb"
+            alt="Ảnh bánh loại 2"
           />
           <img
             src="https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-mdk6jf7oav5bdd"
             class="thumb"
-            alt="Ảnh bánh loại 2"
+            alt="Ảnh bánh loại 3"
           />
           <img
             src="https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-mdk6jn9ciz755d"
             class="thumb"
             alt="Ảnh bánh loại 3"
-          />
-          <img
-            src="https://down-vn.img.susercontent.com/file/vn-11134207-820l4-me9vm25vx98j72"
-            class="thumb"
-            alt="Ảnh bánh loại 4"
           />
           <button class="thumb-arrow right">&gt;</button>
         </div>
@@ -133,27 +137,27 @@
           <span class="review-count">(9230)</span>
         </div>
         <div class="product-brand">
-          Thương hiệu: <a href="#">Hữu Nghị Food</a>
+          <b data-i18n="Thương hiệu:">Thương hiệu: </b><a href="#">Hữu Nghị Food</a>
         </div>
         <div class="product-price-block">
           <span class="price-current">216.000đ</span>
           <span class="price-old">320.000đ</span>
           <span class="discount">-33%</span>
         </div>
-        <div class="promo-banner">Mua sắm kết hợp siêu ưu đãi Thanh toán</div>
+        <div class="promo-banner" data-i18n="Mua sắm kết hợp siêu ưu đãi Thanh toán">Mua sắm kết hợp siêu ưu đãi Thanh toán</div>
         <div class="shipping-policy">
           <div class="ship-row">
             <span
-              >Giao đến: <b>Hồ Chí Minh, Quận Thủ Đức, Phường Linh Xuân</b>
-              <a href="#" class="change-address">THAY ĐỔI</a></span
+              ><b data-i18n="Giao đến:">Giao đến:</b> <b>Hồ Chí Minh, Quận Thủ Đức, Phường Linh Xuân</b>
+              <a href="#" class="change-address" data-i18n="THAY ĐỔI">THAY ĐỔI</a></span
             >
           </div>
           <div class="ship-detail">
-            Đảm bảo nhận hàng vào 25 thg 9
-            <span class="freeship">Miễn phí vận chuyển khi mua từ 50.000đ</span>
+            <b data-i18n="Đảm bảo nhận hàng vào 25 thg 9">Đảm bảo nhận hàng vào 25 thg 9</b>
+            <span class="freeship" data-i18n="Miễn phí vận chuyển khi mua từ 50.000đ">Miễn phí vận chuyển khi mua từ 50.000đ</span>
           </div>
           <div class="return-policy">
-            <span>100% chính hãng • Đổi trả 30 ngày miễn phí</span>
+            <span data-i18n="100% chính hãng • Đổi trả 30 ngày miễn phí">100% chính hãng • Đổi trả 30 ngày miễn phí</span>
           </div>
         </div>
         <div class="product-combo">
@@ -163,14 +167,14 @@
           <button class="combo-btn">TRUYỀN THỐNG 3</button>
         </div>
         <div class="product-qty">
-          <span>Số lượng:</span>
+          <span data-i18n="Số lượng:">Số lượng:</span>
           <button class="qty-btn minus">-</button>
           <input type="text" value="1" class="qty-input" readonly />
           <button class="qty-btn plus">+</button>
         </div>
         <div class="product-actions">
-          <button class="btn-buy">Mua ngay</button>
-          <button class="btn-cart" id="addToCartBtn">Thêm vào giỏ</button>
+          <button class="btn-buy" data-i18n="Mua ngay">Mua ngay</button>
+          <button class="btn-cart" id="addToCartBtn" data-i18n="Thêm vào giỏ">Thêm vào giỏ</button>
           <button class="btn-wishlist" title="Yêu thích">♥</button>
         </div>
       </div>
@@ -185,21 +189,21 @@
           class="shop-logo"
         />
         <div class="shop-info">
-          <span class="shop-name">Gian hàng <b>Hữu Nghị Food</b></span>
+          <span class="shop-name"><b data-i18n="Gian hàng">Gian hàng</b> <b>Hữu Nghị Food</b></span>
           <span class="badge badge-mall">LazMall</span>
-          <span class="badge badge-auth">Gian hàng chính hãng</span>
-          <span class="badge badge-top">Top1 Shop thuộc mục Bánh ăn sáng</span>
-          <span class="badge badge-year">3 năm hoạt động</span>
-          <span class="badge badge-fav">Shop yêu thích</span>
-          <span class="shop-rate">Đánh giá tích cực <b>98%</b></span>
+          <span class="badge badge-auth" data-i18n="Gian hàng chính hãng">Gian hàng chính hãng</span>
+          <span class="badge badge-top" data-i18n="Top1 Shop thuộc mục Bánh ăn sáng">Top1 Shop thuộc mục Bánh ăn sáng</span>
+          <span class="badge badge-year" data-i18n="3 năm hoạt động">3 năm hoạt động</span>
+          <span class="badge badge-fav" data-i18n="Shop yêu thích">Shop yêu thích</span>
+          <span class="shop-rate"><b data-i18n="Đánh giá tích cực">Đánh giá tích cực</b> <b>98%</b></span>
         </div>
       </div>
 
       <!-- Thanh điều hướng nội bộ -->
       <div class="review-tabs">
-        <button class="tab-btn active" data-tab="reviews">Đánh giá</button>
-        <button class="tab-btn" data-tab="details">Chi tiết</button>
-        <button class="tab-btn" data-tab="suggest">Gợi ý cho bạn</button>
+        <button class="tab-btn active" data-tab="reviews" data-i18n="Đánh giá">Đánh giá</button>
+        <button class="tab-btn" data-tab="details" data-i18n="Chi tiết">Chi tiết</button>
+        <button class="tab-btn" data-tab="suggest" data-i18n="Gợi ý cho bạn">Gợi ý cho bạn</button>
       </div>
 
       <div class="review-content-layout">
@@ -211,16 +215,16 @@
               <span class="score-big">4.9</span
               ><span class="score-max">/5</span>
               <span class="score-stars">★★★★★</span>
-              <span class="score-count">(233 đánh giá)</span>
+              <span class="score-count" data-i18n="(233 đánh giá)">(233 đánh giá)</span>
             </div>
             <div class="review-filters">
-              <button class="filter-btn active">Tất cả</button>
-              <button class="filter-btn">Có hình / video</button>
-              <button class="filter-btn">Khách đã mua lại</button>
+              <button class="filter-btn active" data-i18n="Tất cả">Tất cả</button>
+              <button class="filter-btn" data-i18n="Có hình / video">Có hình / video</button>
+              <button class="filter-btn" data-i18n="Khách đã mua lại">Khách đã mua lại</button>
             </div>
             <div class="review-sort">
-              <button class="sort-btn active">Sắp xếp: Liên quan</button>
-              <button class="sort-btn">Mới nhất</button>
+              <button class="sort-btn active" data-i18n="Sắp xếp: Liên quan">Sắp xếp: Liên quan</button>
+              <button class="sort-btn" data-i18n="Mới nhất">Mới nhất</button>
             </div>
           </div>
           <!-- Danh sách đánh giá -->
@@ -230,7 +234,7 @@
               <div class="review-user">
                 <span class="user-avatar">T</span>
                 <span class="user-name">Thuy N.</span>
-                <span class="review-time">7 ngày trước</span>
+                <span class="review-time" data-i18n="7 ngày trước">7 ngày trước</span>
               </div>
               <div class="review-content">
                 <div class="review-combo">COMBO: TRUYỀN THỐNG 1</div>
@@ -251,7 +255,7 @@
                     class="review-img"
                   />
                 </div>
-                <button class="helpful-btn">Hữu ích (1)</button>
+                <button class="helpful-btn" data-i18n="Hữu ích (1)">Hữu ích (1)</button>
               </div>
             </div>
             <!-- Review 2 -->
@@ -259,7 +263,7 @@
               <div class="review-user">
                 <span class="user-avatar">****4</span>
                 <span class="user-name">Ẩn danh</span>
-                <span class="review-time">1 tuần trước</span>
+                <span class="review-time" data-i18n="1 tuần trước">1 tuần trước</span>
               </div>
               <div class="review-content">
                 <div class="review-combo">COMBO: TRUYỀN THỐNG 2</div>
@@ -280,7 +284,7 @@
                     class="review-img"
                   />
                 </div>
-                <button class="helpful-btn">Hữu ích (0)</button>
+                <button class="helpful-btn" data-i18n="Hữu ích (0)">Hữu ích (0)</button>
               </div>
             </div>
             <!-- ...Thêm các review khác nếu muốn... -->
@@ -289,12 +293,12 @@
         <!-- Bên trái: Chi tiết sản phẩm -->
         <div class="review-main" id="tab-details" style="display: none">
           <div class="product-detail-tab">
-            <h2 class="tab-title active">Chi tiết sản phẩm</h2>
+            <h2 class="tab-title active" data-i18n="Chi tiết sản phẩm">Chi tiết sản phẩm</h2>
             <div class="tab-note">
               <span class="icon-info">ℹ️</span>
-              Đây là sản phẩm được bán bởi Người bán bên thứ ba và việc xuất hóa
+              <b data-i18n="Otherdetail1">Đây là sản phẩm được bán bởi Người bán bên thứ ba và việc xuất hóa
               đơn VAT (nếu áp dụng) sẽ được thực hiện bởi Nhà Bán Hàng theo quy
-              định của pháp luật
+              định của pháp luật</b>
             </div>
             <div class="product-desc">
               <p>
@@ -333,31 +337,31 @@
             </ul>
             <div class="product-attrs-table">
               <div class="attrs-row">
-                <div class="attrs-col"><b>Thương hiệu</b></div>
+                <div class="attrs-col" data-i18n="Thương hiệu"><b>Thương hiệu</b></div>
                 <div class="attrs-col">Hữu Nghị Food</div>
-                <div class="attrs-col"><b>Hạn sử dụng</b></div>
+                <div class="attrs-col" data-i18n="Hạn sử dụng"><b>Hạn sử dụng</b></div>
                 <div class="attrs-col">75 ngày</div>
               </div>
               <div class="attrs-row">
-                <div class="attrs-col"><b>Moocake Type</b></div>
-                <div class="attrs-col">truyền thống</div>
-                <div class="attrs-col"><b>SKU</b></div>
+                <div class="attrs-col" data-i18n="Loại bánh"><b>Loại bánh</b></div>
+                <div class="attrs-col">Truyền thống</div>
+                <div class="attrs-col" data-i18n="SKU"><b>SKU</b></div>
                 <div class="attrs-col">2761711348_VNAMZ-13502287920</div>
               </div>
               <div class="attrs-row">
-                <div class="attrs-col"><b>Cách đóng gói</b></div>
+                <div class="attrs-col" data-i18n="Cách đóng gói"><b>Cách đóng gói</b></div>
                 <div class="attrs-col">Hộp nhỏ</div>
-                <div class="attrs-col"><b>Giao hàng</b></div>
+                <div class="attrs-col" data-i18n="Giao hàng"><b>Giao hàng</b></div>
                 <div class="attrs-col">Delivery_Option_Instant</div>
               </div>
               <div class="attrs-row">
-                <div class="attrs-col"><b>Xuất xứ</b></div>
+                <div class="attrs-col" data-i18n="Xuất xứ"><b>Xuất xứ</b></div>
                 <div class="attrs-col">Việt Nam</div>
-                <div class="attrs-col"><b>Loại sản phẩm</b></div>
+                <div class="attrs-col" data-i18n="Loại sản phẩm"><b>Loại sản phẩm</b></div>
                 <div class="attrs-col">Đúng</div>
               </div>
             </div>
-            <button class="btn-collapse">THU GỌN</button>
+            <button class="btn-collapse" data-i18n="THU GỌN">THU GỌN</button>
           </div>
         </div>
         <!-- ...existing code... -->
@@ -365,7 +369,7 @@
         <div class="review-main" id="tab-suggest" style="display: none">
           <div class="suggest-section">
             <!-- Nhóm 1: Cùng cửa hàng bán -->
-            <h3 class="suggest-title">Cùng cửa hàng bán</h3>
+            <h3 class="suggest-title" data-i18n="Cùng cửa hàng bán">Cùng cửa hàng bán</h3>
             <div class="suggest-grid">
               <!-- Sản phẩm 1 -->
               <div class="suggest-card">
@@ -487,7 +491,7 @@
               </div>
             </div>
             <!-- Nhóm 2: Có thể bạn cũng thích -->
-            <h3 class="suggest-title suggest-title-alt">
+            <h3 class="suggest-title suggest-title-alt" data-i18n="Có thể bạn cũng thích">
               Có thể bạn cũng thích
             </h3>
             <div class="suggest-grid">
@@ -644,7 +648,7 @@
         <div style="font-size: 38px; color: #00c853; margin-bottom: 10px">
           ✔
         </div>
-        <div style="font-size: 20px; font-weight: 700, margin-bottom: 10px">
+        <div style="font-size: 20px; font-weight: 700; margin-bottom: 10px">
           Thêm vào giỏ thành công!
         </div>
         <button
@@ -732,4 +736,18 @@
     };
     
   </script>
+  <script>
+    document.querySelectorAll('.gallery-thumbs .thumb').forEach(function(thumb) {
+      thumb.onclick = function() {
+        // Đổi ảnh lớn
+        document.querySelector('.gallery-main .main-img').src = thumb.src;
+        // Cập nhật trạng thái active cho ảnh nhỏ
+        document.querySelectorAll('.gallery-thumbs .thumb').forEach(function(t) {
+          t.classList.remove('active');
+        });
+        thumb.classList.add('active');
+      };
+    });
+  </script>
+  <script src="./js/translate_script.js"></script>
 </html>

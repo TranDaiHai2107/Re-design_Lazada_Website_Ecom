@@ -30,10 +30,12 @@
                 <a href="./orderdetail.html" data-i18n="Kiểm tra đơn hàng">Kiểm tra đơn hàng</a>
             </div>
             <div class="top-actions">
-                <a href="#">Đăng nhập</a>
-                <a href="#">Đăng ký</a>
+                <a href="#" data-i18n="Đăng nhập">Đăng nhập</a>
+                <a href="#"data-i18n="Đăng ký">Đăng ký</a>
             </div>
-            
+            <div class="lang-switcher">
+              <button id="langToggleBtn">EN</button>
+            </div>
           </div>
         </div>
         
@@ -50,8 +52,8 @@
             <!-- Search bar -->
             <div class="search-wrap">
                 <div class="search-row">
-                    <input type="text" placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..." aria-label="Tìm kiếm" class="search-input">
-                    <button aria-label="Tìm kiếm" class="search-btn">Tìm kiếm</button>
+                    <input type="text" placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..." data-i18n-placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..." aria-label="Tìm kiếm" class="search-input">
+                    <button aria-label="Tìm kiếm" class="search-btn" data-i18n="Tìm kiếm">Tìm kiếm</button>
                 </div>
             </div>
 
@@ -67,16 +69,14 @@
         <div>
             <div class="mini-features" aria-hidden="true">
                 <span>🔖 LazMall</span>
-                <span>🏷 Mã Giảm Giá</span>
-                <span>💳 Nạp Thẻ & eVoucher</span>
+                <span data-i18n="Mã giảm giá">🏷 Mã Giảm Giá</span>
+                <span data-i18n="Nạp thẻ">💳 Nạp Thẻ & eVoucher</span>
                 <span>🌍 LazGlobal</span>
             </div>
         </div>
     <!-- Thêm vào header hoặc top-strip -->
   </header>
-  <div class="lang-switcher">
-      <button id="langToggleBtn">EN</button>
-    </div>
+
     <!-- Carousel -->
     <section class="carousel" aria-label="Quảng cáo">
     <div class="container">
@@ -110,42 +110,42 @@
             <!-- Thêm/giảm danh mục tuỳ ý -->
             <div class="cat">
                 <div class="thumb"><img src="./images/clothes-hanger.png" alt=""></div>
-                <div class="label">Quần áo</div>
+                <div class="label" data-i18n="Quần áo">Quần áo</div>
             </div>
 
             <div class="cat">
                 <div class="thumb"><img src="./images/cosmetics.png" alt=""></div>
-                <div class="label">Mỹ phẩm</div>
+                <div class="label" data-i18n="Mỹ phẩm">Mỹ phẩm</div>
             </div>
             
             <div class="cat">
                 <div class="thumb"><img src="./images/electronics.png" alt=""></div>
-                <div class="label">Đồ gia dụng</div>
+                <div class="label" data-i18n="Đồ gia dụng">Đồ gia dụng</div>
             </div>
             
             <div class="cat">
                 <div class="thumb"><img src="./images/desktop.png" alt=""></div>
-                <div class="label">Thiết bị điện tử</div>
+                <div class="label" data-i18n="Thiết bị điện tử">Thiết bị điện tử</div>
             </div>
             
             <div class="cat">
                 <div class="thumb"><img src="./images/basketball.png" alt=""></div>
-                <div class="label">Thể thao</div>
+                <div class="label" data-i18n="Thể thao">Thể thao</div>
             </div>
             
             <div class="cat">
                 <div class="thumb"><img src="./images/healthcare.png" alt=""></div>
-                <div class="label">Sức khỏe</div>
+                <div class="label" data-i18n="Sức khỏe">Sức khỏe</div>
             </div>
 
             <div class="cat">
                 <div class="thumb"><img src="./images/clock.png" alt=""></div>
-                <div class="label">Đồng hồ</div>
+                <div class="label" data-i18n="Đồng hồ">Đồng hồ</div>
             </div>
             
             <div class="cat">
                 <div class="thumb"><img src="./images/handbag.png" alt=""></div>
-                <div class="label">Túi xách</div>
+                <div class="label" data-i18n="Túi xách">Túi xách</div>
             </div>
             <!-- ... -->
         </div>
@@ -155,7 +155,7 @@
     <!-- Dành riêng cho bạn -->
     <section class="for-you-section">
       <div class="container">
-        <h2 class="for-you-title">Dành riêng cho bạn</h2>
+        <h2 class="for-you-title" data-i18n="Dành riêng cho bạn">Dành riêng cho bạn</h2>
         <div class="for-you-grid">
           <!-- Product Card 1 -->
           <div class="product-card">
@@ -173,11 +173,12 @@
               <div class="product-meta">
                 <span class="rating">★ 4.9</span>
                 <span class="review-count">(540)</span>
-                <span class="sold">Đã bán 2k+</span>
+                <span class="sold" data-i18n="Đã bán">Đã bán</span>
+                <span class="sold">2k+</span>
               </div>
             </div>
             <div class="product-actions">
-              <button class="btn-cart">Thêm vào giỏ</button>
+              <button class="btn-cart" data-i18n="Thêm vào giỏ">Thêm vào giỏ</button>
               <button class="btn-wishlist">♥</button>
             </div>
           </div>
@@ -196,11 +197,12 @@
               <div class="product-meta">
                 <span class="rating">★ 4.6</span>
                 <span class="review-count">(980)</span>
-                <span class="sold">Đã bán 1k+</span>
+                <span class="sold" data-i18n="Đã bán">Đã bán</span>
+                <span class="sold">1k+</span>
               </div>
             </div>
             <div class="product-actions">
-              <button class="btn-cart">Thêm vào giỏ</button>
+              <button class="btn-cart" data-i18n="Thêm vào giỏ">Thêm vào giỏ</button>
               <button class="btn-wishlist">♥</button>
             </div>
           </div>
@@ -219,11 +221,12 @@
               <div class="product-meta">
                 <span class="rating">★ 4.9</span>
                 <span class="review-count">(2100)</span>
-                <span class="sold">Đã bán 5k+</span>
+                <span class="sold" data-i18n="Đã bán">Đã bán</span>
+                <span class="sold">5k+</span>
               </div>
             </div>
             <div class="product-actions">
-              <button class="btn-cart">Thêm vào giỏ</button>
+              <button class="btn-cart" data-i18n="Thêm vào giỏ">Thêm vào giỏ</button>
               <button class="btn-wishlist">♥</button>
             </div>
           </div>
@@ -242,11 +245,12 @@
               <div class="product-meta">
                 <span class="rating">★ 4.7</span>
                 <span class="review-count">(800)</span>
-                <span class="sold">Đã bán 900+</span>
+                <span class="sold" data-i18n="Đã bán">Đã bán</span>
+                <span class="sold">900+</span>
               </div>
             </div>
             <div class="product-actions">
-              <button class="btn-cart">Thêm vào giỏ</button>
+              <button class="btn-cart" data-i18n="Thêm vào giỏ">Thêm vào giỏ</button>
               <button class="btn-wishlist">♥</button>
               
             </div>
@@ -268,11 +272,12 @@
               <div class="product-meta">
                 <span class="rating">★ 4.8</span>
                 <span class="review-count">(1257)</span>
-                <span class="sold">Đã bán 2k+</span>
+                <span class="sold" data-i18n="Đã bán">Đã bán</span>
+                <span class="sold">2k+</span>
               </div>
             </div>
             <div class="product-actions">
-              <button class="btn-cart">Thêm vào giỏ</button>
+              <button class="btn-cart" data-i18n="Thêm vào giỏ">Thêm vào giỏ</button>
               <button class="btn-wishlist">♥</button>
             </div>
           </div>
@@ -291,11 +296,12 @@
               <div class="product-meta">
                 <span class="rating">★ 4.9</span>
                 <span class="review-count">(1207)</span>
-                <span class="sold">Đã bán 4k+</span>
+                <span class="sold" data-i18n="Đã bán">Đã bán</span>
+                <span class="sold">4k+</span>
               </div>
             </div>
             <div class="product-actions">
-              <button class="btn-cart">Thêm vào giỏ</button>
+              <button class="btn-cart" data-i18n="Thêm vào giỏ">Thêm vào giỏ</button>
               <button class="btn-wishlist">♥</button>
             </div>
           </div>
@@ -314,11 +320,12 @@
               <div class="product-meta">
                 <span class="rating">★ 4.9</span>
                 <span class="review-count">(122)</span>
-                <span class="sold">Đã bán 1k+</span>
+                <span class="sold" data-i18n="Đã bán">Đã bán</span>
+                <span class="sold">1k+</span>
               </div>
             </div>
             <div class="product-actions">
-              <button class="btn-cart">Thêm vào giỏ</button>
+              <button class="btn-cart" data-i18n="Thêm vào giỏ">Thêm vào giỏ</button>
               <button class="btn-wishlist">♥</button>
             </div>
           </div>
@@ -331,17 +338,18 @@
             <div class="product-info">
               <div class="product-title">Galax A55 điên thoại gia rẻ Full HD 16GB RAM +1TB ROM Hỗ trợ 2 SIM Mạng 3G/4G/5G Bộ Lớn 6800mAh</div>
               <div class="product-price">
-                <span class="price-current">2.980.000 ₫</span>
-                <span class="price-old">1.490.000 ₫</span>
+                <span class="price-current">1.490.000 ₫</span>
+                <span class="price-old">2.980.000 ₫</span>
               </div>
               <div class="product-meta">
                 <span class="rating">★ 4.7</span>
                 <span class="review-count">(12)</span>
-                <span class="sold">Đã bán 130</span>
+                <span class="sold" data-i18n="Đã bán">Đã bán</span>
+                <span class="sold">130</span>
               </div>
             </div>
             <div class="product-actions">
-              <button class="btn-cart">Thêm vào giỏ</button>
+              <button class="btn-cart" data-i18n="Thêm vào giỏ">Thêm vào giỏ</button>
               <button class="btn-wishlist">♥</button>
               
             </div>
@@ -349,7 +357,7 @@
           <!-- ... Thêm nhiều product card hơn nếu muốn -->
         </div>
         <div class="for-you-more">
-          <button class="btn-more">Xem thêm sản phẩm</button>
+          <button class="btn-more" data-i18n="Xem thêm sản phẩm">Xem thêm sản phẩm</button>
         </div>
       </div>
     </section>
@@ -468,7 +476,7 @@
               style="width: 22px; height: 22px"
             />
 
-            Gửi mã OTP qua Zalo
+            <b data-i18n="Gửi mã OTP qua Zalo">Send OTP via Zalo</b>
           </button>
           <button
             type="button"
@@ -490,7 +498,7 @@
               style="width: 20px; height: 20px"
             />
 
-            Gửi mã qua SMS
+            Send code via SMS
           </button>
         </form>
         <div class="login-modal-footer">
@@ -563,7 +571,7 @@
               alt="Zalo"
               style="width: 22px; height: 22px"
             />
-            Gửi mã OTP qua Zalo
+            Send OTP via Zalo
           </button>
           <button
             type="button"
@@ -584,7 +592,7 @@
               alt="SMS"
               style="width: 20px; height: 20px"
             />
-            Gửi mã qua SMS
+            Send code via SMS
           </button>
         </form>
         <div class="login-modal-footer">
@@ -732,42 +740,42 @@
       <div class="footer-top">
         <div class="footer-highlight">
           <div class="icon">🏬</div>
-          <div class="text"><div class="title">Hệ thống gian hàng chính hãng</div><div class="sub">Uy tín - đa dạng - giá tốt</div></div>
+          <div class="text"><div class="title" data-i18n="Hệ thống gian hàng chính hãng">Hệ thống gian hàng chính hãng</div><div class="sub" data-i18n="Uy tín - đa dạng - giá tốt">Uy tín - đa dạng - giá tốt</div></div>
         </div>
         <div class="footer-highlight">
           <div class="icon">🚚</div>
-          <div class="text"><div class="title">Giao hàng nhanh</div><div class="sub">Toàn quốc, theo dõi đơn dễ dàng</div></div>
+          <div class="text"><div class="title" data-i18n="Giao hàng nhanh">Giao hàng nhanh</div><div class="sub" data-i18n="Toàn quốc, theo dõi đơn dễ dàng">Toàn quốc, theo dõi đơn dễ dàng</div></div>
         </div>
         <div class="footer-highlight">
           <div class="icon">↩️</div>
-          <div class="text"><div class="title">Đổi trả linh hoạt</div><div class="sub">Miễn phí trong 15 ngày</div></div>
+          <div class="text"><div class="title" data-i18n="Đổi trả linh hoạt">Đổi trả linh hoạt</div><div class="sub" data-i18n="Miễn phí trong 15 ngày">Miễn phí trong 15 ngày</div></div>
         </div>
         <div class="footer-highlight">
           <div class="icon">🔒</div>
-          <div class="text"><div class="title">Thanh toán an toàn</div><div class="sub">Nhiều hình thức, bảo mật</div></div>
+          <div class="text"><div class="title" data-i18n="Thanh toán an toàn">Thanh toán an toàn</div><div class="sub" data-i18n="Nhiều hình thức, bảo mật">Nhiều hình thức, bảo mật</div></div>
         </div>
       </div>
       <div class="footer-main">
         <div class="footer-col">
-          <div class="col-title">Trợ giúp</div>
+          <div class="col-title" data-i18n="Trợ giúp">Trợ giúp</div>
           <ul>
-            <li><a href="#">Trung tâm hỗ trợ</a></li>
-            <li><a href="#">Hướng dẫn mua hàng</a></li>
-            <li><a href="#">Theo dõi đơn hàng</a></li>
-            <li><a href="#">Chính sách đổi trả</a></li>
+            <li><a href="#" data-i18n="Trung tâm hỗ trợ">Trung tâm hỗ trợ</a></li>
+            <li><a href="#" data-i18n="Hướng dẫn mua hàng">Hướng dẫn mua hàng</a></li>
+            <li><a href="#" data-i18n="Theo dõi đơn hàng">Theo dõi đơn hàng</a></li>
+            <li><a href="#" data-i18n="Chính sách đổi trả">Chính sách đổi trả</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <div class="col-title">Về Lazada</div>
+          <div class="col-title" data-i18n="Về Lazada">Về Lazada</div>
           <ul>
-            <li><a href="#">Giới thiệu</a></li>
-            <li><a href="#">Tuyển dụng</a></li>
-            <li><a href="#">Điều khoản sử dụng</a></li>
-            <li><a href="#">Bảo mật thông tin</a></li>
+            <li><a href="#" data-i18n="Giới thiệu">Giới thiệu</a></li>
+            <li><a href="#" data-i18n="Tuyển dụng">Tuyển dụng</a></li>
+            <li><a href="#" data-i18n="Điều khoản sử dụng">Điều khoản sử dụng</a></li>
+            <li><a href="#" data-i18n="Bảo mật thông tin">Bảo mật thông tin</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <div class="col-title">Liên hệ</div>
+          <div class="col-title" data-i18n="Liên hệ">Liên hệ</div>
           <ul>
             <li>Email: support@lazada.vn</li>
             <li>Hotline: 1900 1000</li>
@@ -780,15 +788,15 @@
           </div>
         </div>
         <div class="footer-col">
-          <div class="col-title">Đăng ký nhận tin</div>
+          <div class="col-title" data-i18n="Đăng ký nhận tin">Đăng ký nhận tin</div>
           <div class="newsletter">
-            <input type="email" placeholder="Nhập email của bạn" aria-label="Email">
-            <button>Đăng ký</button>
+            <input type="email" data-i18n-placeholder="Nhập email của bạn" placeholder="Nhập email của bạn" aria-label="Email">
+            <button data-i18n="Đăng ký">Đăng ký</button>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <div class="container">© 2025 Lazada — Một dự án demo giao diện.</div>
+        <div class="container" data-i18n="© 2025 Lazada — Một dự án demo giao diện.">© 2025 Lazada — Một dự án demo giao diện.</div>
       </div>
     </footer>
 
@@ -799,8 +807,8 @@
           <a class="overlay-logo" href="./index.html"><img src="./images/lazada_icon.png" alt="Lazada"></a>
           <div style="flex:1">
             <div class="search-row overlay-autocomplete">
-              <input type="text" id="overlaySearchInput" class="search-input" placeholder="Tìm kiếm sản phẩm, thương hiệu..." />
-              <button id="overlaySearchBtn" class="search-btn">Tìm kiếm</button>
+              <input type="text" id="overlaySearchInput" class="search-input" data-i18n-placeholder="Tìm kiếm sản phẩm, thương hiệu..." placeholder="Tìm kiếm sản phẩm, thương hiệu..." />
+              <button id="overlaySearchBtn" class="search-btn" data-i18n="Tìm kiếm">Tìm kiếm</button>
               <ul id="overlaySuggest" class="autocomplete-panel" style="display:none"></ul>
             </div>
           </div>
@@ -808,33 +816,33 @@
         </div>
         <div class="search-overlay-body">
           <aside class="search-left">
-            <div class="left-title">Lịch sử tìm kiếm <button class="link-clear" id="clearHistory">Xóa</button></div>
+            <div class="left-title" data-i18n="Lịch sử tìm kiếm">Lịch sử tìm kiếm <button class="link-clear" id="clearHistory">Xóa</button></div>
             <ul class="history-list" id="historyList"></ul>
           </aside>
           <section class="search-middle">
             <div class="middle-section">
-              <div class="middle-title">Từ khóa phổ biến</div>
+              <div class="middle-title" data-i18n="Từ khóa phổ biến">Từ khóa phổ biến</div>
               <ul class="middle-list two-col">
-                <li>áo thể thao</li>
-                <li>giày chạy bộ</li>
-                <li>đồng hồ thông minh</li>
-                <li>tai nghe bluetooth</li>
-                <li>kem chống nắng</li>
-                <li>điện thoại</li>
+                <li data-i18n="áo thể thao">áo thể thao</li>
+                <li data-i18n="giày chạy bộ">giày chạy bộ</li>
+                <li data-i18n="đồng hồ thông minh">đồng hồ thông minh</li>
+                <li data-i18n="tai nghe bluetooth">tai nghe bluetooth</li>
+                <li data-i18n="kem chống nắng">kem chống nắng</li>
+                <li data-i18n="điện thoại">điện thoại</li>
               </ul>
             </div>
             <div class="middle-section">
-              <div class="middle-title">Danh mục gợi ý</div>
+              <div class="middle-title" data-i18n="Danh mục gợi ý">Danh mục gợi ý</div>
               <ul class="middle-list">
-                <li>Quần áo</li>
-                <li>Mỹ phẩm</li>
-                <li>Thiết bị điện tử</li>
-                <li>Thể thao</li>
+                <li data-i18n="Quần áo">Quần áo</li>
+                <li data-i18n="Mỹ phẩm">Mỹ phẩm</li>
+                <li data-i18n="Thiết bị điện tử">Thiết bị điện tử</li>
+                <li data-i18n="Thể thao">Thể thao</li>
               </ul>
             </div>
           </section>
           <section class="search-right">
-            <h3 class="results-title" id="resultsTitle">Sản phẩm phổ biến</h3>
+            <h3 class="results-title" id="resultsTitle" data-i18n="Sản phẩm phổ biến">Sản phẩm phổ biến</h3>
             <div class="results-grid" id="resultsGrid"></div>
           </section>
         </div>

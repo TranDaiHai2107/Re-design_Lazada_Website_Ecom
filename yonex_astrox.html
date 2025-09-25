@@ -9,18 +9,22 @@
 </head>
 <body>
   <!-- Header tối giản tái sử dụng từ mooncake -->
-  <div class="top-strip">
-    <div class="container">
-      <div class="top-links">
-        <a href="#">Chăm sóc khách hàng</a>
-        <a href="#">Kiểm tra đơn hàng</a>
-      </div>
-      <div class="top-actions">
-        <a href="#">Đăng nhập</a>
-        <a href="#">Đăng ký</a>
-      </div>
-    </div>
-  </div>
+    <!-- Top strip -->
+    <div class="top-strip">
+        <div class="container">
+            <div class="top-links">
+                <a href="#" data-i18n="Chăm sóc khách hàng">Chăm sóc khách hàng</a>
+                <a href="./orderdetail.html" data-i18n="Kiểm tra đơn hàng">Kiểm tra đơn hàng</a>
+            </div>
+            <div class="top-actions">
+                <a href="#" data-i18n="Đăng nhập">Đăng nhập</a>
+                <a href="#"data-i18n="Đăng ký">Đăng ký</a>
+            </div>
+            <div class="lang-switcher">
+              <button id="langToggleBtn">EN</button>
+            </div>
+          </div>
+        </div>
   <header class="main-header">
     <div class="container">
       <div class="logo">
@@ -28,8 +32,8 @@
       </div>
       <div class="search-wrap">
         <div class="search-row">
-          <input type="text" placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..." aria-label="Tìm kiếm" class="search-input">
-          <button aria-label="Tìm kiếm" class="search-btn">Tìm kiếm</button>
+          <input type="text" placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..." data-i18n-placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..." aria-label="Tìm kiếm" class="search-input">
+          <button aria-label="Tìm kiếm" class="search-btn" data-i18n="Tìm kiếm">Tìm kiếm</button>
         </div>
       </div>
       <div class="cart">
@@ -41,8 +45,8 @@
     <div>
       <div class="mini-features" aria-hidden="true">
         <span>🔖 LazMall</span>
-        <span>🏷 Mã Giảm Giá</span>
-        <span>💳 Nạp Thẻ & eVoucher</span>
+        <span data-i18n="Mã giảm giá">🏷 Mã Giảm Giá</span>
+        <span data-i18n="Nạp thẻ">💳 Nạp Thẻ & eVoucher</span>
         <span>🌍 LazGlobal</span>
       </div>
     </div>
@@ -50,8 +54,8 @@
 
   <!-- Breadcrumb -->
   <nav class="breadcrumb">
-    <a href="./index.html">Trang chủ</a> &gt;
-    <a href="./badminton.html">Vợt cầu lông</a> &gt;
+    <a href="./index.html" data-i18n="Trang chủ">Trang chủ</a> &gt;
+    <a href="./badminton.html" data-i18n="Vợt cầu lông">Vợt cầu lông</a> &gt;
     <span>Yonex Astrox</span>
   </nav>
 
@@ -81,34 +85,34 @@
         <span class="star">★</span> 4.8
         <span class="review-count">(980)</span>
       </div>
-      <div class="product-brand">Thương hiệu: <a href="#">Yonex</a></div>
+      <div class="product-brand"><b data-i18n="Thương hiệu:">Thương hiệu:</b> <a href="#">Yonex</a></div>
       <div class="product-price-block">
         <span class="price-current" id="priceCur">--</span>
         <span class="price-old" id="priceOld">--</span>
         <span class="discount" id="priceDis">-0%</span>
       </div>
-      <div class="promo-banner">Miễn phí vận chuyển đơn từ 50.000đ</div>
+      <div class="promo-banner" data-i18n="Miễn phí vận chuyển đơn từ 50.000đ">Miễn phí vận chuyển đơn từ 50.000đ</div>
       <div class="shipping-policy">
         <div class="ship-row">
-          <span>Giao đến: <b>Hồ Chí Minh, Quận 1</b> <a href="#" class="change-address">THAY ĐỔI</a></span>
+          <span><b data-i18n="Giao đến:">Giao đến:</b> <b>Hồ Chí Minh, Quận 1</b> <a href="#" class="change-address" data-i18n="THAY ĐỔI">THAY ĐỔI</a></span>
         </div>
-        <div class="ship-detail">Đảm bảo nhận hàng trong 2-3 ngày</div>
-        <div class="return-policy"><span>100% chính hãng • Đổi trả 30 ngày miễn phí</span></div>
+        <div class="ship-detail" data-i18n="Đảm bảo nhận hàng trong 2-3 ngày">Đảm bảo nhận hàng trong 2-3 ngày</div>
+        <div class="return-policy"><span data-i18n="100% chính hãng • Đổi trả 30 ngày miễn phí">100% chính hãng • Đổi trả 30 ngày miễn phí</span></div>
       </div>
       <div class="product-combo">
-        <span>Màu:</span>
+        <span data-i18n="Màu:">Màu:</span>
         <button class="combo-btn active">Xanh than</button>
         <button class="combo-btn">Đen</button>
       </div>
       <div class="product-qty">
-        <span>Số lượng:</span>
+        <span data-i18n="Số lượng:">Số lượng:</span>
         <button class="qty-btn minus">-</button>
         <input type="text" value="1" class="qty-input" readonly>
         <button class="qty-btn plus">+</button>
       </div>
       <div class="product-actions">
-        <button class="btn-buy">Mua ngay</button>
-        <button class="btn-cart">Thêm vào giỏ</button>
+        <button class="btn-buy" data-i18n="Mua ngay">Mua ngay</button>
+        <button class="btn-cart" data-i18n="Thêm vào giỏ">Thêm vào giỏ</button>
         <button class="btn-wishlist" title="Yêu thích">♥</button>
       </div>
     </div>
@@ -119,42 +123,42 @@
       <img src="./images/lazada_icon.png" alt="Yonex" class="shop-logo" style="background:#fff;border-radius:8px;padding:6px;">
       <div class="shop-info">
         <span class="shop-name"><b>Yonex Official</b></span>
-        <span class="badge badge-auth">Gian hàng chính hãng</span>
-        <span class="shop-rate">Đánh giá tích cực <b>98%</b></span>
+        <span class="badge badge-auth" data-i18n="Gian hàng chính hãng">Gian hàng chính hãng</span>
+        <span class="shop-rate"><b data-i18n="Đánh giá tích cực">Đánh giá tích cực</b> <b>98%</b></span>
       </div>
     </div>
 
     <div class="review-tabs">
-      <button class="tab-btn active" data-tab="details">Chi tiết</button>
-      <button class="tab-btn" data-tab="reviews">Đánh giá</button>
-      <button class="tab-btn" data-tab="suggest">Gợi ý</button>
+      <button class="tab-btn active" data-tab="details" data-i18n="Chi tiết">Chi tiết</button>
+      <button class="tab-btn" data-tab="reviews" data-i18n="Đánh giá">Đánh giá</button>
+      <button class="tab-btn" data-tab="suggest" data-i18n="Gợi ý">Gợi ý</button>
     </div>
 
     <div class="review-content-layout">
       <div class="review-main" id="tab-details">
         <div class="product-detail-tab">
-          <h2 class="tab-title active">Thông số kỹ thuật</h2>
+          <h2 class="tab-title active" data-i18n="Thông số kỹ thuật">Thông số kỹ thuật</h2>
           <ul class="combo-list">
-            <li><b>Trọng lượng</b>: 4U (80-84g)</li>
-            <li><b>Độ cứng</b>: Cứng</li>
-            <li><b>Điểm cân bằng</b>: Nặng đầu (Head-Heavy)</li>
-            <li><b>Vật liệu khung</b>: HM Graphite / Namd</li>
-            <li><b>Chu vi cán</b>: G5</li>
+            <li><b data-i18n="Trọng lượng">Trọng lượng</b>: 4U (80-84g)</li>
+            <li><b data-i18n="Độ cứng">Độ cứng</b>: Cứng</li>
+            <li><b data-i18n="Điểm cân bằng">Điểm cân bằng</b>: Nặng đầu (Head-Heavy)</li>
+            <li><b data-i18n="Vật liệu khung">Vật liệu khung</b>: HM Graphite / Namd</li>
+            <li><b data-i18n="Chu vi cán">Chu vi cán</b>: G5</li>
           </ul>
           <div class="product-attrs-table">
-            <div class="attrs-row"><div class="attrs-col"><b>Thương hiệu</b></div><div class="attrs-col">Yonex</div><div class="attrs-col"><b>Xuất xứ</b></div><div class="attrs-col">Nhật Bản</div></div>
-            <div class="attrs-row"><div class="attrs-col"><b>Bảo hành</b></div><div class="attrs-col">12 tháng</div><div class="attrs-col"><b>Mã SKU</b></div><div class="attrs-col">ASTROX-100ZZ</div></div>
+            <div class="attrs-row"><div class="attrs-col"><b data-i18n="Thương hiệu">Thương hiệu</b></div><div class="attrs-col">Yonex</div><div class="attrs-col"><b data-i18n="Xuất xứ">Xuất xứ</b></div><div class="attrs-col">Nhật Bản</div></div>
+            <div class="attrs-row"><div class="attrs-col"><b data-i18n="Bảo hành">Bảo hành</b></div><div class="attrs-col">12 tháng</div><div class="attrs-col"><b>SKU</b></div><div class="attrs-col">ASTROX-100ZZ</div></div>
           </div>
         </div>
       </div>
       <div class="review-main" id="tab-reviews" style="display:none;">
         <div class="review-list">
-          <div class="review-item"><div class="review-user"><span class="user-avatar">A</span><span class="user-name">Anh T.</span><span class="review-time">2 ngày trước</span></div><div class="review-content"><div class="review-text">Vợt nặng đầu, smash rất đã. Đóng gói chắc chắn.</div><button class="helpful-btn">Hữu ích (3)</button></div></div>
+          <div class="review-item"><div class="review-user"><span class="user-avatar">A</span><span class="user-name">Anh T.</span><span class="review-time" data-i18n="2 ngày trước">2 ngày trước</span></div><div class="review-content"><div class="review-text">Vợt nặng đầu, smash rất đã. Đóng gói chắc chắn.</div><button class="helpful-btn" data-i18n="Hữu ích (3)">Hữu ích (3)</button></div></div>
         </div>
       </div>
       <div class="review-main" id="tab-suggest" style="display:none;">
         <div class="suggest-section">
-          <h3 class="suggest-title">Có thể bạn cũng thích</h3>
+          <h3 class="suggest-title" data-i18n="Có thể bạn cũng thích">Có thể bạn cũng thích</h3>
           <div class="suggest-grid">
             <div class="suggest-card"><img src="./images/Badminton/Badminton5.jpg" class="suggest-img" alt=""><div class="suggest-name">Adidas Spieler</div><div class="suggest-price-row"><span class="suggest-price">1.590.000đ</span></div></div>
             <div class="suggest-card"><img src="./images/Badminton/Badminton2.jpg" class="suggest-img" alt=""><div class="suggest-name">Victor Thruster</div><div class="suggest-price-row"><span class="suggest-price">1.990.000đ</span></div></div>
@@ -191,6 +195,20 @@
       };
     });
   </script>
+    <script>
+    document.querySelectorAll('.gallery-thumbs .thumb').forEach(function(thumb) {
+      thumb.onclick = function() {
+        // Đổi ảnh lớn
+        document.querySelector('.gallery-main .main-img').src = thumb.src;
+        // Cập nhật trạng thái active cho ảnh nhỏ
+        document.querySelectorAll('.gallery-thumbs .thumb').forEach(function(t) {
+          t.classList.remove('active');
+        });
+        thumb.classList.add('active');
+      };
+    });
+  </script>
+  <script src="./js/translate_script.js"></script>
 </body>
 </html>
 

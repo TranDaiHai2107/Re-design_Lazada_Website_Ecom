@@ -10,6 +10,65 @@
     window.__IS_SEARCH_PAGE__ = true;
   </script>
   <style>
+    :root {
+      --accent: #ff6a00; /* màu cam nút tìm kiếm */
+      --muted: #f5f6f8;
+      --text: #222;
+      --maxw: 1200px;
+      --radius: 10px;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial;
+      color: var(--text);
+      background: white;
+    }
+    /* Ẩn scrollbar trên Chrome, Safari */
+    .element::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Ẩn scrollbar trên Firefox */
+    .element {
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE, Edge */
+    }
+
+    /* --- Top strip --- */
+    .top-strip {
+      background: #f2f3f5;
+      font-size: 13px;
+      padding: 8px 16px;
+      border-bottom: 1px solid #e6e6e6;
+    }
+    .top-strip .container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .top-links {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+    .top-links a {
+      color: #333;
+      text-decoration: none;
+    }
+    .top-actions a {
+      margin-left: 12px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
     /* Tối ưu layout riêng cho trang vợt cầu lông */
     .page .grid { grid-template-columns: 260px 1fr; }
     .results { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
@@ -38,15 +97,55 @@
     .results .card:hover .card-actions, .results .card:focus-within .card-actions { opacity: 1; }
     .btn-cart { background: var(--accent); color: #fff; border: none; border-radius: 10px; padding: 10px 16px; font-weight: 800; cursor: pointer; }
     .btn-wish { background: #fff; color: var(--accent); border: 2px solid var(--accent); width: 42px; height: 42px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; font-size: 18px; cursor: pointer; }
+    .lang-switcher {
+      position: relative;
+      z-index: 9999;
+      width: 100px;
+    }
+    #langToggleBtn {
+      background: #fff;
+      color: #0052ff;
+      border: 2px solid #0052ff;
+      border-radius: 18px;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 6px 18px;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s;
+    }
+    #langToggleBtn.active {
+      background: #0052ff;
+      color: #fff;
+    }
+    #langToggleBtn:hover {
+      background: #fff;
+      color: #0052ff;
+    }
   </style>
+    <!-- Top strip -->
+    <div class="top-strip">
+        <div class="container">
+            <div class="top-links">
+                <a href="#" data-i18n="Chăm sóc khách hàng">Chăm sóc khách hàng</a>
+                <a href="./orderdetail.html" data-i18n="Kiểm tra đơn hàng">Kiểm tra đơn hàng</a>
+            </div>
+            <div class="top-actions">
+                <a href="#" data-i18n="Đăng nhập">Đăng nhập</a>
+                <a href="#"data-i18n="Đăng ký">Đăng ký</a>
+            </div>
+            <div class="lang-switcher">
+              <button id="langToggleBtn">EN</button>
+            </div>
+          </div>
+        </div>
 </head>
 <body>
   <div class="header">
     <div class="container">
       <a class="logo" href="./index.html"><img src="./images/lazada_icon.png" alt="Lazada"></a>
       <div class="search-row">
-        <input type="text" id="pageSearch" class="search-input" placeholder="Tìm kiếm trong vợt cầu lông..." />
-        <button id="pageSearchBtn" class="search-btn">Tìm kiếm</button>
+        <input type="text" id="pageSearch" class="search-input" data-i18n-placeholder="Tìm kiếm trong vợt cầu lông..." placeholder="Tìm kiếm trong vợt cầu lông..." />
+        <button id="pageSearchBtn" class="search-btn" data-i18n="Tìm kiếm">Tìm kiếm</button>
       </div>
     </div>
   </div>
@@ -54,9 +153,9 @@
   <div class="page">
     <div class="grid">
       <aside class="left">
-        <div class="title">Bộ lọc</div>
+        <div class="title"><b data-i18n="Bộ lọc">Bộ lọc</b></div>
         <div class="section">
-          <div class="section-title">Hãng</div>
+          <div class="section-title" data-i18n="Hãng">Hãng</div>
           <ul class="list" id="brandFilter">
             <li><label class="check-pill"><input type="checkbox" value="Yonex"/><span>Yonex</span></label></li>
             <li><label class="check-pill"><input type="checkbox" value="Li-Ning"/><span>Li-Ning</span></label></li>
@@ -66,16 +165,16 @@
           </ul>
         </div>
         <div class="section">
-          <div class="section-title">Giảm giá</div>
+          <div class="section-title" data-i18n="Giảm giá">Giảm giá</div>
           <ul class="list" id="discountFilter">
-            <li><label class="check-pill"><input type="checkbox" value="10"/><span>Từ 10%</span></label></li>
-            <li><label class="check-pill"><input type="checkbox" value="20"/><span>Từ 20%</span></label></li>
-            <li><label class="check-pill"><input type="checkbox" value="30"/><span>Từ 30%</span></label></li>
-            <li><label class="check-pill"><input type="checkbox" value="40"/><span>Từ 40%</span></label></li>
+            <li><label class="check-pill"><input type="checkbox" value="10"/><span data-i18n="Từ 10%">Từ 10%</span></label></li>
+            <li><label class="check-pill"><input type="checkbox" value="20"/><span data-i18n="Từ 20%">Từ 20%</span></label></li>
+            <li><label class="check-pill"><input type="checkbox" value="30"/><span data-i18n="Từ 30%">Từ 30%</span></label></li>
+            <li><label class="check-pill"><input type="checkbox" value="40"/><span data-i18n="Từ 40%">Từ 40%</span></label></li>
           </ul>
         </div>
         <div class="section">
-          <div class="section-title">Nơi bán</div>
+          <div class="section-title" data-i18n="Nơi bán">Nơi bán</div>
           <ul class="list" id="locationFilter">
             <li><label class="check-pill"><input type="checkbox" value="Hồ Chí Minh"/><span>Hồ Chí Minh</span></label></li>
             <li><label class="check-pill"><input type="checkbox" value="Hà Nội"/><span>Hà Nội</span></label></li>
@@ -83,12 +182,12 @@
           </ul>
         </div>
         <div class="section">
-          <div class="section-title">Sắp xếp</div>
+          <div class="section-title" data-i18n="Sắp xếp">Sắp xếp</div>
           <select id="sortSelect" style="width:100%; padding:8px;">
-            <option value="pop">Phổ biến</option>
-            <option value="priceAsc">Giá tăng dần</option>
-            <option value="priceDesc">Giá giảm dần</option>
-            <option value="discountDesc">Giảm giá nhiều</option>
+            <option value="pop" data-i18n="Phổ biến">Phổ biến</option>
+            <option value="priceAsc" data-i18n="Giá tăng dần">Giá tăng dần</option>
+            <option value="priceDesc" data-i18n="Giá giảm dần">Giá giảm dần</option>
+            <option value="discountDesc" data-i18n="Giảm giá nhiều">Giảm giá nhiều</option>
           </select>
         </div>
       </aside>
@@ -166,8 +265,8 @@
       }
 
       function formatSold(v){
-        if (v >= 1000) return 'Đã bán ' + Math.floor(v/1000) + 'k+';
-        return 'Đã bán ' + v;
+        if (v >= 1000) return document.documentElement.lang === 'en' ? 'Sold ' : 'Đã bán ' + Math.floor(v/1000) + 'k+';
+        return document.documentElement.lang === 'en' ? 'Sold ' : 'Đã bán ' + v;
       }
 
       function render(){
@@ -185,7 +284,7 @@
             <div class="price">${formatPrice(Math.floor(p.price*(100-p.discount)/100))}</div>
             <div class="card-meta"><span class="star">★ ${p.rating}</span><span>(${p.reviews.toLocaleString('vi-VN')})</span><span style="color:#00bcd4; font-weight:700;">${formatSold(p.sold)}</span></div>
             <div class="card-actions">
-              <button class="btn-cart">Thêm vào giỏ</button>
+              <button class="btn-cart" data-i18n = "Thêm vào giỏ">Thêm vào giỏ</button>
               <button class="btn-wish" title="Yêu thích">♥</button>
             </div>
           `;
@@ -213,7 +312,11 @@
       render();
     })();
   </script>
+<script src="./js/translate_script.js" defer></script>
 </body>
+<div class="lang-switcher" style="display: none;">
+  <button id="langToggleBtn">EN</button>
+</div>
 </html>
 
 

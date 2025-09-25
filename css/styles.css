@@ -1154,8 +1154,9 @@ header .container {
   color: #222;
 }
 .lang-switcher {
-  position: fixed;
+  position: relative;
   z-index: 9999;
+  width: 100px;
 }
 #langToggleBtn {
   background: #fff;
@@ -1174,5 +1175,5 @@ header .container {
 }
 #langToggleBtn:hover {
   background: #fff;
-  color: #fff;
+  color: #0052ff;
 }
