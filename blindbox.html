@@ -3,19 +3,234 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="./css/blind_box.css"
-    />
+    <link rel="stylesheet" type="text/css" href="./css/blind_box.css" />
     <link rel="icon" type="image/png" href="./images/icon.ico" />
-    <!-- <script src="./js/spin.js"></script> -->
     <title>Lazada</title>
+    <style>
+      body {
+        background: #f5f6fa;
+        margin: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+      }
+      .blindbox-banner {
+        background: #b80000 url("./images/midautumn_bg.png") no-repeat
+          center/cover;
+        border-radius: 10px;
+        margin: 24px auto 0 auto;
+        max-width: 1100px;
+        min-height: 480px;
+        position: relative;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        padding-bottom: 40px;
+      }
+      .blindbox-title {
+        position: absolute;
+        left: 40px;
+        top: 24px;
+        z-index: 2;
+        width: 520px;
+        text-align: center;
+      }
+      .blindbox-title img {
+        width: 100%;
+        max-width: 520px;
+      }
+      .blindbox-rule-box {
+        position: absolute;
+        left: 30px;
+        bottom: 30px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        padding: 24px 32px 18px 32px;
+        min-width: 420px;
+        max-width: 480px;
+      }
+      .blindbox-rule-title {
+        color: #b80000;
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .blindbox-rule-title::before,
+      .blindbox-rule-title::after {
+        content: "";
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background: #b80000;
+        border-radius: 50%;
+        margin: 0 6px;
+      }
+      .blindbox-rule-title::before {
+        margin-left: 0;
+      }
+      .blindbox-rule-title::after {
+        margin-right: 0;
+      }
+      .blindbox-rule-content {
+        font-size: 16px;
+        color: #222;
+        margin-left: 8px;
+      }
+      .blindbox-rule-content ul {
+        margin: 8px 0 0 0;
+        padding-left: 18px;
+      }
+      .blindbox-rule-content li {
+        margin-bottom: 4px;
+        font-size: 15px;
+      }
+      /* Lucky wheel area */
+      .blindbox-wheel-area {
+        position: absolute;
+        right: 30px;
+        top: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 2;
+      }
+      .blindbox-wheel-img {
+        width: 370px;
+        height: 370px;
+        background: url("./images/luckywheel_big.png") no-repeat center/contain;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .blindbox-wheel-pointer {
+        position: absolute;
+        top: -38px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 54px;
+        height: 54px;
+        z-index: 3;
+      }
+      .blindbox-spin-btn {
+        position: static;
+        margin-top: 32px;
+        background: linear-gradient(180deg, #ffe082 0%, #ffb300 100%);
+        color: #fff;
+        font-size: 32px;
+        font-weight: 900;
+        border: none;
+        border-radius: 32px;
+        padding: 12px 54px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        letter-spacing: 2px;
+        text-shadow: 1px 1px 2px #b80000;
+        transition: background 0.2s;
+      }
+      .blindbox-spin-btn:active {
+        background: linear-gradient(180deg, #ffd54f 0%, #ffa000 100%);
+      }
+      /* Popup */
+      .result-popup {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.25);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .result-popup-content {
+        background: #fff;
+        border-radius: 16px;
+        padding: 38px 44px 28px 44px;
+        text-align: center;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+        min-width: 320px;
+        position: relative;
+      }
+      .result-popup-content span {
+        font-size: 22px;
+        font-weight: 700;
+        color: #b80000;
+      }
+      .result-popup-close {
+        margin-top: 18px;
+        background: #ff6a00;
+        color: #fff;
+        border: none;
+        border-radius: 7px;
+        font-size: 17px;
+        font-weight: 700;
+        padding: 10px 32px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .result-popup-close:hover {
+        background: #ff8c42;
+      }
+      /* Confetti */
+      .confetti-container {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: 10;
+      }
+      .confetti {
+        position: absolute;
+        width: 12px;
+        height: 18px;
+        border-radius: 4px;
+        opacity: 0.85;
+        animation: confetti-fall 1.3s linear forwards;
+      }
+      @keyframes confetti-fall {
+        0% {
+          transform: translateY(0) rotate(0deg);
+        }
+        100% {
+          transform: translateY(180px) rotate(360deg);
+        }
+      }
+      @media (max-width: 900px) {
+        .blindbox-banner {
+          min-width: unset;
+          max-width: 100%;
+        }
+        .blindbox-title,
+        .blindbox-rule-box,
+        .blindbox-wheel-area {
+          position: static;
+          width: 100%;
+        }
+        .blindbox-wheel-img {
+          width: 90vw;
+          height: 90vw;
+          max-width: 350px;
+          max-height: 350px;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- Top strip -->
     <div class="top-strip">
-      <div class="container">
+      <div
+        class="container"
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
         <div class="top-links">
           <a href="#">Chăm sóc khách hàng</a>
           <a href="./orderdetail.html">Kiểm tra đơn hàng</a>
@@ -26,127 +241,331 @@
         </div>
       </div>
     </div>
-
     <!-- Header -->
     <header class="main-header">
-      <div class="container">
-        <!-- Logo lazada -->
+      <div
+        class="container"
+        style="display: flex; align-items: center; gap: 32px"
+      >
         <div class="logo">
-          <!-- Thay bằng logo thật -->
           <a href="./index.html" aria-label="Trang chủ Lazada">
-            <img src="./images/lazada_icon.png" alt="Logo" />
+            <img
+              src="./images/lazada_icon.png"
+              alt="Logo"
+              style="height: 48px"
+            />
           </a>
         </div>
-
-        <!-- Search bar -->
-        <div class="search-wrap">
-          <div class="search-row">
+        <div class="search-wrap" style="flex: 1">
+          <div
+            class="search-row"
+            style="display: flex; align-items: center; gap: 12px"
+          >
             <input
               type="text"
               placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..."
               aria-label="Tìm kiếm"
               class="search-input"
+              style="
+                flex: 1;
+                max-width: 700px;
+                padding: 16px 22px;
+                font-size: 18px;
+                border-radius: 32px;
+                border: 1.5px solid #eee;
+              "
             />
-            <button aria-label="Tìm kiếm" class="search-btn">Tìm kiếm</button>
+            <button
+              aria-label="Tìm kiếm"
+              class="search-btn"
+              style="
+                background: #ff6a00;
+                color: #fff;
+                font-size: 18px;
+                padding: 12px 36px;
+                border-radius: 32px;
+                border: none;
+                font-weight: 700;
+                cursor: pointer;
+              "
+            >
+              Tìm kiếm
+            </button>
           </div>
         </div>
-
-        <!-- Cart -->
         <div class="cart">
-          <button class="cart-btn" aria-label="Giỏ hàng">
-            <img src="./images/shopping_cart.png" alt="Giỏ hàng" />
+          <button
+            class="cart-btn"
+            aria-label="Giỏ hàng"
+            style="background: none; border: none; cursor: pointer"
+          >
+            <img
+              src="./images/shopping_cart.png"
+              alt="Giỏ hàng"
+              style="height: 40px"
+            />
           </button>
         </div>
       </div>
-
-      <!-- Mini features -->
-      <div>
-        <div class="mini-features" aria-hidden="true">
-          <span>🔖 LazMall</span>
-          <span>🏷 Mã Giảm Giá</span>
-          <span>💳 Nạp Thẻ & eVoucher</span>
-          <span>🌍 LazGlobal</span>
-        </div>
+      <div
+        class="mini-features"
+        aria-hidden="true"
+        style="
+          display: flex;
+          gap: 32px;
+          justify-content: center;
+          margin: 18px 0 0 0;
+          font-size: 17px;
+          color: #555;
+        "
+      >
+        <span style="display: flex; align-items: center; gap: 6px"
+          ><span style="color: #ff2d55">🏷</span> LazMall</span
+        >
+        <span style="display: flex; align-items: center; gap: 6px"
+          ><span style="color: #00bcd4">💳</span> Mã Giảm Giá</span
+        >
+        <span style="display: flex; align-items: center; gap: 6px"
+          ><span style="color: #ff6a00">🔖</span> Nạp Thẻ & eVoucher</span
+        >
+        <span style="display: flex; align-items: center; gap: 6px"
+          ><span style="color: #0097a7">🌍</span> LazGlobal</span
+        >
       </div>
     </header>
-    
-    </div>
-    <!-- ...existing code... -->
-    <main class="blindbox-main">
-        <h1>Chơi Vòng Quay May</h1>
-        <div class="container">
-            <div class="wheel">
-                <div class="number" style="--i:1;--clr:#db7093;"> <span>1</span></div>
-                <div class="number" style="--i:2;--clr:#ff6347;"> <span>2</span></div>
-                <div class="number" style="--i:3;--clr:#ff8c00;"> <span>3</span></div>
-                <div class="number" style="--i:4;--clr:#ffd700;"> <span>4</span></div>
-                <div class="number" style="--i:5;--clr:#90ee90;"> <span>5</span></div>
-                <div class="number" style="--i:6;--clr:#1e90ff;"> <span>6</span></div>
-                <div class="number" style="--i:7;--clr:#9370db;"> <span>7</span></div>
-                <div class="number" style="--i:8;--clr:#ff69b4;"> <span>8</span></div>
-            </div>
-            <div class="spinBtn">Spin</div>
-    </main>
-    <!-- Popup kết quả quay -->
-    <div id="resultPopup" class="result-popup" style="display:none;">
-        <div class="result-popup-content">
-            <span id="resultText"></span>
-            <button class="result-popup-close" onclick="closeResultPopup()">Đóng</button>
-            <div id="confettiContainer" class="confetti-container"></div>
+
+    <!-- Main Blindbox Banner -->
+    <div class="blindbox-banner">
+      <!-- Bên trái: chỉ là hình ảnh bạn cung cấp -->
+      <div
+        class="blindbox-left-img"
+        style="
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 54%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 1;
+        "
+      >
+        <img
+          src="./images/midautumn_left.png"
+          alt="Vòng xoay trung thu"
+          style="
+            max-width: 98%;
+            max-height: 98%;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+          "
+        />
+      </div>
+      <!-- Lucky Wheel Area bên phải -->
+      <div
+        class="blindbox-wheel-area"
+        style="
+          position: relative;
+          right: 30px;
+          top: 40px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        "
+      >
+        <div style="position: relative; width: 370px; height: 370px">
+          <!-- SVG Lucky Wheel -->
+          <svg
+            id="luckyWheelSVG"
+            width="370"
+            height="370"
+            viewBox="0 0 370 370"
+            style="display: block; z-index: 2"
+          >
+            <!-- Các lát sẽ được vẽ bằng JS -->
+          </svg>
+          <!-- Pointer -->
+          <div
+            style="
+              position: absolute;
+              right: -30px;
+              top: 50%;
+              transform: translateY(-50%);
+              z-index: 3;
+            "
+          >
+            <svg width="60" height="60">
+              <polygon
+                points="60,30 0,10 0,50"
+                fill="#fff"
+                stroke="#bbb"
+                stroke-width="3"
+              />
+              <circle cx="18" cy="30" r="8" fill="#bbb" />
+            </svg>
+          </div>
+          <!-- Text phần thưởng -->
+          <div id="wheelLabels"></div>
         </div>
+        <button class="blindbox-spin-btn" id="spinBtn" style="margin-top: 32px">
+          QUAY
+        </button>
+      </div>
     </div>
-<!-- ...existing code... -->
-  </body>
-  <script>
-    let wheel = document.querySelector(".wheel");
-    let spinBtn = document.querySelector(".spinBtn");
-    let value = Math.ceil(Math.random() * 3600);
-    let confettiContainer = document.getElementById("confettiContainer");
+    <!-- Popup kết quả quay -->
+    <div id="resultPopup" class="result-popup" style="display: none">
+      <div class="result-popup-content">
+        <span id="resultText"></span>
+        <button class="result-popup-close" onclick="closeResultPopup()">
+          Đóng
+        </button>
+        <div id="confettiContainer" class="confetti-container"></div>
+      </div>
+    </div>
+    <script>
+      let wheel = document.getElementById("wheel");
+      let spinBtn = document.getElementById("spinBtn");
+      let value = Math.ceil(Math.random() * 3600);
+      let confettiContainer = document.getElementById("confettiContainer");
+      let currentRotation = 0;
+      // Các phần thưởng, thứ tự theo chiều kim đồng hồ bắt đầu từ trên cùng
+      const prizes = [
+        "GIẢM 20%",
+        "IPHONE 17",
+        "GIẢM 10%",
+        "FREESHIP",
+        "GIẢM 50K",
+        "GIẢM 10%",
+        "FREESHIP",
+        "GIẢM 30%",
+      ];
+      const colors = [
+        "#1e90ff",
+        "#ffa500",
+        "#2ecc71",
+        "#e74c3c",
+        "#1e90ff",
+        "#ffa500",
+        "#2ecc71",
+        "#e74c3c",
+      ];
+      const svg = document.getElementById("luckyWheelSVG");
+      const labelsDiv = document.getElementById("wheelLabels");
+      const segCount = prizes.length;
+      const cx = 185,
+        cy = 185,
+        r = 170;
+      svg.innerHTML = "";
+      labelsDiv.innerHTML = "";
+      for (let i = 0; i < segCount; i++) {
+        const startAngle = (i / segCount) * 2 * Math.PI;
+        const endAngle = ((i + 1) / segCount) * 2 * Math.PI;
+        // Tính điểm đầu/cuối
+        const x1 = cx + r * Math.cos(startAngle);
+        const y1 = cy + r * Math.sin(startAngle);
+        const x2 = cx + r * Math.cos(endAngle);
+        const y2 = cy + r * Math.sin(endAngle);
+        // Vẽ lát
+        const largeArc = endAngle - startAngle > Math.PI ? 1 : 0;
+        const d = `
+          M ${cx} ${cy}
+          L ${x1} ${y1}
+          A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2}
+          Z
+        `;
+        const path = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "path"
+        );
+        path.setAttribute("d", d);
+        path.setAttribute("fill", colors[i]);
+        path.setAttribute("stroke", "#fff");
+        path.setAttribute("stroke-width", "8");
+        svg.appendChild(path);
 
-    spinBtn.onclick = function () {
-    wheel.style.transform = "rotate(" + value + "deg)";
-    spinBtn.style.pointerEvents = "none";
-    setTimeout(() => {
-        spinBtn.style.pointerEvents = "auto";
-        // Hiện popup kết quả
-        showResultPopup();
-    }, 5000);
-    value += Math.ceil(Math.random() * 3600);
-    };
+        // Vẽ vạch chia
+        const line = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "line"
+        );
+        line.setAttribute("x1", cx);
+        line.setAttribute("y1", cy);
+        line.setAttribute("x2", x1);
+        line.setAttribute("y2", y1);
+        line.setAttribute("stroke", "#fff");
+        line.setAttribute("stroke-width", "4");
+        svg.appendChild(line);
 
-    function showResultPopup() {
+        // Label
+        const angle = (startAngle + endAngle) / 2;
+        const labelX = cx + (r - 60) * Math.cos(angle);
+        const labelY = cy + (r - 60) * Math.sin(angle);
+        const label = document.createElement("div");
+        label.className = "wheel-label";
+        label.style.left = labelX - 45 + "px";
+        label.style.top = labelY - 16 + "px";
+        label.style.transform = `rotate(${(angle * 180) / Math.PI}deg)`;
+        label.innerHTML = prizes[i];
+        labelsDiv.appendChild(label);
+      }
+      spinBtn.onclick = function () {
+        const spinAmount = 720 + Math.floor(Math.random() * 2881);
+        const finalRotation = currentRotation + spinAmount;
+        svg.style.transition = "transform 4.5s cubic-bezier(.25,.8,.25,1)";
+        svg.style.transform = `rotate(${finalRotation}deg)`;
+        spinBtn.style.pointerEvents = "none";
+        setTimeout(() => {
+          spinBtn.style.pointerEvents = "auto";
+          currentRotation = finalRotation;
+          showResultPopup(finalRotation);
+        }, 4500);
+      };
+      function showResultPopup(spinDeg) {
         // Tính phần trúng dựa trên góc quay
-        const numbers = document.querySelectorAll('.number');
-        const segCount = numbers.length;
-        let currentDeg = value % 360;
-        let idx = segCount - Math.floor((currentDeg % 360) / (360 / segCount)) - 1;
-        if (idx < 0) idx += segCount;
-        let prize = numbers[idx].textContent.trim();
-        document.getElementById('resultText').innerHTML = `Bạn đã quay trúng: <b>${prize}</b> 🎉`;
-        document.getElementById('resultPopup').style.display = 'flex';
+        const segCount = prizes.length;
+        let currentDeg = spinDeg % 360;
+        let idx = Math.floor(
+          ((360 - currentDeg + 22.5) % 360) / (360 / segCount)
+        );
+        let prize = prizes[idx];
+        document.getElementById(
+          "resultText"
+        ).innerHTML = `Bạn đã quay trúng: <b>${prize}</b> 🎉`;
+        document.getElementById("resultPopup").style.display = "flex";
         showConfetti();
-    }
-    function showConfetti() {
-        const container = document.getElementById('confettiContainer');
+      }
+      function showConfetti() {
+        const container = document.getElementById("confettiContainer");
         container.innerHTML = "";
         for (let i = 0; i < 32; i++) {
-            let conf = document.createElement("div");
-            conf.className = "confetti";
-            conf.style.left = (60 + Math.random() * 180) + "px";
-            conf.style.bottom = "0px";
-            conf.style.background = randomColor();
-            container.appendChild(conf);
+          let conf = document.createElement("div");
+          conf.className = "confetti";
+          conf.style.left = 60 + Math.random() * 180 + "px";
+          conf.style.bottom = "0px";
+          conf.style.background = randomColor();
+          container.appendChild(conf);
         }
         setTimeout(() => {
-            container.innerHTML = "";
+          container.innerHTML = "";
         }, 1300);
-    }
-    function randomColor() {
-        const colors = ["#db7093","#ff6347","#ff8c00","#ffd700","#90ee90","#1e90ff","#9370db","#ff69b4"];
+      }
+      function randomColor() {
+        const colors = [
+          "#db7093",
+          "#ff6347",
+          "#ff8c00",
+          "#ffd700",
+          "#90ee90",
+          "#1e90ff",
+          "#9370db",
+          "#ff69b4",
+        ];
         return colors[Math.floor(Math.random() * colors.length)];
-    }
-    function closeResultPopup() {
-        document.getElementById('resultPopup').style.display = 'none';
-    }
-  </script>
+      }
+      function closeResultPopup() {
+        document.getElementById("resultPopup").style.display = "none";
+      }
+    </script>
+  </body>
 </html>
