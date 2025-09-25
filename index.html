@@ -26,16 +26,18 @@
     <div class="top-strip">
         <div class="container">
             <div class="top-links">
-                <a href="#">Chăm sóc khách hàng</a>
-                <a href="./orderdetail.html">Kiểm tra đơn hàng</a>
+                <a href="#" data-i18n="Chăm sóc khách hàng">Chăm sóc khách hàng</a>
+                <a href="./orderdetail.html" data-i18n="Kiểm tra đơn hàng">Kiểm tra đơn hàng</a>
             </div>
             <div class="top-actions">
                 <a href="#">Đăng nhập</a>
                 <a href="#">Đăng ký</a>
             </div>
+            
+          </div>
         </div>
-    </div>
-
+        
+    
   <!-- Header -->
     <header class="main-header">
         <div class="container">
@@ -70,8 +72,11 @@
                 <span>🌍 LazGlobal</span>
             </div>
         </div>
-    </header>
-
+    <!-- Thêm vào header hoặc top-strip -->
+  </header>
+  <div class="lang-switcher">
+      <button id="langToggleBtn">EN</button>
+    </div>
     <!-- Carousel -->
     <section class="carousel" aria-label="Quảng cáo">
     <div class="container">
@@ -826,15 +831,14 @@
       </div>
     </div>
     <script src="./js/scripts.js"></script>
+    <script src="./js/translate_script.js"></script>
     <script>
-      document.getElementById('cartBtn').onclick = function() {
-    window.location.href = './shoppingcart.html';
-  };
+      // Removed buggy cartBtn handler (no element with id="cartBtn")
     </script>
     <script>
-    document.querySelector('.cart-btn').onclick = function() {
-  window.location.href = './shoppingcart.html';
-};
+      document.querySelector('.cart-btn').onclick = function() {
+        window.location.href = './shoppingcart.html';
+      };
     </script>
   </body>
 </html>
