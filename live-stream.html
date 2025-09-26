@@ -92,7 +92,7 @@
 
                     <!-- Small Product at Bottom -->
                     <div class="small-product-overlay">
-                        <div class="small-product-card">
+                        <div class="small-product-card" onclick="window.location.href='./mooncake.html'" style="cursor: pointer;">
                             <div class="small-product-image">
                                 <img src="./images/fy_autumncake.webp" alt="Bánh Trung Thu" class="small-product-thumb">
                                 <div class="product-promo-badge">MUA 2 TẶNG 1</div>
@@ -472,9 +472,8 @@
 
         // Product action functions
         function addToCart() {
-            // Add to cart functionality
-            alert('Đã thêm Bánh Trung Thu Hữu Nghị vào giỏ hàng!');
-            // You can add actual cart functionality here
+            // Navigate to mooncake page for detailed product view
+            window.location.href = './mooncake.html';
         }
 
         function shareProduct() {
