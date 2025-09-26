@@ -397,7 +397,7 @@
               z-index: 3;
             "
           >
-            <svg width="60" height="60">
+            <svg width="60" height="60" style="rotate: 180deg">
               <polygon
                 points="60,30 0,10 0,50"
                 fill="#fff"
@@ -536,9 +536,7 @@
         // Tính phần trúng dựa trên góc quay
         const segCount = prizes.length;
         let currentDeg = spinDeg % 360;
-        let idx = Math.floor(
-          ((360 - currentDeg) % 360) / (360 / segCount)
-        );
+        let idx = Math.floor(((360 - currentDeg) % 360) / (360 / segCount));
         let prize = prizes[idx];
         document.getElementById(
           "resultText"
