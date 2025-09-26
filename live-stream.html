@@ -20,8 +20,16 @@
                 <a href="#" data-i18n="Đăng nhập">Đăng nhập</a>
                 <a href="#" data-i18n="Đăng ký">Đăng ký</a>
             </div>
-            <div class="lang-switcher">
+            <div class="top-controls">
+              <div class="dark-mode-toggle">
+                <button id="darkModeToggle" class="dark-mode-btn" title="Chuyển đổi chế độ tối">
+                  <span class="dark-icon">🌙</span>
+                  <span class="light-icon">☀️</span>
+                </button>
+              </div>
+              <div class="lang-switcher">
                 <button id="langToggleBtn">EN</button>
+              </div>
             </div>
         </div>
     </div>
@@ -84,7 +92,7 @@
 
                     <!-- Small Product at Bottom -->
                     <div class="small-product-overlay">
-                        <div class="small-product-card" onclick="window.location.href='./mooncake.html'">
+                        <div class="small-product-card">
                             <div class="small-product-image">
                                 <img src="./images/fy_autumncake.webp" alt="Bánh Trung Thu" class="small-product-thumb">
                                 <div class="product-promo-badge">MUA 2 TẶNG 1</div>
@@ -95,6 +103,19 @@
                                 <div class="small-product-badge">VOUCHER</div>
                             </div>
                         </div>
+                    </div>
+                    
+                    <!-- Action Buttons Overlay (Only visible on stream) -->
+                    <div class="stream-action-buttons">
+                        <button class="stream-action-btn cart-btn" onclick="addToCart()" title="Thêm vào giỏ hàng">
+                            <img src="./images/live/gio hang.png" alt="Giỏ hàng">
+                        </button>
+                        <button class="stream-action-btn share-btn" onclick="shareProduct()" title="Chia sẻ">
+                            <img src="./images/live/nút chia sẻ.png" alt="Chia sẻ">
+                        </button>
+                        <button class="stream-action-btn heart-btn" onclick="sendHeart()" title="Thả tim">
+                            <img src="./images/live/icon trai tim.png" alt="Thả tim">
+                        </button>
                     </div>
                 </div>
             </div>
@@ -447,6 +468,67 @@
                 viewMoreText.textContent = 'Xem thêm';
                 viewMoreIcon.textContent = '▼';
             }
+        }
+
+        // Product action functions
+        function addToCart() {
+            // Add to cart functionality
+            alert('Đã thêm Bánh Trung Thu Hữu Nghị vào giỏ hàng!');
+            // You can add actual cart functionality here
+        }
+
+        function shareProduct() {
+            // Share product functionality
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Bánh Trung Thu Hữu Nghị',
+                    text: 'Xem sản phẩm Bánh Trung Thu Hữu Nghị trên Lazada Live!',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                const shareUrl = window.location.href;
+                navigator.clipboard.writeText(shareUrl).then(() => {
+                    alert('Đã copy link chia sẻ!');
+                });
+            }
+        }
+
+        function sendHeart() {
+            // Send heart animation
+            const heartBtn = document.querySelector('.heart-btn');
+            heartBtn.classList.add('animated');
+            
+            // Create floating heart
+            createFloatingHeart();
+            
+            // Remove animation class after animation completes
+            setTimeout(() => {
+                heartBtn.classList.remove('animated');
+            }, 600);
+        }
+
+        function createFloatingHeart() {
+            const heartsContainer = document.getElementById('floatingHearts');
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = '❤️';
+            heart.style.position = 'absolute';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.top = '100%';
+            heart.style.fontSize = '20px';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '1000';
+            heart.style.animation = 'floatUp 3s ease-out forwards';
+            
+            heartsContainer.appendChild(heart);
+            
+            // Remove heart after animation
+            setTimeout(() => {
+                if (heart.parentNode) {
+                    heart.parentNode.removeChild(heart);
+                }
+            }, 3000);
         }
     </script>
 </body>

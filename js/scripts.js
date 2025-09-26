@@ -312,11 +312,48 @@ function setupProductSearch() {
   });
 }
 
+// Dark mode functionality
+function setupDarkMode() {
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  if (!darkModeToggle) return;
+
+  // Load saved theme preference
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+  }
+
+  darkModeToggle.addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
+    
+    // Save theme preference
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+  });
+}
+
+// Language toggle functionality
+function setupLanguageToggle() {
+  const langToggleBtn = document.getElementById('langToggleBtn');
+  if (langToggleBtn) {
+    langToggleBtn.addEventListener('click', function() {
+      const currentLang = this.textContent;
+      this.textContent = currentLang === 'EN' ? 'VI' : 'EN';
+    });
+  }
+}
+
 // Run after DOM is ready
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', setupProductSearch);
+  document.addEventListener('DOMContentLoaded', function() {
+    setupProductSearch();
+    setupDarkMode();
+    setupLanguageToggle();
+  });
 } else {
   setupProductSearch();
+  setupDarkMode();
+  setupLanguageToggle();
 }
 
 // On homepage, redirect search to search.html
