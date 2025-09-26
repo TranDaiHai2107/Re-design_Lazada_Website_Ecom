@@ -123,6 +123,27 @@ header .container {
   justify-content: center; /* căn giữa các phần tử */
 }
 
+.lazlive-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  padding: 5px 8px !important;
+  border-radius: 5px !important;
+  transition: background 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.lazlive-link:hover {
+  background: rgba(255, 106, 0, 0.1) !important;
+}
+
+.lazlive-link img {
+  width: 20px !important;
+  height: 20px !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
 .cart {
   min-width: 70px;
   display: flex;
