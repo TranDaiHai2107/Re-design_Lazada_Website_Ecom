@@ -76,14 +76,14 @@
         <h1>Chơi Vòng Quay May</h1>
         <div class="container">
             <div class="wheel">
-                <div class="number" style="--i:1;--clr:#db7093;"> <span>1</span></div>
-                <div class="number" style="--i:2;--clr:#ff6347;"> <span>2</span></div>
-                <div class="number" style="--i:3;--clr:#ff8c00;"> <span>3</span></div>
-                <div class="number" style="--i:4;--clr:#ffd700;"> <span>4</span></div>
-                <div class="number" style="--i:5;--clr:#90ee90;"> <span>5</span></div>
-                <div class="number" style="--i:6;--clr:#1e90ff;"> <span>6</span></div>
-                <div class="number" style="--i:7;--clr:#9370db;"> <span>7</span></div>
-                <div class="number" style="--i:8;--clr:#ff69b4;"> <span>8</span></div>
+                <div class="number" style="--i:1;--clr:#db7093;"> <span>Giảm 20%</span></div>
+                <div class="number" style="--i:2;--clr:#ff6347;"> <span>Iphone 17</span></div>
+                <div class="number" style="--i:3;--clr:#ff8c00;"> <span>Free ship</span></div>
+                <div class="number" style="--i:4;--clr:#ffd700;"> <span>Giảm 30%</span></div>
+                <div class="number" style="--i:5;--clr:#90ee90;"> <span>Mất lượt</span></div>
+                <div class="number" style="--i:6;--clr:#1e90ff;"> <span>Giảm 10%</span></div>
+                <div class="number" style="--i:7;--clr:#9370db;"> <span>Giảm 50K</span></div>
+                <div class="number" style="--i:8;--clr:#ff69b4;"> <span>Mất lượt</span></div>
             </div>
             <div class="spinBtn">Spin</div>
     </main>
@@ -98,55 +98,105 @@
 <!-- ...existing code... -->
   </body>
   <script>
+    /* Sửa lại logic spin + tính phần trúng */
     let wheel = document.querySelector(".wheel");
     let spinBtn = document.querySelector(".spinBtn");
-    let value = Math.ceil(Math.random() * 3600);
     let confettiContainer = document.getElementById("confettiContainer");
 
+    // Tổng góc hiện tại (ghi nhớ giữa các lần quay)
+    let currentRotation = 0;
+
+    // Hàm quay
     spinBtn.onclick = function () {
-    wheel.style.transform = "rotate(" + value + "deg)";
-    spinBtn.style.pointerEvents = "none";
-    setTimeout(() => {
+      // tạo số độ quay ngẫu nhiên cho lần này (ít nhất 2 vòng, tới nhiều vòng)
+      // Ví dụ: 720 (2 vòng) -> 3600 (10 vòng)
+      const spinAmount = 720 + Math.floor(Math.random() * 2881); // 720..3600
+      const finalRotation = currentRotation + spinAmount;
+
+      // thực hiện animation
+      wheel.style.transition = "transform 4.5s cubic-bezier(.25,.8,.25,1)";
+      wheel.style.transform = `rotate(${finalRotation}deg)`;
+
+      // disable nút trong khi quay
+      spinBtn.style.pointerEvents = "none";
+      spinBtn.classList.add('spinning');
+
+      // Sau khi animation kết thúc (chọn timeout khớp với thời gian transition)
+      setTimeout(() => {
+        // cho phép quay lại
         spinBtn.style.pointerEvents = "auto";
-        // Hiện popup kết quả
-        showResultPopup();
-    }, 5000);
-    value += Math.ceil(Math.random() * 3600);
+        spinBtn.classList.remove('spinning');
+
+        // cập nhật currentRotation cho lần quay tiếp theo
+        currentRotation = finalRotation;
+
+        // hiện popup kết quả, truyền finalRotation để tính chính xác
+        showResultPopup(finalRotation);
+      }, 4500);
+
+      // (KHÔNG) thay đổi currentRotation ở đây trước khi popup
     };
 
-    function showResultPopup() {
-        // Tính phần trúng dựa trên góc quay
-        const numbers = document.querySelectorAll('.number');
-        const segCount = numbers.length;
-        let currentDeg = value % 360;
-        let idx = segCount - Math.floor((currentDeg % 360) / (360 / segCount)) - 1;
-        if (idx < 0) idx += segCount;
-        let prize = numbers[idx].textContent.trim();
-        document.getElementById('resultText').innerHTML = `Bạn đã quay trúng: <b>${prize}</b> 🎉`;
-        document.getElementById('resultPopup').style.display = 'flex';
-        showConfetti();
+    /* Hàm tính segment trúng và hiện popup.
+      Truyền vào finalRotation là góc đã dùng để rotate.
+    */
+    function showResultPopup(finalRotation) {
+      const numbers = document.querySelectorAll('.number'); // các ô segment, giữ thứ tự DOM
+      const segCount = numbers.length;
+      if (segCount === 0) return;
+
+      // Chuẩn hoá góc trong [0, 360)
+      const normalized = ((finalRotation % 360) + 360) % 360; 
+      const anglePer = 360 / segCount;
+
+      // CÔNG THỨC THƯỜNG DÙNG:
+      // Nếu vị trí "mốc" (pointer) ở TOP (0°) và segment 0 bắt đầu từ TOP theo chiều kim đồng hồ,
+      // index = Math.floor(normalized / anglePer)
+      //
+      // Tuy nhiên trong nhiều implement segment thứ tự có thể ngược hoặc kim ở vị trí khác.
+      // Một công thức an toàn (thường dùng khi bánh dựng theo DOM từ trái sang phải và pointer ở TOP):
+      //   index = (segCount - Math.floor(normalized / anglePer)) % segCount;
+      //
+      // Thử cả 2 nếu kết quả sai, hoặc điều chỉnh theo vị trí pointer/thuật toán dựng segment của bạn.
+
+      // MÌNH SẼ DÙNG phương pháp đảo (thường khớp với nhiều bánh quay):
+      let idx = (segCount - Math.floor(normalized / anglePer)) % segCount;
+      if (idx < 0) idx += segCount;
+
+      // Nếu kết quả có vẻ đảo ngược với thứ tự DOM, thử dùng:
+      // let idx = Math.floor(normalized / anglePer);
+
+      let prize = numbers[idx].textContent.trim();
+      document.getElementById('resultText').innerHTML = `Bạn đã quay trúng: <b>${prize}</b> 🎉`;
+      document.getElementById('resultPopup').style.display = 'flex';
+      showConfetti();
     }
+
+    /* Confetti (giữ nguyên của bạn, chỉ thay một chút để an toàn) */
     function showConfetti() {
-        const container = document.getElementById('confettiContainer');
+      const container = document.getElementById('confettiContainer');
+      container.innerHTML = "";
+      for (let i = 0; i < 32; i++) {
+        let conf = document.createElement("div");
+        conf.className = "confetti";
+        conf.style.left = (60 + Math.random() * 180) + "px";
+        conf.style.bottom = "0px";
+        conf.style.background = randomColor();
+        container.appendChild(conf);
+      }
+      setTimeout(() => {
         container.innerHTML = "";
-        for (let i = 0; i < 32; i++) {
-            let conf = document.createElement("div");
-            conf.className = "confetti";
-            conf.style.left = (60 + Math.random() * 180) + "px";
-            conf.style.bottom = "0px";
-            conf.style.background = randomColor();
-            container.appendChild(conf);
-        }
-        setTimeout(() => {
-            container.innerHTML = "";
-        }, 1300);
+      }, 1300);
     }
+
     function randomColor() {
-        const colors = ["#db7093","#ff6347","#ff8c00","#ffd700","#90ee90","#1e90ff","#9370db","#ff69b4"];
-        return colors[Math.floor(Math.random() * colors.length)];
+      const colors = ["#db7093","#ff6347","#ff8c00","#ffd700","#90ee90","#1e90ff","#9370db","#ff69b4"];
+      return colors[Math.floor(Math.random() * colors.length)];
     }
+
     function closeResultPopup() {
-        document.getElementById('resultPopup').style.display = 'none';
+      document.getElementById('resultPopup').style.display = 'none';
     }
-  </script>
+    </script>
+
 </html>

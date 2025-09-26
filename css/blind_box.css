@@ -224,11 +224,11 @@ header .container {
 .blindbox-main .container .wheel .number span{
     position: relative;
     transform: rotate(45deg);
-    font-size: 2em;
+    font-size: 1em;
     font-weight: 700;
     color: #fff;
     margin-top: 10px;
-    margin-left: 100px;
+    margin-left: 70px;
 }
 
 
