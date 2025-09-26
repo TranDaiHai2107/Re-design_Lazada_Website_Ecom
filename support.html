@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+    <link rel="icon" type="image/png" href="./images/icon.ico" />
+    <title>Chăm sóc khách hàng</title>
+  </head>
+  <body>
+    <div class="top-strip">
+      <div class="container">
+        <div class="top-links">
+          <a href="./index.html">Trang chủ</a>
+        </div>
+        <div class="top-actions">
+          <a href="#" data-i18n="Đăng nhập">Đăng nhập</a>
+          <a href="#" data-i18n="Đăng ký">Đăng ký</a>
+        </div>
+      </div>
+    </div>
+
+    <header class="main-header" style="background:#fff;">
+      <div class="container" style="align-items:center;gap:14px;">
+        <div class="logo" style="cursor:pointer;" onclick="window.location.href='./index.html'">
+          <img src="./images/lazada_icon.png" alt="Logo" />
+        </div>
+        <h1 style="font-size:20px;margin:0;">Hỗ trợ khách hàng</h1>
+        <div style="margin-left:auto">
+          <button class="search-btn" onclick="window.location.href='./orderdetail.html'">Đơn hàng của tôi</button>
+        </div>
+      </div>
+    </header>
+
+    <main style="padding: 18px 0;">
+      <div class="container" style="max-width: 920px;">
+        <div style="display:grid;grid-template-columns:280px 1fr;gap:16px;">
+          <!-- Sidebar topics -->
+          <aside style="background:#fff;border-radius:12px;border:1px solid #eee;padding:14px;">
+            <div style="font-weight:700;margin-bottom:10px;">Chủ đề phổ biến</div>
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+              <li><button style="width:100%;text-align:left;background:#f7f7f7;border:1px solid #eee;border-radius:8px;padding:8px 10px;cursor:pointer;" onclick="quickQuestion('Tôi muốn kiểm tra tình trạng đơn hàng')">Theo dõi đơn hàng</button></li>
+              <li><button style="width:100%;text-align:left;background:#f7f7f7;border:1px solid #eee;border-radius:8px;padding:8px 10px;cursor:pointer;" onclick="quickQuestion('Chính sách đổi trả như thế nào?')">Đổi trả</button></li>
+              <li><button style="width:100%;text-align:left;background:#f7f7f7;border:1px solid #eee;border-radius:8px;padding:8px 10px;cursor:pointer;" onclick="quickQuestion('Tôi cần hỗ trợ về thanh toán')">Thanh toán</button></li>
+              <li><button style="width:100%;text-align:left;background:#f7f7f7;border:1px solid #eee;border-radius:8px;padding:8px 10px;cursor:pointer;" onclick="quickQuestion('Làm sao nhận mã giảm giá?')">Mã giảm giá</button></li>
+            </ul>
+          </aside>
+
+          <!-- Chat box -->
+          <section style="background:#fff;border-radius:12px;border:1px solid #eee;display:flex;flex-direction:column;height:70vh;min-height:520px;">
+            <div style="padding:12px 14px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:10px;">
+              <div style="width:34px;height:34px;border-radius:50%;background:#ffefe3;display:flex;align-items:center;justify-content:center;">💬</div>
+              <div>
+                <div style="font-weight:700;">Trợ lý Lazada</div>
+                <div style="font-size:12px;color:#666;">Thường phản hồi trong vòng 1 phút</div>
+              </div>
+            </div>
+            <div id="chatMessages" style="flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:#fafafa;">
+              <div class="msg-bot" style="align-self:flex-start;max-width:78%;background:#fff;border:1px solid #eee;padding:10px 12px;border-radius:12px 12px 12px 4px;line-height:1.5;font-size:14px;">Chào bạn! Mình có thể giúp gì cho bạn hôm nay?</div>
+            </div>
+            <div style="padding:10px;border-top:1px solid #eee;display:flex;gap:8px;">
+              <input id="chatInput" type="text" placeholder="Nhập tin nhắn..." style="flex:1;padding:10px 12px;border:1px solid #ddd;border-radius:8px;font-size:14px;" />
+              <button id="sendBtn" class="search-btn" style="min-width:90px;">Gửi</button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      function appendUserMessage(text){
+        const box = document.getElementById('chatMessages');
+        const el = document.createElement('div');
+        el.className = 'msg-user';
+        el.style.cssText = 'align-self:flex-end;max-width:78%;background:#e6f7ff;border:1px solid #b3e5fc;padding:10px 12px;border-radius:12px 12px 4px 12px;line-height:1.5;font-size:14px;';
+        el.textContent = text;
+        box.appendChild(el);
+        box.scrollTop = box.scrollHeight;
+      }
+      function appendBotMessage(text){
+        const box = document.getElementById('chatMessages');
+        const el = document.createElement('div');
+        el.className = 'msg-bot';
+        el.style.cssText = 'align-self:flex-start;max-width:78%;background:#fff;border:1px solid #eee;padding:10px 12px;border-radius:12px 12px 12px 4px;line-height:1.5;font-size:14px;';
+        el.textContent = text;
+        box.appendChild(el);
+        box.scrollTop = box.scrollHeight;
+      }
+      function autoReply(userText){
+        // Simple canned responses
+        const text = (userText || '').toLowerCase();
+        let reply = 'Cảm ơn bạn, mình đã ghi nhận câu hỏi. Vui lòng chờ trong giây lát!';
+        if(text.includes('đơn') || text.includes('order')) reply = 'Bạn có thể theo dõi đơn tại "Kiểm tra đơn hàng" ở thanh trên cùng.';
+        else if(text.includes('đổi trả') || text.includes('refund') || text.includes('return')) reply = 'Chính sách đổi trả trong 15 ngày. Vui lòng giữ hoá đơn và bao bì.';
+        else if(text.includes('thanh toán') || text.includes('payment')) reply = 'Bên mình hỗ trợ COD, VNPay, MoMo, và thẻ tín dụng/ghi nợ.';
+        else if(text.includes('mã') || text.includes('voucher')) reply = 'Mã giảm giá xuất hiện ở trang chủ và trong các chiến dịch khuyến mãi.';
+        setTimeout(()=> appendBotMessage(reply), 700);
+      }
+      function sendMessage(){
+        const input = document.getElementById('chatInput');
+        const msg = (input.value || '').trim();
+        if(!msg) return;
+        appendUserMessage(msg);
+        input.value = '';
+        autoReply(msg);
+      }
+      document.getElementById('sendBtn').onclick = sendMessage;
+      document.getElementById('chatInput').addEventListener('keypress', function(e){
+        if(e.key === 'Enter') sendMessage();
+      });
+      window.quickQuestion = function(q){
+        const input = document.getElementById('chatInput');
+        input.value = q;
+        sendMessage();
+      }
+    </script>
+    <script src="./js/translate_script.js"></script>
+  </body>
+  </html>
+
+
