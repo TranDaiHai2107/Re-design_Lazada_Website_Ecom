@@ -692,6 +692,49 @@
         document.getElementById("loginModal").style.display = "flex";
       };
     </script>
+    <script>
+      (function(){
+        const topActions = document.querySelector('.top-actions');
+        function renderUserUI(){
+          try{
+            const user = JSON.parse(localStorage.getItem('user') || 'null');
+            if(user && user.name){
+              topActions.innerHTML = '<span style="font-weight:700;white-space:nowrap;">Xin chào, ' + user.name + '</span>\n                <a href="#" id="logoutLink" style="margin-left:12px;">Đăng xuất</a>';
+              const logout = document.getElementById('logoutLink');
+              if(logout){
+                logout.onclick = function(e){
+                  e.preventDefault();
+                  localStorage.removeItem('user');
+                  window.location.reload();
+                };
+              }
+            }
+          }catch(e){}
+        }
+
+        // Handle login with fixed credentials
+        const formPwd = document.getElementById('formPassword');
+        if(formPwd){
+          formPwd.addEventListener('submit', function(e){
+            e.preventDefault();
+            const inputs = formPwd.querySelectorAll('input');
+            const account = (inputs[0] && inputs[0].value || '').trim();
+            const password = (inputs[1] && inputs[1].value) || '';
+            if(account === 'lazada123' && password === '0123456789'){
+              const user = { username: 'lazada123', name: 'Hà Yến Linh' };
+              localStorage.setItem('user', JSON.stringify(user));
+              document.getElementById('loginModal').style.display = 'none';
+              renderUserUI();
+            } else {
+              alert('Sai tài khoản hoặc mật khẩu');
+            }
+          });
+        }
+
+        // On load, render greeting if already logged in
+        renderUserUI();
+      })();
+    </script>
     <div class="faces-banner">
       <img src="./images/banner_4.png" alt="Tải ngay ứng dụng Lazada" onerror="this.style.display='none'">
     </div>
