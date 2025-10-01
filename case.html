@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./css/mooncake_page_style.css" />
+    <link rel="icon" type="image/png" href="./images/icon.ico" />
+    <title>Lazada</title>
+  </head>
+  <body>
+    <div class="top-strip">
+      <div class="container">
+          <div class="top-links">
+              <a href="#" data-i18n="Chăm sóc khách hàng">Chăm sóc khách hàng</a>
+              <a href="./orderdetail.html" data-i18n="Kiểm tra đơn hàng">Kiểm tra đơn hàng</a>
+          </div>
+          <div class="top-actions">
+              <a href="#" data-i18n="Đăng nhập">Đăng nhập</a>
+              <a href="#"data-i18n="Đăng ký">Đăng ký</a>
+          </div>
+          <div class="lang-switcher">
+            <button id="langToggleBtn">EN</button>
+          </div>
+        </div>
+      </div>
+
+    <header class="main-header">
+      <div class="container">
+        <div class="logo">
+          <a href="./index.html" aria-label="Trang chủ Lazada">
+            <img src="./images/lazada_icon.png" alt="Logo" />
+          </a>
+        </div>
+
+        <div class="search-wrap">
+          <div class="search-row">
+            <input type="text" placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..." aria-label="Tìm kiếm" class="search-input" data-i18n-placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..." />
+            <button aria-label="Tìm kiếm" class="search-btn" data-i18n="Tìm kiếm">Tìm kiếm</button>
+          </div>
+        </div>
+
+        <div class="cart">
+          <button class="cart-btn" aria-label="Giỏ hàng">
+            <img src="./images/shopping_cart.png" alt="Giỏ hàng" />
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <div class="mini-features" aria-hidden="true">
+          <span>🔖 LazMall</span>
+          <span data-i18n="Mã giảm giá">🏷 Mã Giảm Giá</span>
+          <span data-i18n="Nạp thẻ">💳 Nạp Thẻ & eVoucher</span>
+          <span>🌍 LazGlobal</span>
+        </div>
+      </div>
+    </header>
+
+    <nav class="breadcrumb">
+      <a href="#" data-i18n="Linh kiện & Phụ kiện điện thoại">Linh kiện & Phụ kiện điện thoại</a> &gt;
+      <a href="#" data-i18n="Ốp lưng & bao da">Ốp lưng & bao da</a> &gt;
+      <span data-i18n="ỐP LƯNG IPHONE TRUNG THU TRĂNG RẰM & ĐÈN LỒNG">ỐP LƯNG IPHONE TRUNG THU TRĂNG RẰM & ĐÈN LỒNG</span>
+    </nav>
+
+    <main class="product-detail">
+      <div class="product-gallery">
+        <div class="gallery-main">
+          <img src="./images/Case/case1.png" alt="Ốp lưng iPhone Trung Thu" class="main-img" />
+          <button class="zoom-btn" title="Phóng to">
+            <img src="./images/zoom-in.png" alt="Zoom" style="width: 20px; height: 20px" />
+          </button>
+        </div>
+        <div class="gallery-thumbs">
+          <button class="thumb-arrow left">&lt;</button>
+          <img src="./images/Case/case1.png" class="thumb active" alt="Ảnh ốp 1" />
+          <img src="./images/Case/case2.png" class="thumb" alt="Ảnh ốp 2" />
+          <img src="./images/Case/case3.png" class="thumb" alt="Ảnh ốp 3" />
+          <img src="./images/Case/case4.png" class="thumb" alt="Ảnh ốp 4" />
+          <button class="thumb-arrow right">&gt;</button>
+        </div>
+      </div>
+      <div class="product-info-block">
+        <div class="product-badges">
+          <span class="badge badge-mall">LazMall</span>
+        </div>
+        <h1 class="product-title">
+          <b data-i18n="ỐP LƯNG IPHONE TRUNG THU TRĂNG RẰM & ĐÈN LỒNG">ỐP LƯNG IPHONE TRUNG THU TRĂNG RẰM & ĐÈN LỒNG</b>
+          <span class="weight" data-i18n="(iPhone 16/17)">(iPhone 16/17)</span>
+        </h1>
+        <div class="product-rating">
+          <span class="star">★</span> 4.9
+          <span class="review-count">(9230)</span>
+        </div>
+        <div class="product-brand">
+          <b data-i18n="Thương hiệu:">Thương hiệu: </b><a href="#">LazaCase</a>
+        </div>
+        <div class="product-price-block">
+          <span class="price-current">39.000đ</span>
+          <span class="price-old">65.000đ</span>
+          <span class="discount">-40%</span>
+        </div>
+        <div class="promo-banner" data-i18n="Mua sắm kết hợp siêu ưu đãi Thanh toán">Mua sắm kết hợp siêu ưu đãi Thanh toán</div>
+        <div class="shipping-policy">
+          <div class="ship-row">
+            <span><b data-i18n="Giao đến:">Giao đến:</b> <b>Hồ Chí Minh, Quận Thủ Đức, Phường Linh Xuân</b>
+              <a href="#" class="change-address" data-i18n="THAY ĐỔI">THAY ĐỔI</a></span>
+          </div>
+          <div class="ship-detail">
+            <b data-i18n="Đảm bảo nhận hàng vào 5 thg 10">Đảm bảo nhận hàng vào 5 thg 10</b>
+            <span class="freeship" data-i18n="Miễn phí vận chuyển khi mua từ 50.000đ">Miễn phí vận chuyển khi mua từ 50.000đ</span>
+          </div>
+          <div class="return-policy">
+            <span data-i18n="100% chính hãng • Đổi trả 30 ngày miễn phí">100% chính hãng • Đổi trả 30 ngày miễn phí</span>
+          </div>
+        </div>
+        <div class="product-combo">
+          <span>MODEL:</span>
+          <button class="combo-btn active">iPhone 17/17 Pro</button>
+          <button class="combo-btn">iPhone 17 Pro Max</button>
+          <button class="combo-btn">iPhone 16/16 Pro</button>
+          <button class="combo-btn">iPhone 16 Pro Max</button>
+        </div>
+        <div class="product-qty">
+          <span data-i18n="Số lượng:">Số lượng:</span>
+          <button class="qty-btn minus">-</button>
+          <input type="text" value="1" class="qty-input" readonly />
+          <button class="qty-btn plus">+</button>
+        </div>
+        <div class="product-actions">
+          <button class="btn-buy" data-i18n="Mua ngay">Mua ngay</button>
+          <button class="btn-cart" id="addToCartBtn" data-i18n="Thêm vào giỏ">Thêm vào giỏ</button>
+          <button class="btn-wishlist" title="Yêu thích">♥</button>
+        </div>
+      </div>
+    </main>
+
+    <section class="supplier-review-section">
+      <div class="shop-header">
+        <img src="./images/lazada_icon.png" alt="LazaCase" class="shop-logo" />
+        <div class="shop-info">
+          <span class="shop-name"><b data-i18n="Gian hàng">Gian hàng</b> <b>LazaCase</b></span>
+          <span class="badge badge-mall">LazMall</span>
+          <span class="badge badge-auth" data-i18n="Gian hàng chính hãng">Gian hàng chính hãng</span>
+          <span class="badge badge-top" data-i18n="Top shop phụ kiện">Top shop phụ kiện</span>
+          <span class="badge badge-year" data-i18n="3 năm hoạt động">3 năm hoạt động</span>
+          <span class="badge badge-fav" data-i18n="Shop yêu thích">Shop yêu thích</span>
+          <span class="shop-rate"><b data-i18n="Đánh giá tích cực">Đánh giá tích cực</b> <b>98%</b></span>
+        </div>
+      </div>
+
+      <div class="review-tabs">
+        <button class="tab-btn active" data-tab="reviews" data-i18n="Đánh giá">Đánh giá</button>
+        <button class="tab-btn" data-tab="details" data-i18n="Chi tiết">Chi tiết</button>
+        <button class="tab-btn" data-tab="suggest" data-i18n="Gợi ý cho bạn">Gợi ý cho bạn</button>
+      </div>
+
+      <div class="review-content-layout">
+        <div class="review-main" id="tab-reviews">
+          <div class="review-score-row">
+            <div class="score-block">
+              <span class="score-big">4.9</span><span class="score-max">/5</span>
+              <span class="score-stars">★★★★★</span>
+              <span class="score-count" data-i18n="(233 đánh giá)">(233 đánh giá)</span>
+            </div>
+            <div class="review-filters">
+              <button class="filter-btn active" data-i18n="Tất cả">Tất cả</button>
+              <button class="filter-btn" data-i18n="Có hình / video">Có hình / video</button>
+              <button class="filter-btn" data-i18n="Khách đã mua lại">Khách đã mua lại</button>
+            </div>
+            <div class="review-sort">
+              <button class="sort-btn active" data-i18n="Sắp xếp: Liên quan">Sắp xếp: Liên quan</button>
+              <button class="sort-btn" data-i18n="Mới nhất">Mới nhất</button>
+            </div>
+          </div>
+          <div class="review-list">
+            <div class="review-item">
+              <div class="review-user">
+                <span class="user-avatar">T</span>
+                <span class="user-name">Thuy N.</span>
+                <span class="review-time" data-i18n="7 ngày trước">7 ngày trước</span>
+              </div>
+              <div class="review-content">
+                <div class="review-combo">iPhone 17 Pro Max</div>
+                <div class="review-text">Ốp đẹp, in sắc nét, cầm chắc tay. Giá quá tốt!</div>
+                <div class="review-media">
+                  <img src="./images/Case/case2.png" alt="Ảnh thực tế" class="review-img" />
+                </div>
+                <button class="helpful-btn" data-i18n="Hữu ích (1)">Hữu ích (1)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="review-main" id="tab-details" style="display: none">
+          <div class="product-detail-tab">
+            <h2 class="tab-title active" data-i18n="Chi tiết sản phẩm">Chi tiết sản phẩm</h2>
+            <div class="tab-note">
+              <span class="icon-info">ℹ️</span>
+              <b data-i18n="Otherdetail1">Sản phẩm được bán bởi Nhà Bán Hàng bên thứ ba.</b>
+            </div>
+            <div class="product-desc">
+              <p><b data-i18n="BẢO VỆ CHỐNG RƠI">BẢO VỆ CHỐNG RƠI</b><br>
+              Thiết kế ôm máy, vật liệu TPU dẻo chịu lực giúp thiết bị chắc chắn, giảm sốc khi vô tình rơi rớt; hạn chế trầy xước, nứt vỡ trong quá trình sử dụng hằng ngày.</p>
+              <p><b data-i18n="CHẤT LIỆU CAO CẤP">CHẤT LIỆU CAO CẤP</b><br>
+              TPU dẻo đàn hồi, thân thiện với môi trường, bền màu, không độc hại; bề mặt mịn, cầm nắm êm tay và hạn chế bám bẩn.</p>
+              <p><b data-i18n="THIẾT KẾ ĐỘC ĐÁO">THIẾT KẾ ĐỘC ĐÁO</b><br>
+              Họa tiết <b>Trăng Rằm & Đèn Lồng</b> lấy cảm hứng từ Trung Thu, in sắc nét và bền màu; form viền bo góc bảo vệ camera và màn hình tốt hơn.</p>
+              <p><b data-i18n="PHÙ HỢP NHIỀU DÒNG IPHONE">PHÙ HỢP NHIỀU DÒNG IPHONE</b><br>
+              Có đủ lựa chọn cho iPhone 11/12/13/14/15/16/17 (tùy từng biến thể).</p>
+            </div>
+            <ul class="combo-list">
+              <li>
+                <b data-i18n="Tùy chọn">Tùy chọn</b>
+                <ul>
+                  <li>iPhone 17 / 17 Pro / 17 Pro Max</li>
+                  <li>iPhone 16 / 16 Pro / 16 Pro Max</li>
+                  <li>Chất liệu TPU dẻo, in màu bền</li>
+                </ul>
+              </li>
+            </ul>
+            <div class="product-attrs-table">
+              <div class="attrs-row">
+                <div class="attrs-col" data-i18n="Thương hiệu"><b>Thương hiệu</b></div>
+                <div class="attrs-col">LazaCase</div>
+                <div class="attrs-col" data-i18n="Chất liệu"><b>Chất liệu</b></div>
+                <div class="attrs-col">TPU</div>
+              </div>
+              <div class="attrs-row">
+                <div class="attrs-col" data-i18n="Phù hợp"><b>Phù hợp</b></div>
+                <div class="attrs-col" data-i18n="iPhone 11-17">iPhone 11-17</div>
+                <div class="attrs-col" data-i18n="SKU"><b>SKU</b></div>
+                <div class="attrs-col">CASE-MID-AUTUMN-001</div>
+              </div>
+            </div>
+            <button class="btn-collapse" data-i18n="THU GỌN">THU GỌN</button>
+          </div>
+        </div>
+        <div class="review-main" id="tab-suggest" style="display: none">
+          <div class="suggest-section">
+            <h3 class="suggest-title" data-i18n="Có thể bạn cũng thích">Có thể bạn cũng thích</h3>
+            <div class="suggest-grid">
+              <div class="suggest-card">
+                <img src="./images/Case/case_backup/CHECK SẢN PHẨM (1).png" alt="Ốp lưng đề xuất 1" class="suggest-img" />
+                <div class="suggest-name">Ốp lưng Trung Thu mẫu 1</div>
+                <div class="suggest-price-row"><span class="suggest-price">39.000đ</span><span class="suggest-discount">-38%</span></div>
+                <span class="suggest-old">63.000đ</span>
+                <div class="suggest-meta"><span class="suggest-star">★ 4.9</span><span class="suggest-sold">580</span></div>
+              </div>
+              <div class="suggest-card">
+                <img src="./images/Case/case_backup/CHECK SẢN PHẨM (2).png" alt="Ốp lưng đề xuất 2" class="suggest-img" />
+                <div class="suggest-name">Ốp lưng Trung Thu mẫu 2</div>
+                <div class="suggest-price-row"><span class="suggest-price">42.000đ</span><span class="suggest-discount">-30%</span></div>
+                <span class="suggest-old">60.000đ</span>
+                <div class="suggest-meta"><span class="suggest-star">★ 5.0</span><span class="suggest-sold">430</span></div>
+              </div>
+              <div class="suggest-card">
+                <img src="./images/Case/case_backup/CHECK SẢN PHẨM (3).png" alt="Ốp lưng đề xuất 3" class="suggest-img" />
+                <div class="suggest-name">Ốp lưng Trung Thu mẫu 3</div>
+                <div class="suggest-price-row"><span class="suggest-price">45.000đ</span><span class="suggest-discount">-25%</span></div>
+                <span class="suggest-old">60.000đ</span>
+                <div class="suggest-meta"><span class="suggest-star">★ 4.8</span><span class="suggest-sold">692</span></div>
+              </div>
+              <div class="suggest-card">
+                <img src="./images/Case/case_backup/CHECK SẢN PHẨM (4).png" alt="Ốp lưng đề xuất 4" class="suggest-img" />
+                <div class="suggest-name">Ốp lưng Trung Thu mẫu 4</div>
+                <div class="suggest-price-row"><span class="suggest-price">39.000đ</span><span class="suggest-discount">-40%</span></div>
+                <span class="suggest-old">65.000đ</span>
+                <div class="suggest-meta"><span class="suggest-star">★ 5.0</span><span class="suggest-sold">311</span></div>
+              </div>
+              <div class="suggest-card">
+                <img src="./images/Case/case_backup/CHECK SẢN PHẨM (5).png" alt="Ốp lưng đề xuất 5" class="suggest-img" />
+                <div class="suggest-name">Ốp lưng Trung Thu mẫu 5</div>
+                <div class="suggest-price-row"><span class="suggest-price">41.000đ</span><span class="suggest-discount">-32%</span></div>
+                <span class="suggest-old">60.000đ</span>
+                <div class="suggest-meta"><span class="suggest-star">★ 4.9</span><span class="suggest-sold">201</span></div>
+              </div>
+              <div class="suggest-card">
+                <img src="./images/Case/case_backup/CHECK SẢN PHẨM (6).png" alt="Ốp lưng đề xuất 6" class="suggest-img" />
+                <div class="suggest-name">Ốp lưng Trung Thu mẫu 6</div>
+                <div class="suggest-price-row"><span class="suggest-price">43.000đ</span><span class="suggest-discount">-28%</span></div>
+                <span class="suggest-old">60.000đ</span>
+                <div class="suggest-meta"><span class="suggest-star">★ 4.7</span><span class="suggest-sold">154</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="addCartSuccess" style="display: none; position: fixed; z-index: 99999; left: 0; top: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.25); align-items: center; justify-content: center;">
+      <div style="background: #fff; padding: 32px 38px 24px 38px; border-radius: 14px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18); text-align: center; min-width: 260px; animation: popupShow 0.22s;">
+        <div style="font-size: 38px; color: #00c853; margin-bottom: 10px">✔</div>
+        <div style="font-size: 20px; font-weight: 700; margin-bottom: 10px" data-i18n="Thêm vào giỏ thành công!">Thêm vào giỏ thành công!</div>
+        <button id="closeAddCartSuccess" style="margin-top: 10px; background: #ff6a00; color: #fff; border: none; padding: 10px 28px; border-radius: 7px; font-size: 16px; font-weight: 700; cursor: pointer;" data-i18n="Đóng">Đóng</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    document.querySelectorAll('.tab-btn').forEach(function(btn){
+      btn.onclick = function(){
+        document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        document.querySelectorAll('.review-main').forEach(function(tab){ tab.style.display = 'none'; });
+        document.getElementById('tab-' + btn.dataset.tab).style.display = '';
+      };
+    });
+    // Model select
+    (function(){
+      var selectedModel = (function(){
+        var active = document.querySelector('.product-combo .combo-btn.active');
+        return active ? active.textContent.trim() : '';
+      })();
+      document.querySelectorAll('.product-combo .combo-btn').forEach(function(b){
+        b.addEventListener('click', function(){
+          document.querySelectorAll('.product-combo .combo-btn').forEach(function(x){ x.classList.remove('active'); });
+          b.classList.add('active');
+          selectedModel = b.textContent.trim();
+        });
+      });
+      // Quantity control
+      var qtyInput = document.querySelector('.qty-input');
+      var minusBtn = document.querySelector('.qty-btn.minus');
+      var plusBtn = document.querySelector('.qty-btn.plus');
+      function setQty(v){ v = Math.max(1, Math.min(99, v|0)); qtyInput.value = String(v); }
+      if(minusBtn) minusBtn.onclick = function(){ setQty(parseInt(qtyInput.value||'1',10)-1); };
+      if(plusBtn) plusBtn.onclick = function(){ setQty(parseInt(qtyInput.value||'1',10)+1); };
+      // Add to cart
+      function buildName(){
+        return 'ỐP LƯNG IPHONE TRUNG THU TRĂNG RẰM & ĐÈN LỒNG' + (selectedModel ? (' - ' + selectedModel) : '');
+      }
+      document.getElementById('addToCartBtn').onclick = function(){
+        var product = { name: buildName(), price: 39000, img: './images/Case/case1.png', qty: parseInt(qtyInput.value||'1',10), shop: 'Gian hàng LazaCase' };
+        var cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        var idx = cart.findIndex(function(item){ return item.name === product.name; });
+        if(idx > -1){ cart[idx].qty += product.qty; } else { cart.push(product); }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        document.getElementById('addCartSuccess').style.display = 'flex';
+      };
+      document.querySelector('.btn-buy').onclick = function(){
+        var product = { name: buildName(), price: 39000, img: './images/Case/case1.png', qty: parseInt(qtyInput.value||'1',10), shop: 'Gian hàng LazaCase', checked: true };
+        var cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        cart.forEach(function(i){ i.checked = false; });
+        var idx = cart.findIndex(function(item){ return item.name === product.name; });
+        if(idx > -1){ cart[idx].qty += product.qty; cart[idx].checked = true; } else { cart.push(product); }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        window.location.href = './shoppingcart.html';
+      };
+    })();
+    document.getElementById('closeAddCartSuccess').onclick = function(){
+      document.getElementById('addCartSuccess').style.display = 'none';
+    };
+    document.querySelector('.cart-btn').onclick = function(){ window.location.href = './shoppingcart.html'; };
+  </script>
+  <script>
+    document.querySelectorAll('.gallery-thumbs .thumb').forEach(function(thumb){
+      thumb.onclick = function(){
+        document.querySelector('.gallery-main .main-img').src = thumb.src;
+        document.querySelectorAll('.gallery-thumbs .thumb').forEach(function(t){ t.classList.remove('active'); });
+        thumb.classList.add('active');
+      };
+    });
+  </script>
+  <script>
+    // Sync shipping address with localStorage across pages
+    (function(){
+      try{
+        var addrKey = 'shippingAddress';
+        var saved = JSON.parse(localStorage.getItem(addrKey) || 'null') || {
+          name: 'Nguyễn Văn A',
+          phone: '(+84) 375 126 779',
+          address: 'Phường Linh Xuân, Thủ Đức, TP.HCM'
+        };
+        // Render on product page breadcrumb block
+        var shipSpan = document.querySelector('.shipping-policy .ship-row b + b');
+        if(shipSpan){ shipSpan.textContent = saved.address; }
+        // Change link
+        var change = document.querySelector('.shipping-policy .change-address');
+        if(change){
+          change.onclick = function(e){
+            e.preventDefault();
+            var newAddr = prompt('Nhập địa chỉ nhận hàng mới', saved.address || '');
+            if(newAddr && newAddr.trim().length > 3){
+              saved.address = newAddr.trim();
+              localStorage.setItem(addrKey, JSON.stringify(saved));
+              if(shipSpan) shipSpan.textContent = saved.address;
+              alert('Đã cập nhật địa chỉ nhận hàng.');
+            }
+          };
+        }
+      }catch(e){}
+    })();
+  </script>
+  <script src="./js/translate_script.js"></script>
+</html>
+
+

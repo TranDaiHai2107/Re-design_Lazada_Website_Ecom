@@ -231,11 +231,11 @@
     <div class="track-order-body">
       <div class="track-order-info">
         <h4 data-i18n="Thông tin kiện hàng">Thông tin kiện hàng</h4>
-        <div class="track-info-row"><b data-i18n="Mã vận đơn:">Mã vận đơn:</b> <span id="trackOrderId">515286016918551</span> <button class="track-copy-btn" onclick="navigator.clipboard.writeText('515286016918551')">📋</button></div>
-        <div class="track-info-row"><b data-i18n="Người nhận hàng:">Người nhận hàng:</b> Nguyễn Văn A</div>
-        <div class="track-info-row"><b data-i18n="Hình thức giao hàng">Hình thức giao hàng:</b> Standard</div>
-        <div class="track-info-row"><b data-i18n="Ngày khách hàng tạo đơn hàng:">Ngày khách hàng tạo đơn hàng:</b> 23/9/2025</div>
-        <div class="track-info-row"><b data-i18n="Ngày nhận hàng dự kiến:">Ngày nhận hàng dự kiến:</b> 25/9/2025</div>
+        <div class="track-info-row"><b data-i18n="Mã vận đơn:">Mã vận đơn:</b> <span id="trackOrderId">515286016918551</span> <button class="track-copy-btn" id="trackCopyBtn">📋</button></div>
+        <div class="track-info-row"><b data-i18n="Người nhận hàng:">Người nhận hàng:</b> <span id="trackReceiver">Nguyễn Văn A</span></div>
+        <div class="track-info-row"><b data-i18n="Hình thức giao hàng">Hình thức giao hàng:</b> <span id="trackShipMethod">Standard</span></div>
+        <div class="track-info-row"><b data-i18n="Ngày khách hàng tạo đơn hàng:">Ngày khách hàng tạo đơn hàng:</b> <span id="trackCreatedDate">23/9/2025</span></div>
+        <div class="track-info-row"><b data-i18n="Ngày nhận hàng dự kiến:">Ngày nhận hàng dự kiến:</b> <span id="trackEta">25/9/2025</span></div>
       </div>
       <div class="track-order-timeline">
         <h4 data-i18n="Lịch sử vận chuyển">Lịch sử vận chuyển</h4>
@@ -282,20 +282,114 @@
     </div>
   </body>
 <script>
-  // Hiện popup khi bấm nút Theo dõi đơn hàng
-  document.querySelectorAll('.order-btn-track').forEach(btn => {
-    btn.onclick = function() {
+  // Chỉ hiển thị đơn hàng liên quan tới ỐP LƯNG (case). Nếu không có, giữ nguyên danh sách tĩnh bên trên.
+  (function(){
+    function statusBadge(status){
+      if(status === 'Đã hủy') return '<span class="order-status status-cancel">Đã hủy</span>';
+      if(status === 'Hoàn tất') return '<span class="order-status status-success">Hoàn tất</span>';
+      if(status === 'Đang giao') return '<span class="order-status status-shipping">Đang giao</span>';
+      return '<span class="order-status status-processing">Đang xử lý</span>';
+    }
+    function norm(str){
+      try{ return (str||'').normalize('NFD').replace(/\p{Diacritic}/gu,'').toUpperCase(); }catch(e){ return (str||'').toUpperCase(); }
+    }
+    function isCaseItem(it){
+      const rawName = it && it.name || '';
+      const n = norm(rawName);
+      const img = (it && it.img) || '';
+      return n.includes('OP LUNG') || n.includes('ỐP LƯNG') || img.toLowerCase().includes('/case/') || img.toLowerCase().includes('images/case');
+    }
+    const all = JSON.parse(localStorage.getItem('orders')||'[]');
+    const caseOrders = all
+      .filter(o => (o.items||[]).some(isCaseItem))
+      .sort(function(a,b){ return new Date(b.createdAt||0) - new Date(a.createdAt||0); });
+    if(caseOrders.length === 0){ return; }
+    // Ẩn danh sách mẫu tĩnh
+    var staticList = document.querySelector('.order-detail-main .order-list');
+    if(staticList) staticList.style.display = 'none';
+    // Tạo vùng động
+    var dynamic = document.createElement('div');
+    dynamic.className = 'order-list';
+    dynamic.id = 'ordersContainer';
+    var main = document.querySelector('.order-detail-main');
+    if(main) main.appendChild(dynamic);
+
+    function render(){
+      dynamic.innerHTML = '';
+      caseOrders.forEach(function(order){
+        const created = new Date(order.createdAt||Date.now());
+        const dateStr = created.toLocaleDateString('vi-VN');
+        const itemsHtml = (order.items||[]).filter(isCaseItem).map(function(it){
+          return `
+          <div class="order-product">
+            <img src="${it.img}" alt="${it.name}" class="order-thumb">
+            <div class="order-info"><div class="order-name">${it.name}</div><div class="order-qty"><span>Số lượng:</span> ${it.qty}</div></div>
+            <div class="order-price"><span class="order-price-current">${it.price.toLocaleString()}đ</span></div>
+          </div>`;
+        }).join('');
+        const canCancel = order.status==='Đang xử lý' || order.status==='Đang giao';
+        dynamic.innerHTML += `
+        <section class="order-card" data-id="${order.id}">
+          <div class="order-header"><div><span class="order-id">Mã đơn:</span><span class="order-id">#${order.id}</span><span class="order-date">Đặt ngày:</span> <span class="order-date">${dateStr}</span></div>${statusBadge(order.status)}</div>
+          <div class="order-products">${itemsHtml}</div>
+          <div class="order-payment"><div><b>Phương thức thanh toán:</b> ${order.payMethod||'COD'}</div><div><b>Trạng thái thanh toán:</b> <b>${order.payMethod==='COD'?'Chưa thanh toán':'Đã thanh toán'}</b></div></div>
+          <div class="order-shipping"><div><b>Nhận hàng:</b> ${(order.customer&&order.customer.name)||''}, ${(order.customer&&order.customer.phone)||''}</div><div><b>Địa chỉ:</b> ${(order.customer&&order.customer.address)||''}</div></div>
+          <div class="order-summary"><div><b>Tổng tiền:</b> ${(Number(order.total||0)).toLocaleString()}đ</div></div>
+          <div class="order-actions">${canCancel?'<button class="order-btn order-btn-cancel">Hủy đơn</button>':''}<button class="order-btn order-btn-track">Theo dõi đơn hàng</button></div>
+        </section>`;
+      });
+      dynamic.querySelectorAll('.order-btn-cancel').forEach(function(btn){
+        btn.onclick = function(){
+          const card = btn.closest('.order-card');
+          const id = card && card.getAttribute('data-id');
+          if(!id) return;
+          let orders = JSON.parse(localStorage.getItem('orders') || '[]');
+          const i = orders.findIndex(o=>String(o.id)===String(id));
+          if(i>-1){ orders[i].status = 'Đã hủy'; localStorage.setItem('orders', JSON.stringify(orders)); location.reload(); }
+        };
+      });
+      dynamic.querySelectorAll('.order-btn-track').forEach(function(btn){ btn.onclick = function(){ document.getElementById('trackOrderModal').style.display = 'flex'; }; });
+    }
+    render();
+    // Close handlers for modal (giữ nguyên)
+    document.getElementById('closeTrackOrder').onclick = function(){ document.getElementById('trackOrderModal').style.display = 'none'; };
+    document.getElementById('trackOrderModal').onclick = function(e){ if(e.target === this) this.style.display = 'none'; };
+    // cập nhật thông tin theo dõi từ đơn mới nhất
+    function openTrackFor(order){
+      try{
+        var idEl = document.getElementById('trackOrderId');
+        var recEl = document.getElementById('trackReceiver');
+        var methodEl = document.getElementById('trackShipMethod');
+        var createdEl = document.getElementById('trackCreatedDate');
+        var etaEl = document.getElementById('trackEta');
+        var copyBtn = document.getElementById('trackCopyBtn');
+        var trackingId = order.trackingId || ('TRK'+order.id);
+        if(idEl) idEl.textContent = trackingId;
+        if(copyBtn) copyBtn.onclick = function(){ navigator.clipboard.writeText(trackingId); };
+        var name = (order.customer&&order.customer.name)||'';
+        var phone = (order.customer&&order.customer.phone)||'';
+        if(recEl) recEl.textContent = name + (phone?(', '+phone):'');
+        if(methodEl) methodEl.textContent = 'Standard';
+        var created = new Date(order.createdAt||Date.now());
+        if(createdEl) createdEl.textContent = created.toLocaleDateString('vi-VN');
+        var eta = new Date(created.getTime()+2*24*3600*1000);
+        if(etaEl) etaEl.textContent = eta.toLocaleDateString('vi-VN');
+      }catch(e){}
       document.getElementById('trackOrderModal').style.display = 'flex';
-    };
-  });
-  // Đóng popup
-  document.getElementById('closeTrackOrder').onclick = function() {
-    document.getElementById('trackOrderModal').style.display = 'none';
-  };
-  // Đóng khi click ra ngoài
-  document.getElementById('trackOrderModal').onclick = function(e) {
-    if (e.target === this) this.style.display = 'none';
-  };
+    }
+    // nếu có danh sách động, bind mở đúng đơn
+    if(dynamic){
+      dynamic.querySelectorAll('.order-btn-track').forEach(function(btn){
+        btn.onclick = function(){
+          var card = btn.closest('.order-card');
+          var id = card && card.getAttribute('data-id');
+          var orders = JSON.parse(localStorage.getItem('orders')||'[]');
+          var ord = orders.find(function(o){ return String(o.id)===String(id); }) || orders[orders.length-1];
+          if(ord) openTrackFor(ord);
+        };
+      });
+    }
+  })();
 </script>
 <script src="./js/translate_script.js"></script>
 </html>

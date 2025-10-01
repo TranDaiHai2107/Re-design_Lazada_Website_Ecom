@@ -121,9 +121,9 @@
             class="cart-address-info"
             style="margin: 8px 0 0 0; line-height: 1.6"
           >
-            <span style="font-weight: 600">Nguyễn Văn A</span>
-            <span style="color: #222">(+84) 375 126 779</span><br />
-            <span style="color: #222">Phường Linh Xuân, Thủ Đức, TP.HCM</span>
+            <span id="addrName" style="font-weight: 600">Nguyễn Văn A</span>
+            <span id="addrPhone" style="color: #222">(+84) 375 126 779</span><br />
+            <span id="addrText" style="color: #222">Phường Linh Xuân, Thủ Đức, TP.HCM</span>
           </div>
           <a
             href="#"
@@ -312,6 +312,41 @@
       };
       window.onload = renderCart;
 
+      // Load & edit common address
+      (function(){
+        try{
+          const key = 'shippingAddress';
+          function loadAddr(){
+            const saved = JSON.parse(localStorage.getItem(key) || 'null') || {
+              name: 'Nguyễn Văn A', phone: '(+84) 375 126 779', address: 'Phường Linh Xuân, Thủ Đức, TP.HCM'
+            };
+            const n = document.getElementById('addrName');
+            const p = document.getElementById('addrPhone');
+            const a = document.getElementById('addrText');
+            if(n) n.textContent = saved.name || '';
+            if(p) p.textContent = saved.phone || '';
+            if(a) a.textContent = saved.address || '';
+          }
+          loadAddr();
+          const edit = document.querySelector('.cart-address-edit');
+          if(edit){
+            edit.onclick = function(e){
+              e.preventDefault();
+              const current = JSON.parse(localStorage.getItem(key) || 'null') || {};
+              const name = prompt('Họ và tên', current.name || 'Nguyễn Văn A');
+              if(!name) return;
+              const phone = prompt('Số điện thoại', current.phone || '(+84) 375 126 779');
+              if(!phone) return;
+              const addr = prompt('Địa chỉ nhận hàng', current.address || '');
+              if(!addr) return;
+              const saved = { name: name.trim(), phone: phone.trim(), address: addr.trim() };
+              localStorage.setItem(key, JSON.stringify(saved));
+              loadAddr();
+            };
+          }
+        }catch(e){}
+      })();
+
       // ==========================
       // Checkout Modal Functions
       // ==========================
@@ -401,7 +436,7 @@
         const shipping = 30000;
         const total = subtotal + shipping;
         const order = {
-          id: "OD" + Date.now(),
+          id: Date.now().toString(),
           createdAt: new Date().toISOString(),
           customer,
           items: selectedItems,
@@ -410,6 +445,7 @@
           total,
           payMethod,
           status: "Đang xử lý",
+          trackingId: 'TRK' + Math.floor(Math.random()*1e9),
         };
         // Lưu đơn hàng
         try {

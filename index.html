@@ -95,6 +95,9 @@
         <div class="slides" id="carousel">
             <div class="track" id="track">
                 <div class="slide">
+                  <img src="./images/banner_mc.png" alt="Banner 4" style="max-width: 100%;border-radius: 20px;">
+                </div>
+                <div class="slide">
                     <img src="./images/banner_1.png" alt="Banner 1" style="max-width: 100%;border-radius: 20px;">
                 </div>
                 <div class="slide">
@@ -113,6 +116,7 @@
             <button data-index="0" class="active"></button>
             <button data-index="1"></button>
             <button data-index="2"></button>
+            <button data-index="3"></button>
         </div>
     </div>
     </section>
@@ -187,6 +191,31 @@
                 <span class="review-count">(540)</span>
                 <span class="sold" data-i18n="Đã bán">Đã bán</span>
                 <span class="sold">2k+</span>
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-cart" data-i18n="Thêm vào giỏ">Thêm vào giỏ</button>
+              <button class="btn-wishlist">♥</button>
+            </div>
+          </div>
+          <!-- Product Card: Ốp lưng iPhone -->
+          <div class="product-card" data-href="./case.html" data-name="ỐP LƯNG IPHONE TRUNG THU TRĂNG RẰM & ĐÈN LỒNG" data-price="39000" data-img="./images/Case/case2.png">
+            <div class="product-thumb">
+              <img src="./images/Case/case2.png" alt="Ốp lưng iPhone Trung Thu" style="width: 100%;height:100%;object-fit:cover;"/>
+              <span class="badge badge-sale">-40%</span>
+              <span class="badge badge-mall">LazMall</span>
+            </div>
+            <div class="product-info">
+              <div class="product-title">Ốp lưng iPhone Trung Thu Trăng Rằm & Đèn Lồng</div>
+              <div class="product-price">
+                <span class="price-current">39.000 ₫</span>
+                <span class="price-old">65.000 ₫</span>
+              </div>
+              <div class="product-meta">
+                <span class="rating">★ 4.9</span>
+                <span class="review-count">(9.2k)</span>
+                <span class="sold" data-i18n="Đã bán">Đã bán</span>
+                <span class="sold">5k+</span>
               </div>
             </div>
             <div class="product-actions">
@@ -783,10 +812,28 @@
       })();
       document.querySelectorAll('.product-card').forEach(card => {
         card.addEventListener('click', function(e) {
-          // Chỉ chuyển trang nếu không nhấn vào nút trong card
           if (!e.target.closest('button')) {
-            window.location.href = './mooncake.html';
+            const href = card.getAttribute('data-href') || './mooncake.html';
+            window.location.href = href;
           }
+        });
+      });
+      // Add to cart from home for cards with data attributes
+      document.querySelectorAll('.product-card .btn-cart').forEach(btn => {
+        btn.addEventListener('click', function(e){
+          e.stopPropagation();
+          const card = btn.closest('.product-card');
+          const name = card.getAttribute('data-name');
+          const priceAttr = card.getAttribute('data-price');
+          const img = card.getAttribute('data-img') || (card.querySelector('img') ? card.querySelector('img').src : '');
+          if(!name || !priceAttr){ return; }
+          const price = parseInt(priceAttr, 10) || 0;
+          const product = { name: name, price: price, img: img, qty: 1, shop: 'Gian hàng LazaCase' };
+          let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+          const idx = cart.findIndex(item => item.name === product.name);
+          if (idx > -1) cart[idx].qty += 1; else cart.push(product);
+          localStorage.setItem('cart', JSON.stringify(cart));
+          alert('Thêm vào giỏ thành công!');
         });
       });
     </script>
@@ -826,6 +873,7 @@
             <li><a href="#" data-i18n="Tuyển dụng">Tuyển dụng</a></li>
             <li><a href="#" data-i18n="Điều khoản sử dụng">Điều khoản sử dụng</a></li>
             <li><a href="#" data-i18n="Bảo mật thông tin">Bảo mật thông tin</a></li>
+            <li><a href="#" data-i18n="ĐÂY LÀ ĐỒ ÁN MÔN HỌC, KHÔNG SỬ DỤNG VỚI MỤC ĐÍCH THƯƠNG MẠI">ĐÂY LÀ ĐỒ ÁN MÔN HỌC, KHÔNG SỬ DỤNG VỚI MỤC ĐÍCH THƯƠNG MẠI</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -1054,5 +1102,34 @@
     e.stopPropagation();
   };
 </script>
+    <!-- Marketing Popup -->
+    <div id="marketingPopup" style="display:none;position:fixed;z-index:99999;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,0.45);align-items:center;justify-content:center;">
+      <div style="position:relative;max-width:min(92vw,520px);width:100%;">
+        <button id="popupCloseBtn" aria-label="Đóng" style="position:absolute;right:-6px;top:-6px;background:#fff;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:18px;box-shadow:0 2px 8px rgba(0,0,0,0.2);">×</button>
+        <img src="./images/popupads.png" alt="Khuyến mãi" style="width:100%;height:auto;display:block;border-radius:12px;box-shadow:0 10px 28px rgba(0,0,0,0.25);" onerror="this.style.display='none'">
+      </div>
+    </div>
+    <!-- Mini popup button (bottom-right) -->
+    <div id="miniPopup" style="display:none;position:fixed;right:20px;bottom:100px;z-index:99998;">
+      <button id="miniPopupBtn" aria-label="Mở khuyến mãi" style="background:transparent;border:none;padding:0;cursor:pointer;">
+        <img src="./images/Popupmini.png" alt="Mở khuyến mãi" style="width:120px;height:auto;display:block;">
+      </button>
+    </div>
+    <script>
+      (function(){
+        // Hiển thị popup khi vào trang
+        const popup = document.getElementById('marketingPopup');
+        const closeBtn = document.getElementById('popupCloseBtn');
+        const mini = document.getElementById('miniPopup');
+        const miniBtn = document.getElementById('miniPopupBtn');
+        try{
+          popup.style.display = 'flex';
+          closeBtn.onclick = function(){ popup.style.display='none'; mini.style.display='block'; };
+          miniBtn.onclick = function(){ popup.style.display='flex'; mini.style.display='none'; };
+          // Đóng popup khi click lớp mờ
+          popup.addEventListener('click', function(e){ if(e.target===popup){ popup.style.display='none'; mini.style.display='block'; } });
+        }catch(e){}
+      })();
+    </script>
   </body>
 </html>
