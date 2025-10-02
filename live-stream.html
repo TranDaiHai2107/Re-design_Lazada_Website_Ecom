@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="./css/live.css" />
+    <link rel="icon" type="image/png" href="./images/icon.ico" />
+    <title>Live Stream - LazLive</title>
+</head>
+<body>
+    <!-- Top strip -->
+    <div class="top-strip">
+        <div class="container">
+            <div class="top-links">
+                <a href="#" data-i18n="Chăm sóc khách hàng">Chăm sóc khách hàng</a>
+                <a href="./orderdetail.html" data-i18n="Kiểm tra đơn hàng">Kiểm tra đơn hàng</a>
+            </div>
+            <div class="top-actions">
+                <a href="#" data-i18n="Đăng nhập">Đăng nhập</a>
+                <a href="#" data-i18n="Đăng ký">Đăng ký</a>
+            </div>
+            <div class="top-controls">
+              <div class="dark-mode-toggle">
+                <button id="darkModeToggle" class="dark-mode-btn" title="Chuyển đổi chế độ tối">
+                  <span class="dark-icon">🌙</span>
+                  <span class="light-icon">☀️</span>
+                </button>
+              </div>
+              <div class="lang-switcher">
+                <button id="langToggleBtn">EN</button>
+              </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <!-- Logo lazada -->
+            <div class="logo">
+                <img src="./images/lazada_icon.png" alt="Logo">
+            </div>
+
+            <!-- Search bar -->
+            <div class="search-wrap">
+                <div class="search-row">
+                    <input type="text" placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..." data-i18n-placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..." aria-label="Tìm kiếm" class="search-input">
+                    <button aria-label="Tìm kiếm" class="search-btn" data-i18n="Tìm kiếm">Tìm kiếm</button>
+                </div>
+            </div>
+
+            <!-- Cart -->
+            <div class="cart">
+                <button class="cart-btn" aria-label="Giỏ hàng">
+                    <img src="./images/shopping_cart.png" alt="Giỏ hàng">
+                </button>
+            </div>
+        </div>
+
+        <!-- Mini features -->
+        <div>
+            <div class="mini-features" aria-hidden="true">
+                <span>🔖 LazMall</span>
+                <span data-i18n="Mã giảm giá">🏷 Mã Giảm Giá</span>
+                <span data-i18n="Nạp thẻ">💳 Nạp Thẻ & eVoucher</span>
+                <span>🌍 LazGlobal</span>
+                <span class="lazlive-link active" style="background: #ff6a00; color: white; padding: 5px 10px; border-radius: 5px;">
+                    <img src="./images/live/logo_lazlive.png" alt="LazLive" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;">
+                    LazLive
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Live Stream Content -->
+    <main class="live-stream-main">
+        <div class="live-container">
+            <!-- Main Video Area -->
+            <div class="live-video-area">
+                <div class="video-container">
+                    <img src="./images/live/live-screen.png" alt="Live Stream" class="live-video">
+                    
+                    <!-- Viewer Count -->
+                    <div class="viewer-count-live">
+                        <span class="viewer-icon">👥</span>
+                        <span class="viewer-number">1.8k lượt xem</span>
+                    </div>
+
+                    <!-- Floating Hearts -->
+                    <div class="floating-hearts" id="floatingHearts"></div>
+
+                    <!-- Small Product at Bottom -->
+                    <div class="small-product-overlay">
+                        <div class="small-product-card" onclick="window.location.href='./mooncake.html'" style="cursor: pointer;">
+                            <div class="small-product-image">
+                                <img src="./images/fy_autumncake.webp" alt="Bánh Trung Thu" class="small-product-thumb">
+                                <div class="product-promo-badge">MUA 2 TẶNG 1</div>
+                            </div>
+                            <div class="small-product-info">
+                                <div class="small-product-title">BÁNH TRUNG THU HỮU NGHỊ</div>
+                                <div class="small-product-price">216.000₫</div>
+                                <div class="small-product-badge">VOUCHER</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Action Buttons Overlay (Only visible on stream) -->
+                    <div class="stream-action-buttons">
+                        <button class="stream-action-btn cart-btn" onclick="addToCart()" title="Thêm vào giỏ hàng">
+                            <img src="./images/live/gio hang.png" alt="Giỏ hàng">
+                        </button>
+                        <button class="stream-action-btn share-btn" onclick="shareProduct()" title="Chia sẻ">
+                            <img src="./images/live/nút chia sẻ.png" alt="Chia sẻ">
+                        </button>
+                        <button class="stream-action-btn heart-btn" onclick="sendHeart()" title="Thả tim">
+                            <img src="./images/live/icon trai tim.png" alt="Thả tim">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Section -->
+            <div class="chat-section">
+                <div class="chat-header">
+                    <h3>Bình luận</h3>
+                </div>
+                
+                <!-- Pinned Discount Message -->
+                <div class="pinned-discount">
+                    <div class="pinned-header">
+                        <span class="pinned-icon">📌</span>
+                        <span class="pinned-text">Mã giảm giá</span>
+                    </div>
+                    <div class="pinned-content">
+                        <img src="./images/live/Ma-giam-gia-lazada.png" alt="Mã Giảm Giá Lazada" class="pinned-discount-image">
+                    </div>
+                </div>
+                
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Comments will be generated here -->
+                </div>
+                <div class="chat-input">
+                    <input type="text" placeholder="Thêm tin nhắn..." id="chatInput">
+                    <button class="send-btn">📤</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Store Info Section -->
+        <section class="store-info-section">
+            <div class="container">
+                <div class="store-info-content">
+                    <div class="store-header">
+                        <div class="store-brand">
+                            <img src="./images/live/huunghi.png" alt="Hữu Nghị Food Logo" class="store-logo">
+                            <div class="store-name">
+                                <h3>Hữu Nghị Food</h3>
+                                <p>Thương hiệu bánh kẹo hàng đầu Việt Nam</p>
+                            </div>
+                        </div>
+                        <div class="store-actions">
+                            <button class="follow-btn">
+                                Follow
+                            </button>
+                        </div>
+                    </div>
+                    <div class="store-description">
+                        <h4>Giới thiệu chung về cửa hàng</h4>
+                        <p class="store-description-short">Hữu Nghị Food được thành lập ngày 08/12/1997, là một trong những doanh nghiệp hàng đầu trong lĩnh vực sản xuất bánh kẹo tại Việt Nam. Với hơn 140.000 điểm bán hàng, 6.000 siêu thị trên toàn quốc và hơn 1,5 triệu người tiêu dùng mỗi ngày...</p>
+                        <div class="store-description-full" style="display: none;">
+                            <p>Hữu Nghị Food được thành lập ngày 08/12/1997, là một trong những doanh nghiệp hàng đầu trong lĩnh vực sản xuất bánh kẹo tại Việt Nam. Với hơn 140.000 điểm bán hàng, 6.000 siêu thị trên toàn quốc và hơn 1,5 triệu người tiêu dùng mỗi ngày.</p>
+                            <p>Sản phẩm của Hữu Nghị Food đã xuất khẩu sang hơn 20 quốc gia như Nhật Bản, Hàn Quốc, Trung Quốc, Myanmar, Thái Lan, Singapore, Canada, Úc, Mỹ và nhiều quốc gia khác.</p>
+                            <p>Với hơn 25 năm kinh nghiệm trong ngành, Hữu Nghị Food đã trở thành thương hiệu tin cậy của người tiêu dùng Việt Nam. Công ty liên tục đầu tư vào công nghệ sản xuất hiện đại, đảm bảo chất lượng sản phẩm đạt tiêu chuẩn quốc tế.</p>
+                            <p>Hữu Nghị Food cam kết mang đến những sản phẩm bánh kẹo chất lượng cao, an toàn thực phẩm và phù hợp với khẩu vị người Việt Nam. Công ty cũng tích cực tham gia các hoạt động xã hội và bảo vệ môi trường.</p>
+                        </div>
+                        <button class="view-more-btn" onclick="toggleStoreDescription()">
+                            <span class="view-more-text">Xem thêm</span>
+                            <span class="view-more-icon">▼</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other Live Streams Section -->
+        <section class="other-lives-section">
+            <div class="container">
+                <h3 class="other-lives-title">Các Live khác đang diễn ra</h3>
+                <div class="other-lives-grid">
+                    <!-- Live 1 -->
+                    <div class="other-live-card" onclick="window.location.href='./live-stream.html'">
+                        <div class="other-live-thumbnail">
+                            <img src="./images/live/live_botgiat.png" alt="P&G Live">
+                            <div class="other-live-badge">LIVE</div>
+                            <div class="other-live-viewers">890 đang xem</div>
+                        </div>
+                        <div class="other-live-info">
+                            <h4 class="other-live-title">GIẢM ĐẾN 50%++ - Ngày...</h4>
+                            <p class="other-live-brand">P&G - Chu Toàn C...</p>
+                        </div>
+                    </div>
+
+                    <!-- Live 2 -->
+                    <div class="other-live-card" onclick="window.location.href='./live-stream.html'">
+                        <div class="other-live-thumbnail">
+                            <img src="./images/live/live_gaabor.png" alt="Gaabor Live">
+                            <div class="other-live-badge">LIVE</div>
+                            <div class="other-live-viewers">650 đang xem</div>
+                        </div>
+                        <div class="other-live-info">
+                            <h4 class="other-live-title">SĂN SALE CÙNG GAABOR</h4>
+                            <p class="other-live-brand">Gaabor Official St...</p>
+                        </div>
+                    </div>
+
+                    <!-- Live 3 -->
+                    <div class="other-live-card" onclick="window.location.href='./live-stream.html'">
+                        <div class="other-live-thumbnail">
+                            <img src="./images/live/live_nestle.png" alt="Nestlé Live">
+                            <div class="other-live-badge">LIVE</div>
+                            <div class="other-live-viewers">1.5K đang xem</div>
+                        </div>
+                        <div class="other-live-info">
+                            <h4 class="other-live-title">KHỞI ĐỘNG NĂM HỌC S...</h4>
+                            <p class="other-live-brand">Nestle Việt Nam</p>
+                        </div>
+                    </div>
+
+                    <!-- Live 4 -->
+                    <div class="other-live-card" onclick="window.location.href='./live-stream.html'">
+                        <div class="other-live-thumbnail">
+                            <img src="./images/live/live_access.png" alt="ACCESS Live">
+                            <div class="other-live-badge">LIVE</div>
+                            <div class="other-live-viewers">980 đang xem</div>
+                        </div>
+                        <div class="other-live-info">
+                            <h4 class="other-live-title">TRUNG THU SAY HI - GIÁ...</h4>
+                            <p class="other-live-brand">LazMall x ACCESS...</p>
+                        </div>
+                    </div>
+
+                    <!-- Live 5 -->
+                    <div class="other-live-card" onclick="window.location.href='./live-stream.html'">
+                        <div class="other-live-thumbnail">
+                            <img src="./images/live/live_enfa.png" alt="Enfa Live">
+                            <div class="other-live-badge">LIVE</div>
+                            <div class="other-live-viewers">750 đang xem</div>
+                        </div>
+                        <div class="other-live-info">
+                            <h4 class="other-live-title">Ưu đãi độc quyền Livestr...</h4>
+                            <p class="other-live-brand">Enfa</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" aria-label="Thông tin Lazada">
+        <div class="footer-top">
+            <div class="footer-highlight">
+                <div class="icon">🏬</div>
+                <div class="text"><div class="title" data-i18n="Hệ thống gian hàng chính hãng">Hệ thống gian hàng chính hãng</div><div class="sub" data-i18n="Uy tín - đa dạng - giá tốt">Uy tín - đa dạng - giá tốt</div></div>
+            </div>
+            <div class="footer-highlight">
+                <div class="icon">🚚</div>
+                <div class="text"><div class="title" data-i18n="Giao hàng nhanh">Giao hàng nhanh</div><div class="sub" data-i18n="Toàn quốc, theo dõi đơn dễ dàng">Toàn quốc, theo dõi đơn dễ dàng</div></div>
+            </div>
+            <div class="footer-highlight">
+                <div class="icon">↩️</div>
+                <div class="text"><div class="title" data-i18n="Đổi trả linh hoạt">Đổi trả linh hoạt</div><div class="sub" data-i18n="Miễn phí trong 15 ngày">Miễn phí trong 15 ngày</div></div>
+            </div>
+            <div class="footer-highlight">
+                <div class="icon">🔒</div>
+                <div class="text"><div class="title" data-i18n="Thanh toán an toàn">Thanh toán an toàn</div><div class="sub" data-i18n="Nhiều hình thức, bảo mật">Nhiều hình thức, bảo mật</div></div>
+            </div>
+        </div>
+        <div class="footer-main">
+            <div class="footer-col">
+                <div class="col-title" data-i18n="Trợ giúp">Trợ giúp</div>
+                <ul>
+                    <li><a href="#" data-i18n="Trung tâm hỗ trợ">Trung tâm hỗ trợ</a></li>
+                    <li><a href="#" data-i18n="Hướng dẫn mua hàng">Hướng dẫn mua hàng</a></li>
+                    <li><a href="#" data-i18n="Theo dõi đơn hàng">Theo dõi đơn hàng</a></li>
+                    <li><a href="#" data-i18n="Chính sách đổi trả">Chính sách đổi trả</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <div class="col-title" data-i18n="Về Lazada">Về Lazada</div>
+                <ul>
+                    <li><a href="#" data-i18n="Giới thiệu">Giới thiệu</a></li>
+                    <li><a href="#" data-i18n="Tuyển dụng">Tuyển dụng</a></li>
+                    <li><a href="#" data-i18n="Điều khoản sử dụng">Điều khoản sử dụng</a></li>
+                    <li><a href="#" data-i18n="Bảo mật thông tin">Bảo mật thông tin</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <div class="col-title" data-i18n="Liên hệ">Liên hệ</div>
+                <ul>
+                    <li>Email: support@lazada.vn</li>
+                    <li>Hotline: 1900 1000</li>
+                    <li>8:00 - 22:00 (T2 - CN)</li>
+                </ul>
+                <div class="socials">
+                    <a href="#" aria-label="Facebook" class="social"><img src="./images/facebook_icon.png" alt="Facebook"></a>
+                    <a href="#" aria-label="Zalo" class="social"><img src="./images/zalo_icon.png" alt="Zalo"></a>
+                    <a href="#" aria-label="Google" class="social"><img src="./images/google_icon.png" alt="Google"></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <div class="col-title" data-i18n="Đăng ký nhận tin">Đăng ký nhận tin</div>
+                <div class="newsletter">
+                    <input type="email" data-i18n-placeholder="Nhập email của bạn" placeholder="Nhập email của bạn" aria-label="Email">
+                    <button data-i18n="Đăng ký">Đăng ký</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container" data-i18n="© 2025 Lazada — Một dự án demo giao diện.">© 2025 Lazada — Một dự án demo giao diện.</div>
+        </div>
+    </footer>
+
+    <script src="./js/scripts.js"></script>
+    <script src="./js/translate_script.js"></script>
+    <script>
+        // Cart button functionality
+        document.querySelector('.cart-btn').onclick = function() {
+            window.location.href = './shoppingcart.html';
+        };
+
+        // Back to home functionality
+        document.querySelector('.logo').onclick = function() {
+            window.location.href = './index.html';
+        };
+
+        // Back to live page
+        document.querySelector('.lazlive-link').onclick = function() {
+            window.location.href = './live.html';
+        };
+
+        // Sample comments data
+        const sampleComments = [
+            { name: "Ruby Lieu", message: "Shop ơi, có bánh dẻo không ạ?", time: "Just now" },
+            { name: "Huy Hoàng", message: "Bánh ngon lắm nha mn", time: "Just now" },
+            { name: "Jet Jet", message: "Giá có ưu đãi không shop?", time: "Just now" },
+            { name: "Minh Anh", message: "Tôi muốn đặt 2 hộp", time: "Just now" },
+            { name: "Thu Hà", message: "Bánh này có ship toàn quốc không?", time: "Just now" },
+            { name: "Đức Minh", message: "Chất lượng bánh như thế nào?", time: "Just now" },
+            { name: "Lan Anh", message: "Tôi đã mua rồi, rất ngon!", time: "Just now" },
+            { name: "Quang Huy", message: "Có voucher giảm giá không?", time: "Just now" },
+            { name: "Mai Linh", message: "Bánh có hạn sử dụng bao lâu?", time: "Just now" },
+            { name: "Hoàng Nam", message: "Tôi muốn làm quà tặng", time: "Just now" },
+            { name: "Thảo Vy", message: "Shop có bán online không?", time: "Just now" },
+            { name: "Văn Đức", message: "Bánh này có vị gì đặc biệt?", time: "Just now" },
+            { name: "Hương Giang", message: "Tôi ở Hà Nội có ship không?", time: "Just now" },
+            { name: "Tuấn Anh", message: "Bánh có đóng gói đẹp không?", time: "Just now" },
+            { name: "Kim Oanh", message: "Tôi muốn đặt số lượng lớn", time: "Just now" },
+            { name: "Minh Tuấn", message: "Có combo nào không shop?", time: "Just now" },
+            { name: "Thanh Hương", message: "Bánh này có phù hợp trẻ em không?", time: "Just now" },
+            { name: "Đình Nam", message: "Tôi muốn thử trước khi mua", time: "Just now" },
+            { name: "Thu Trang", message: "Shop có chính sách đổi trả không?", time: "Just now" },
+            { name: "Văn Hùng", message: "Bánh này có bảo quản như thế nào?", time: "Just now" }
+        ];
+
+        // Generate random comments
+        function generateRandomComment() {
+            const randomComment = sampleComments[Math.floor(Math.random() * sampleComments.length)];
+            const chatMessages = document.getElementById('chatMessages');
+            
+            const commentElement = document.createElement('div');
+            commentElement.className = 'chat-message';
+            commentElement.innerHTML = `
+                <div class="comment-avatar">${randomComment.name.charAt(0)}</div>
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <span class="comment-name">${randomComment.name}</span>
+                        <span class="comment-time">${randomComment.time}</span>
+                    </div>
+                    <div class="comment-text">${randomComment.message}</div>
+                    <div class="comment-actions">
+                        <span class="heart-icon">❤️</span>
+                        <span class="reply-btn">Trả lời</span>
+                    </div>
+                </div>
+            `;
+            
+            chatMessages.appendChild(commentElement);
+            
+            // Keep only last 10 comments visible
+            const messages = chatMessages.children;
+            if (messages.length > 10) {
+                chatMessages.removeChild(messages[0]);
+            }
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Generate floating hearts
+        function generateFloatingHeart() {
+            const heartsContainer = document.getElementById('floatingHearts');
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            heartsContainer.appendChild(heart);
+            
+            // Remove heart after animation
+            setTimeout(() => {
+                if (heart.parentNode) {
+                    heart.parentNode.removeChild(heart);
+                }
+            }, 5000);
+        }
+
+        // Start generating comments and hearts
+        setInterval(generateRandomComment, 2000); // New comment every 2 seconds
+        setInterval(generateFloatingHeart, 1500); // New heart every 1.5 seconds
+
+        // Chat input functionality
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const message = this.value.trim();
+                if (message) {
+                    const chatMessages = document.getElementById('chatMessages');
+                    const commentElement = document.createElement('div');
+                    commentElement.className = 'chat-message';
+                    commentElement.innerHTML = `
+                        <div class="comment-avatar">Bạn</div>
+                        <div class="comment-content">
+                            <div class="comment-header">
+                                <span class="comment-name">Bạn</span>
+                                <span class="comment-time">Just now</span>
+                            </div>
+                            <div class="comment-text">${message}</div>
+                            <div class="comment-actions">
+                                <span class="heart-icon">❤️</span>
+                                <span class="reply-btn">Trả lời</span>
+                            </div>
+                        </div>
+                    `;
+                    chatMessages.appendChild(commentElement);
+                    this.value = '';
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+            }
+        });
+
+        // Toggle store description
+        function toggleStoreDescription() {
+            const shortDesc = document.querySelector('.store-description-short');
+            const fullDesc = document.querySelector('.store-description-full');
+            const viewMoreText = document.querySelector('.view-more-text');
+            const viewMoreIcon = document.querySelector('.view-more-icon');
+            
+            if (fullDesc.style.display === 'none') {
+                shortDesc.style.display = 'none';
+                fullDesc.style.display = 'block';
+                viewMoreText.textContent = 'Thu gọn';
+                viewMoreIcon.textContent = '▲';
+            } else {
+                shortDesc.style.display = 'block';
+                fullDesc.style.display = 'none';
+                viewMoreText.textContent = 'Xem thêm';
+                viewMoreIcon.textContent = '▼';
+            }
+        }
+
+        // Product action functions
+        function addToCart() {
+            // Navigate to mooncake page for detailed product view
+            window.location.href = './mooncake.html';
+        }
+
+        function shareProduct() {
+            // Share product functionality
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Bánh Trung Thu Hữu Nghị',
+                    text: 'Xem sản phẩm Bánh Trung Thu Hữu Nghị trên Lazada Live!',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                const shareUrl = window.location.href;
+                navigator.clipboard.writeText(shareUrl).then(() => {
+                    alert('Đã copy link chia sẻ!');
+                });
+            }
+        }
+
+        function sendHeart() {
+            // Send heart animation
+            const heartBtn = document.querySelector('.heart-btn');
+            heartBtn.classList.add('animated');
+            
+            // Create floating heart
+            createFloatingHeart();
+            
+            // Remove animation class after animation completes
+            setTimeout(() => {
+                heartBtn.classList.remove('animated');
+            }, 600);
+        }
+
+        function createFloatingHeart() {
+            const heartsContainer = document.getElementById('floatingHearts');
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = '❤️';
+            heart.style.position = 'absolute';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.top = '100%';
+            heart.style.fontSize = '20px';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '1000';
+            heart.style.animation = 'floatUp 3s ease-out forwards';
+            
+            heartsContainer.appendChild(heart);
+            
+            // Remove heart after animation
+            setTimeout(() => {
+                if (heart.parentNode) {
+                    heart.parentNode.removeChild(heart);
+                }
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

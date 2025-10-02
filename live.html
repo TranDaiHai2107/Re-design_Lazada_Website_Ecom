@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="./css/live.css" />
+    <link rel="icon" type="image/png" href="./images/icon.ico" />
+    <title>LazLive - Lazada</title>
+</head>
+<body>
+    <!-- Top strip -->
+    <div class="top-strip">
+        <div class="container">
+            <div class="top-links">
+                <a href="#" data-i18n="Chăm sóc khách hàng">Chăm sóc khách hàng</a>
+                <a href="./orderdetail.html" data-i18n="Kiểm tra đơn hàng">Kiểm tra đơn hàng</a>
+            </div>
+            <div class="top-actions">
+                <a href="#" data-i18n="Đăng nhập">Đăng nhập</a>
+                <a href="#" data-i18n="Đăng ký">Đăng ký</a>
+            </div>
+            <div class="top-controls">
+              <div class="dark-mode-toggle">
+                <button id="darkModeToggle" class="dark-mode-btn" title="Chuyển đổi chế độ tối">
+                  <span class="dark-icon">🌙</span>
+                  <span class="light-icon">☀️</span>
+                </button>
+              </div>
+              <div class="lang-switcher">
+                <button id="langToggleBtn">EN</button>
+              </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <!-- Logo lazada -->
+            <div class="logo">
+                <img src="./images/lazada_icon.png" alt="Logo">
+            </div>
+
+            <!-- Search bar -->
+            <div class="search-wrap">
+                <div class="search-row">
+                    <input type="text" placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..." data-i18n-placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..." aria-label="Tìm kiếm" class="search-input">
+                    <button aria-label="Tìm kiếm" class="search-btn" data-i18n="Tìm kiếm">Tìm kiếm</button>
+                </div>
+            </div>
+
+            <!-- Cart -->
+            <div class="cart">
+                <button class="cart-btn" aria-label="Giỏ hàng">
+                    <img src="./images/shopping_cart.png" alt="Giỏ hàng">
+                </button>
+            </div>
+        </div>
+
+        <!-- Mini features -->
+        <div>
+            <div class="mini-features" aria-hidden="true">
+                <span>🔖 LazMall</span>
+                <span data-i18n="Mã giảm giá">🏷 Mã Giảm Giá</span>
+                <span data-i18n="Nạp thẻ">💳 Nạp Thẻ & eVoucher</span>
+                <span>🌍 LazGlobal</span>
+                <span class="lazlive-link active" style="background: #ff6a00; color: white; padding: 5px 10px; border-radius: 5px;">
+                    <img src="./images/live/logo_lazlive.png" alt="LazLive" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;">
+                    LazLive
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Live Content -->
+    <main class="live-main">
+        <!-- Hero Banner Section -->
+        <section class="live-hero">
+            <div class="hero-carousel">
+                <div class="hero-slides" id="heroTrack">
+                    <div class="hero-slide">
+                        <img src="./images/live/banner_live.png" alt="LazLive Banner" class="hero-image">
+                    </div>
+                    <div class="hero-slide">
+                        <img src="./images/live/banner_live2.png" alt="LazLive Banner 2" class="hero-image">
+                    </div>
+                </div>
+                <button class="hero-arrow left" id="heroPrev" aria-label="Trước">‹</button>
+                <button class="hero-arrow right" id="heroNext" aria-label="Tiếp">›</button>
+                <div class="hero-dots" id="heroDots" aria-hidden="false">
+                    <button data-index="0" class="active"></button>
+                    <button data-index="1"></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Stream Cards Section -->
+        <section class="live-streams">
+            <div class="container">
+                <div class="streams-grid">
+                    <!-- Stream Card 1 -->
+                    <div class="stream-card" onclick="window.location.href='./live-stream.html'">
+                        <div class="stream-thumbnail">
+                            <img src="./images/live/live_bachHoa.png" alt="Bách Hóa Ecogo Live">
+                            <div class="live-badge">LIVE</div>
+                            <div class="viewer-count">1.2K đang xem</div>
+                        </div>
+                        <div class="stream-info">
+                            <h3 class="stream-title">CUỐI THÁNG BUNG SAL...</h3>
+                            <p class="stream-subtitle">Bách Hóa Ecogo</p>
+                            <div class="stream-meta">
+                                <span class="discount">1+1 25.9</span>
+                                <span class="timer">25.0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stream Card 2 -->
+                    <div class="stream-card">
+                        <div class="stream-thumbnail">
+                            <img src="./images/live/live_botgiat.png" alt="P&G Live">
+                            <div class="live-badge">LIVE</div>
+                            <div class="viewer-count">890 đang xem</div>
+                        </div>
+                        <div class="stream-info">
+                            <h3 class="stream-title">GIẢM ĐẾN 50%++ - Ngày...</h3>
+                            <p class="stream-subtitle">P&G - Chu Toàn C...</p>
+                            <div class="stream-meta">
+                                <span class="discount">100K</span>
+                                <span class="discount">50%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stream Card 3 -->
+                    <div class="stream-card">
+                        <div class="stream-thumbnail">
+                            <img src="./images/live/live_gaabor.png" alt="Gaabor Live">
+                            <div class="live-badge">LIVE</div>
+                            <div class="viewer-count">650 đang xem</div>
+                        </div>
+                        <div class="stream-info">
+                            <h3 class="stream-title">SĂN SALE CÙNG GAABOR</h3>
+                            <p class="stream-subtitle">Gaabor Official St...</p>
+                            <div class="stream-meta">
+                                <span class="discount">50%</span>
+                                <span class="voucher">VOUCHER 599K</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stream Card 4 -->
+                    <div class="stream-card">
+                        <div class="stream-thumbnail">
+                            <img src="./images/live/live_nestle.png" alt="Nestlé Live">
+                            <div class="live-badge">LIVE</div>
+                            <div class="viewer-count">1.5K đang xem</div>
+                        </div>
+                        <div class="stream-info">
+                            <h3 class="stream-title">KHỞI ĐỘNG NĂM HỌC S...</h3>
+                            <p class="stream-subtitle">Nestle Việt Nam</p>
+                            <div class="stream-meta">
+                                <span class="discount">30%</span>
+                                <span class="gift">Mua 1 Tặng 2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stream Card 5 -->
+                    <div class="stream-card">
+                        <div class="stream-thumbnail">
+                            <img src="./images/live/live_access.png" alt="ACCESS Live">
+                            <div class="live-badge">LIVE</div>
+                            <div class="viewer-count">980 đang xem</div>
+                        </div>
+                        <div class="stream-info">
+                            <h3 class="stream-title">TRUNG THU SAY HI - GIÁ...</h3>
+                            <p class="stream-subtitle">LazMall x ACCESS...</p>
+                            <div class="stream-meta">
+                                <span class="discount">1+1 25.09</span>
+                                <span class="timer">20.0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stream Card 6 -->
+                    <div class="stream-card">
+                        <div class="stream-thumbnail">
+                            <img src="./images/live/live_enfa.png" alt="Enfa Live">
+                            <div class="live-badge">LIVE</div>
+                            <div class="viewer-count">750 đang xem</div>
+                        </div>
+                        <div class="stream-info">
+                            <h3 class="stream-title">Ưu đãi độc quyền Livestr...</h3>
+                            <p class="stream-subtitle">Enfa</p>
+                            <div class="stream-meta">
+                                <span class="discount">35%</span>
+                                <span class="exclusive">CHỈ CÓ TẠI LAZLIVE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" aria-label="Thông tin Lazada">
+        <div class="footer-top">
+            <div class="footer-highlight">
+                <div class="icon">🏬</div>
+                <div class="text"><div class="title" data-i18n="Hệ thống gian hàng chính hãng">Hệ thống gian hàng chính hãng</div><div class="sub" data-i18n="Uy tín - đa dạng - giá tốt">Uy tín - đa dạng - giá tốt</div></div>
+            </div>
+            <div class="footer-highlight">
+                <div class="icon">🚚</div>
+                <div class="text"><div class="title" data-i18n="Giao hàng nhanh">Giao hàng nhanh</div><div class="sub" data-i18n="Toàn quốc, theo dõi đơn dễ dàng">Toàn quốc, theo dõi đơn dễ dàng</div></div>
+            </div>
+            <div class="footer-highlight">
+                <div class="icon">↩️</div>
+                <div class="text"><div class="title" data-i18n="Đổi trả linh hoạt">Đổi trả linh hoạt</div><div class="sub" data-i18n="Miễn phí trong 15 ngày">Miễn phí trong 15 ngày</div></div>
+            </div>
+            <div class="footer-highlight">
+                <div class="icon">🔒</div>
+                <div class="text"><div class="title" data-i18n="Thanh toán an toàn">Thanh toán an toàn</div><div class="sub" data-i18n="Nhiều hình thức, bảo mật">Nhiều hình thức, bảo mật</div></div>
+            </div>
+        </div>
+        <div class="footer-main">
+            <div class="footer-col">
+                <div class="col-title" data-i18n="Trợ giúp">Trợ giúp</div>
+                <ul>
+                    <li><a href="#" data-i18n="Trung tâm hỗ trợ">Trung tâm hỗ trợ</a></li>
+                    <li><a href="#" data-i18n="Hướng dẫn mua hàng">Hướng dẫn mua hàng</a></li>
+                    <li><a href="#" data-i18n="Theo dõi đơn hàng">Theo dõi đơn hàng</a></li>
+                    <li><a href="#" data-i18n="Chính sách đổi trả">Chính sách đổi trả</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <div class="col-title" data-i18n="Về Lazada">Về Lazada</div>
+                <ul>
+                    <li><a href="#" data-i18n="Giới thiệu">Giới thiệu</a></li>
+                    <li><a href="#" data-i18n="Tuyển dụng">Tuyển dụng</a></li>
+                    <li><a href="#" data-i18n="Điều khoản sử dụng">Điều khoản sử dụng</a></li>
+                    <li><a href="#" data-i18n="Bảo mật thông tin">Bảo mật thông tin</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <div class="col-title" data-i18n="Liên hệ">Liên hệ</div>
+                <ul>
+                    <li>Email: support@lazada.vn</li>
+                    <li>Hotline: 1900 1000</li>
+                    <li>8:00 - 22:00 (T2 - CN)</li>
+                </ul>
+                <div class="socials">
+                    <a href="#" aria-label="Facebook" class="social"><img src="./images/facebook_icon.png" alt="Facebook"></a>
+                    <a href="#" aria-label="Zalo" class="social"><img src="./images/zalo_icon.png" alt="Zalo"></a>
+                    <a href="#" aria-label="Google" class="social"><img src="./images/google_icon.png" alt="Google"></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <div class="col-title" data-i18n="Đăng ký nhận tin">Đăng ký nhận tin</div>
+                <div class="newsletter">
+                    <input type="email" data-i18n-placeholder="Nhập email của bạn" placeholder="Nhập email của bạn" aria-label="Email">
+                    <button data-i18n="Đăng ký">Đăng ký</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container" data-i18n="© 2025 Lazada — Một dự án demo giao diện.">© 2025 Lazada — Một dự án demo giao diện.</div>
+        </div>
+    </footer>
+
+    <script src="./js/scripts.js"></script>
+    <script src="./js/translate_script.js"></script>
+    <script>
+        // Cart button functionality
+        document.querySelector('.cart-btn').onclick = function() {
+            window.location.href = './shoppingcart.html';
+        };
+
+        // Back to home functionality
+        document.querySelector('.logo').onclick = function() {
+            window.location.href = './index.html';
+        };
+
+        // Hero Carousel functionality
+        (function(){
+            const track = document.getElementById('heroTrack');
+            const slides = track.children;
+            const dots = document.getElementById('heroDots').children;
+            let index = 0, total = slides.length;
+            const prev = document.getElementById('heroPrev');
+            const next = document.getElementById('heroNext');
+            let timer;
+
+            function go(i){
+                if(i < 0) i = total - 1;
+                if(i >= total) i = 0;
+                index = i;
+                const x = - index * 100;
+                track.style.transform = 'translateX(' + x + '%)';
+                for(let d of dots) d.classList.remove('active');
+                dots[index].classList.add('active');
+            }
+
+            prev.addEventListener('click', ()=>{ go(index-1); resetTimer(); });
+            next.addEventListener('click', ()=>{ go(index+1); resetTimer(); });
+
+            for(let d of dots){
+                d.addEventListener('click', (e)=>{ go(parseInt(e.target.dataset.index)); resetTimer(); });
+            }
+
+            function resetTimer(){
+                clearInterval(timer);
+                timer = setInterval(()=> go(index+1), 4500);
+            }
+
+            // start autoplay
+            timer = setInterval(()=> go(index+1), 4500);
+
+            // pause on hover
+            const carousel = document.querySelector('.hero-carousel');
+            carousel.addEventListener('mouseenter', ()=> clearInterval(timer));
+            carousel.addEventListener('mouseleave', ()=> resetTimer());
+
+            // initial
+            go(0);
+        })();
+    </script>
+</body>
+</html>

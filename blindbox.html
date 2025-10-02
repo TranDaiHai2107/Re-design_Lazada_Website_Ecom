@@ -362,16 +362,18 @@
           "
         />
       </div>
-      <!-- Lucky Wheel Area bên phải -->
+      <!-- Lucky Wheel Group bên phải -->
       <div
-        class="blindbox-wheel-area"
+        class="blindbox-wheel-group"
         style="
-          position: relative;
-          right: 30px;
-          top: 40px;
+          position: absolute;
+          right: 32px;
+          top: 50%;
+          transform: translateY(-50%);
           display: flex;
           flex-direction: column;
           align-items: center;
+          z-index: 10;
         "
       >
         <div style="position: relative; width: 370px; height: 370px">
@@ -383,7 +385,7 @@
             viewBox="0 0 370 370"
             style="display: block; z-index: 2"
           >
-            <!-- Các lát sẽ được vẽ bằng JS -->
+            <g id="wheelGroup"></g>
           </svg>
           <!-- Pointer -->
           <div
@@ -395,7 +397,7 @@
               z-index: 3;
             "
           >
-            <svg width="60" height="60">
+            <svg width="60" height="60" style="rotate: 180deg">
               <polygon
                 points="60,30 0,10 0,50"
                 fill="#fff"
@@ -451,22 +453,20 @@
         "#e74c3c",
       ];
       const svg = document.getElementById("luckyWheelSVG");
-      const labelsDiv = document.getElementById("wheelLabels");
+      const wheelGroup = document.getElementById("wheelGroup");
       const segCount = prizes.length;
       const cx = 185,
         cy = 185,
         r = 170;
-      svg.innerHTML = "";
-      labelsDiv.innerHTML = "";
+      wheelGroup.innerHTML = "";
       for (let i = 0; i < segCount; i++) {
         const startAngle = (i / segCount) * 2 * Math.PI;
         const endAngle = ((i + 1) / segCount) * 2 * Math.PI;
-        // Tính điểm đầu/cuối
+        // Lát
         const x1 = cx + r * Math.cos(startAngle);
         const y1 = cy + r * Math.sin(startAngle);
         const x2 = cx + r * Math.cos(endAngle);
         const y2 = cy + r * Math.sin(endAngle);
-        // Vẽ lát
         const largeArc = endAngle - startAngle > Math.PI ? 1 : 0;
         const d = `
           M ${cx} ${cy}
@@ -482,9 +482,9 @@
         path.setAttribute("fill", colors[i]);
         path.setAttribute("stroke", "#fff");
         path.setAttribute("stroke-width", "8");
-        svg.appendChild(path);
+        wheelGroup.appendChild(path);
 
-        // Vẽ vạch chia
+        // Vạch chia
         const line = document.createElementNS(
           "http://www.w3.org/2000/svg",
           "line"
@@ -495,19 +495,30 @@
         line.setAttribute("y2", y1);
         line.setAttribute("stroke", "#fff");
         line.setAttribute("stroke-width", "4");
-        svg.appendChild(line);
+        wheelGroup.appendChild(line);
 
-        // Label
+        // Text phần thưởng (SVG <text>)
         const angle = (startAngle + endAngle) / 2;
-        const labelX = cx + (r - 60) * Math.cos(angle);
-        const labelY = cy + (r - 60) * Math.sin(angle);
-        const label = document.createElement("div");
-        label.className = "wheel-label";
-        label.style.left = labelX - 45 + "px";
-        label.style.top = labelY - 16 + "px";
-        label.style.transform = `rotate(${(angle * 180) / Math.PI}deg)`;
-        label.innerHTML = prizes[i];
-        labelsDiv.appendChild(label);
+        const labelR = r - 60;
+        const labelX = cx + labelR * Math.cos(angle);
+        const labelY = cy + labelR * Math.sin(angle);
+        const text = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "text"
+        );
+        text.setAttribute("x", labelX);
+        text.setAttribute("y", labelY);
+        text.setAttribute("fill", "#fff");
+        text.setAttribute("font-size", "20");
+        text.setAttribute("font-family", "Arial, sans-serif");
+        text.setAttribute("font-weight", "bold");
+        text.setAttribute("text-anchor", "middle");
+        text.setAttribute("alignment-baseline", "middle");
+        // Xoay text cho thẳng theo lát
+        const deg = (angle * 180) / Math.PI;
+        text.setAttribute("transform", `rotate(${deg},${labelX},${labelY})`);
+        text.textContent = prizes[i];
+        wheelGroup.appendChild(text);
       }
       spinBtn.onclick = function () {
         const spinAmount = 720 + Math.floor(Math.random() * 2881);
@@ -525,9 +536,7 @@
         // Tính phần trúng dựa trên góc quay
         const segCount = prizes.length;
         let currentDeg = spinDeg % 360;
-        let idx = Math.floor(
-          ((360 - currentDeg + 22.5) % 360) / (360 / segCount)
-        );
+        let idx = Math.floor(((360 - currentDeg) % 360) / (360 / segCount));
         let prize = prizes[idx];
         document.getElementById(
           "resultText"

@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+    <link rel="icon" type="image/png" href="./images/icon.ico" />
+    <title>LazGlobal</title>
+    <style>
+      :root { --global-primary: #7a3cff; --global-primary-darker: #5b2fd1; }
+      .global-header { background: linear-gradient(180deg, var(--global-primary), #9a6bff); }
+      .global-header .search-btn { background: #fff; color: var(--global-primary); font-weight: 700; }
+      .global-header .search-btn:hover { background: #f4f0ff; }
+      .global-accent { color: var(--global-primary); }
+      .global-badge { background: var(--global-primary); color: #fff; }
+      .for-you-title { color: var(--global-primary); }
+      .product-price .price-current { color: var(--global-primary); font-weight: 700; }
+      .mini-features .active { background: var(--global-primary); color: #fff; padding: 5px 10px; border-radius: 5px; }
+      .global-hero { border-radius: 20px; overflow: hidden; }
+    </style>
+</head>
+<body>
+
+  <!-- Top strip -->
+    <div class="top-strip">
+        <div class="container">
+            <div class="top-links">
+                <a href="#" data-i18n="Chăm sóc khách hàng">Chăm sóc khách hàng</a>
+                <a href="./orderdetail.html" data-i18n="Kiểm tra đơn hàng">Kiểm tra đơn hàng</a>
+            </div>
+            <div class="top-actions">
+                <a href="#" data-i18n="Đăng nhập">Đăng nhập</a>
+                <a href="#"data-i18n="Đăng ký">Đăng ký</a>
+            </div>
+            <div class="top-controls">
+              <div class="dark-mode-toggle">
+                <button id="darkModeToggle" class="dark-mode-btn" title="Chuyển đổi chế độ tối">
+                  <span class="dark-icon">🌙</span>
+                  <span class="light-icon">☀️</span>
+                </button>
+              </div>
+              <div class="lang-switcher">
+                <button id="langToggleBtn">EN</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+    <!-- Header -->
+    <header class="main-header global-header">
+        <div class="container">
+            <!-- Logo -->
+            <div class="logo" style="cursor:pointer" onclick="window.location.href='./index.html'">
+                <img src="./images/global/lazaglobal.jpg" alt="LazGlobal" style="height:48px;object-fit:contain;border-radius:8px;background:#fff;padding:4px;">
+            </div>
+
+            <!-- Search bar -->
+            <div class="search-wrap">
+                <div class="search-row">
+                    <input type="text" placeholder="Tìm sản phẩm quốc tế, thương hiệu..." data-i18n-placeholder="Tìm sản phẩm quốc tế, thương hiệu..." aria-label="Tìm kiếm" class="search-input">
+                    <button aria-label="Tìm kiếm" class="search-btn" data-i18n="Tìm kiếm">Tìm kiếm</button>
+                </div>
+            </div>
+
+            <!-- Cart -->
+            <div class="cart">
+                <button class="cart-btn" aria-label="Giỏ hàng">
+                    <img src="./images/shopping_cart.png" alt="Giỏ hàng">
+                </button>
+            </div>
+        </div>
+
+        <!-- Mini features -->
+        <div>
+            <div class="mini-features" aria-hidden="true">
+                <span>🔖 LazMall</span>
+                <span data-i18n="Mã giảm giá">🏷 Mã Giảm Giá</span>
+                <span data-i18n="Nạp thẻ">💳 Nạp Thẻ & eVoucher</span>
+                <span class="lazlive-link" onclick="window.location.href='./live.html'">
+                    <img src="./images/live/logo_lazlive.png" alt="LazLive">
+                    LazLive
+                </span>
+                <span class="active">
+                    🌍 LazGlobal
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero banner -->
+    <section class="carousel" aria-label="Quảng cáo">
+      <div class="container">
+        <div class="global-hero">
+          <img src="./images/global/banner_global.webp" alt="LazGlobal Banner" style="width:100%;display:block;">
+        </div>
+      </div>
+    </section>
+
+    <!-- For You Grid (Global) -->
+    <section class="for-you-section">
+      <div class="container">
+        <h2 class="for-you-title">Hàng quốc tế dành cho bạn</h2>
+        <div class="for-you-grid">
+          <!-- Generate cards for global/1..8.png -->
+          <div class="product-card">
+            <div class="product-thumb">
+              <img src="./images/global/1.png" alt="Global Product 1" style="width: 100%;height:100%;"/>
+              <span class="badge badge-mall global-badge">Global</span>
+            </div>
+            <div class="product-info">
+              <div class="product-title">Sản phẩm quốc tế #1</div>
+              <div class="product-price">
+                <span class="price-current">299.000 ₫</span>
+                <span class="price-old">450.000 ₫</span>
+              </div>
+              <div class="product-meta">
+                <span class="rating">★ 4.8</span>
+                <span class="review-count">(260)</span>
+                <span class="sold">Đã bán</span>
+                <span class="sold">1k+</span>
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-cart">Thêm vào giỏ</button>
+              <button class="btn-wishlist">♥</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-thumb">
+              <img src="./images/global/2.png" alt="Global Product 2" style="width: 100%;height:100%;"/>
+              <span class="badge badge-sale">-30%</span>
+            </div>
+            <div class="product-info">
+              <div class="product-title">Sản phẩm quốc tế #2</div>
+              <div class="product-price">
+                <span class="price-current">199.000 ₫</span>
+                <span class="price-old">280.000 ₫</span>
+              </div>
+              <div class="product-meta">
+                <span class="rating">★ 4.7</span>
+                <span class="review-count">(120)</span>
+                <span class="sold">Đã bán</span>
+                <span class="sold">800+</span>
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-cart">Thêm vào giỏ</button>
+              <button class="btn-wishlist">♥</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-thumb">
+              <img src="./images/global/3.png" alt="Global Product 3" style="width: 100%;height:100%;"/>
+              <span class="badge badge-freeship">Freeship</span>
+            </div>
+            <div class="product-info">
+              <div class="product-title">Sản phẩm quốc tế #3</div>
+              <div class="product-price">
+                <span class="price-current">459.000 ₫</span>
+                <span class="price-old">520.000 ₫</span>
+              </div>
+              <div class="product-meta">
+                <span class="rating">★ 4.9</span>
+                <span class="review-count">(340)</span>
+                <span class="sold">Đã bán</span>
+                <span class="sold">2k+</span>
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-cart">Thêm vào giỏ</button>
+              <button class="btn-wishlist">♥</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-thumb">
+              <img src="./images/global/4.png" alt="Global Product 4" style="width: 100%;height:100%;"/>
+              <span class="badge badge-sale">-15%</span>
+            </div>
+            <div class="product-info">
+              <div class="product-title">Sản phẩm quốc tế #4</div>
+              <div class="product-price">
+                <span class="price-current">549.000 ₫</span>
+                <span class="price-old">650.000 ₫</span>
+              </div>
+              <div class="product-meta">
+                <span class="rating">★ 4.6</span>
+                <span class="review-count">(90)</span>
+                <span class="sold">Đã bán</span>
+                <span class="sold">500+</span>
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-cart">Thêm vào giỏ</button>
+              <button class="btn-wishlist">♥</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-thumb">
+              <img src="./images/global/5.png" alt="Global Product 5" style="width: 100%;height:100%;"/>
+              <span class="badge badge-sale">-10%</span>
+            </div>
+            <div class="product-info">
+              <div class="product-title">Sản phẩm quốc tế #5</div>
+              <div class="product-price">
+                <span class="price-current">149.000 ₫</span>
+                <span class="price-old">169.000 ₫</span>
+              </div>
+              <div class="product-meta">
+                <span class="rating">★ 4.7</span>
+                <span class="review-count">(60)</span>
+                <span class="sold">Đã bán</span>
+                <span class="sold">300+</span>
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-cart">Thêm vào giỏ</button>
+              <button class="btn-wishlist">♥</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-thumb">
+              <img src="./images/global/6.png" alt="Global Product 6" style="width: 100%;height:100%;"/>
+              <span class="badge badge-sale">-25%</span>
+            </div>
+            <div class="product-info">
+              <div class="product-title">Sản phẩm quốc tế #6</div>
+              <div class="product-price">
+                <span class="price-current">219.000 ₫</span>
+                <span class="price-old">290.000 ₫</span>
+              </div>
+              <div class="product-meta">
+                <span class="rating">★ 4.8</span>
+                <span class="review-count">(210)</span>
+                <span class="sold">Đã bán</span>
+                <span class="sold">1k+</span>
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-cart">Thêm vào giỏ</button>
+              <button class="btn-wishlist">♥</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-thumb">
+              <img src="./images/global/7.png" alt="Global Product 7" style="width: 100%;height:100%;"/>
+              <span class="badge badge-freeship">Freeship</span>
+            </div>
+            <div class="product-info">
+              <div class="product-title">Sản phẩm quốc tế #7</div>
+              <div class="product-price">
+                <span class="price-current">329.000 ₫</span>
+                <span class="price-old">430.000 ₫</span>
+              </div>
+              <div class="product-meta">
+                <span class="rating">★ 4.9</span>
+                <span class="review-count">(410)</span>
+                <span class="sold">Đã bán</span>
+                <span class="sold">3k+</span>
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-cart">Thêm vào giỏ</button>
+              <button class="btn-wishlist">♥</button>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-thumb">
+              <img src="./images/global/8.png" alt="Global Product 8" style="width: 100%;height:100%;"/>
+              <span class="badge badge-sale">-40%</span>
+            </div>
+            <div class="product-info">
+              <div class="product-title">Sản phẩm quốc tế #8</div>
+              <div class="product-price">
+                <span class="price-current">99.000 ₫</span>
+                <span class="price-old">165.000 ₫</span>
+              </div>
+              <div class="product-meta">
+                <span class="rating">★ 4.6</span>
+                <span class="review-count">(70)</span>
+                <span class="sold">Đã bán</span>
+                <span class="sold">500+</span>
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-cart">Thêm vào giỏ</button>
+              <button class="btn-wishlist">♥</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.querySelector('.cart-btn').onclick = function() {
+        window.location.href = './shoppingcart.html';
+      };
+      // Điều hướng sản phẩm đến mooncake ví dụ (tuỳ biến sau nếu có trang riêng)
+      document.querySelectorAll('.product-card').forEach(card => {
+        card.addEventListener('click', function(e) {
+          if (!e.target.closest('button')) {
+            window.location.href = './mooncake.html';
+          }
+        });
+      });
+    </script>
+    <script src="./js/translate_script.js"></script>
+</body>
+</html>
+
+

@@ -26,15 +26,23 @@
     <div class="top-strip">
         <div class="container">
             <div class="top-links">
-                <a href="#" data-i18n="Chăm sóc khách hàng">Chăm sóc khách hàng</a>
+                <a href="./support.html" data-i18n="Chăm sóc khách hàng">Chăm sóc khách hàng</a>
                 <a href="./orderdetail.html" data-i18n="Kiểm tra đơn hàng">Kiểm tra đơn hàng</a>
             </div>
             <div class="top-actions">
                 <a href="#" data-i18n="Đăng nhập">Đăng nhập</a>
                 <a href="#"data-i18n="Đăng ký">Đăng ký</a>
             </div>
-            <div class="lang-switcher">
-              <button id="langToggleBtn">EN</button>
+            <div class="top-controls">
+              <div class="dark-mode-toggle">
+                <button id="darkModeToggle" class="dark-mode-btn" title="Chuyển đổi chế độ tối">
+                  <span class="dark-icon">🌙</span>
+                  <span class="light-icon">☀️</span>
+                </button>
+              </div>
+              <div class="lang-switcher">
+                <button id="langToggleBtn">EN</button>
+              </div>
             </div>
           </div>
         </div>
@@ -71,7 +79,11 @@
                 <span>🔖 LazMall</span>
                 <span data-i18n="Mã giảm giá">🏷 Mã Giảm Giá</span>
                 <span data-i18n="Nạp thẻ">💳 Nạp Thẻ & eVoucher</span>
-                <span>🌍 LazGlobal</span>
+                <span class="lazglobal-link" onclick="window.location.href='./lazglobal.html'">🌍 LazGlobal</span>
+                <span class="lazlive-link" onclick="window.location.href='./live.html'">
+                    <img src="./images/live/logo_lazlive.png" alt="LazLive">
+                    LazLive
+                </span>
             </div>
         </div>
     <!-- Thêm vào header hoặc top-strip -->
@@ -82,6 +94,9 @@
     <div class="container">
         <div class="slides" id="carousel">
             <div class="track" id="track">
+                <div class="slide">
+                  <img src="./images/banner_mc.png" alt="Banner 4" style="max-width: 100%;border-radius: 20px;">
+                </div>
                 <div class="slide">
                     <img src="./images/banner_1.png" alt="Banner 1" style="max-width: 100%;border-radius: 20px;">
                 </div>
@@ -101,6 +116,7 @@
             <button data-index="0" class="active"></button>
             <button data-index="1"></button>
             <button data-index="2"></button>
+            <button data-index="3"></button>
         </div>
     </div>
     </section>
@@ -175,6 +191,31 @@
                 <span class="review-count">(540)</span>
                 <span class="sold" data-i18n="Đã bán">Đã bán</span>
                 <span class="sold">2k+</span>
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-cart" data-i18n="Thêm vào giỏ">Thêm vào giỏ</button>
+              <button class="btn-wishlist">♥</button>
+            </div>
+          </div>
+          <!-- Product Card: Ốp lưng iPhone -->
+          <div class="product-card" data-href="./case.html" data-name="ỐP LƯNG IPHONE TRUNG THU TRĂNG RẰM & ĐÈN LỒNG" data-price="39000" data-img="./images/Case/case2.png">
+            <div class="product-thumb">
+              <img src="./images/Case/case2.png" alt="Ốp lưng iPhone Trung Thu" style="width: 100%;height:100%;object-fit:cover;"/>
+              <span class="badge badge-sale">-40%</span>
+              <span class="badge badge-mall">LazMall</span>
+            </div>
+            <div class="product-info">
+              <div class="product-title">Ốp lưng iPhone Trung Thu Trăng Rằm & Đèn Lồng</div>
+              <div class="product-price">
+                <span class="price-current">39.000 ₫</span>
+                <span class="price-old">65.000 ₫</span>
+              </div>
+              <div class="product-meta">
+                <span class="rating">★ 4.9</span>
+                <span class="review-count">(9.2k)</span>
+                <span class="sold" data-i18n="Đã bán">Đã bán</span>
+                <span class="sold">5k+</span>
               </div>
             </div>
             <div class="product-actions">
@@ -680,12 +721,54 @@
         document.getElementById("loginModal").style.display = "flex";
       };
     </script>
+    <script>
+      (function(){
+        const topActions = document.querySelector('.top-actions');
+        function renderUserUI(){
+          try{
+            const user = JSON.parse(localStorage.getItem('user') || 'null');
+            if(user && user.name){
+              topActions.innerHTML = '<span style="font-weight:700;white-space:nowrap;">Xin chào, ' + user.name + '</span>\n                <a href="#" id="logoutLink" style="margin-left:12px;">Đăng xuất</a>';
+              const logout = document.getElementById('logoutLink');
+              if(logout){
+                logout.onclick = function(e){
+                  e.preventDefault();
+                  localStorage.removeItem('user');
+                  window.location.reload();
+                };
+              }
+            }
+          }catch(e){}
+        }
+
+        // Handle login with fixed credentials
+        const formPwd = document.getElementById('formPassword');
+        if(formPwd){
+          formPwd.addEventListener('submit', function(e){
+            e.preventDefault();
+            const inputs = formPwd.querySelectorAll('input');
+            const account = (inputs[0] && inputs[0].value || '').trim();
+            const password = (inputs[1] && inputs[1].value) || '';
+            if(account === 'lazada123' && password === '0123456789'){
+              const user = { username: 'lazada123', name: 'Hà Yến Linh' };
+              localStorage.setItem('user', JSON.stringify(user));
+              document.getElementById('loginModal').style.display = 'none';
+              renderUserUI();
+            } else {
+              alert('Sai tài khoản hoặc mật khẩu');
+            }
+          });
+        }
+
+        // On load, render greeting if already logged in
+        renderUserUI();
+      })();
+    </script>
     <div class="faces-banner">
       <img src="./images/banner_4.png" alt="Tải ngay ứng dụng Lazada" onerror="this.style.display='none'">
     </div>
     <!-- Faces Marquee at bottom -->
-    <section class="faces-section" aria-label="About Us">
-      <h3 class="faces-title"><span class="spark">★</span> About Us <span class="faces-badge">HOT</span></h3>
+    <section class="faces-section" aria-label="">
       <div class="faces-marquee">
         <div class="faces-track">
           <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Ha_Yen_Linh.jpeg" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Hà Yến Linh</div></div>
@@ -693,7 +776,7 @@
           <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Pham_Phuong_Ai_Linh.jpg" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Phạm Phương Ái Linh</div></div>
           <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Vu_Thi_Khanh_Linh.png" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Vũ Thị Khánh Linh</div></div>
           <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Nguyen_Phan_Thuy_Linh.png" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Nguyễn Phan Thùy Linh</div></div>
-          <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Ha_Yen_Linh.jpeg" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Phạm Tuyết Ngân</div></div>
+          <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/ngan.png" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Phạm Tuyết Ngân</div></div>
           <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Mai_Nguyen_Bao_Duy.jpg" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Mai Nguyễn Bảo Duy</div></div>
           <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Le_Nguyen_Thanh_Cong.jpg" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Lê Nguyễn Thành Công</div></div>
           <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Tran_Dai_Hai.png" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Trần Đại Hải</div></div>
@@ -703,7 +786,7 @@
           <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Pham_Phuong_Ai_Linh.jpg" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Phạm Phương Ái Linh</div></div>
           <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Vu_Thi_Khanh_Linh.png" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Vũ Thị Khánh Linh</div></div>
           <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Nguyen_Phan_Thuy_Linh.png" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Nguyễn Phan Thùy Linh</div></div>
-          <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Ha_Yen_Linh.jpeg" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Phạm Tuyết Ngân</div></div>
+          <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/ngan.png" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Phạm Tuyết Ngân</div></div>
           <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Mai_Nguyen_Bao_Duy.jpg" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Mai Nguyễn Bảo Duy</div></div>
           <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Le_Nguyen_Thanh_Cong.jpg" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Lê Nguyễn Thành Công</div></div>
           <div class="face-card"><div class="avatar"><img class="face-img" src="./images/profile/Tran_Dai_Hai.png" alt="avatar" onerror="faceFallback(this,0)"/></div><div class="name">Trần Đại Hải</div></div>
@@ -729,10 +812,28 @@
       })();
       document.querySelectorAll('.product-card').forEach(card => {
         card.addEventListener('click', function(e) {
-          // Chỉ chuyển trang nếu không nhấn vào nút trong card
           if (!e.target.closest('button')) {
-            window.location.href = './mooncake.html';
+            const href = card.getAttribute('data-href') || './mooncake.html';
+            window.location.href = href;
           }
+        });
+      });
+      // Add to cart from home for cards with data attributes
+      document.querySelectorAll('.product-card .btn-cart').forEach(btn => {
+        btn.addEventListener('click', function(e){
+          e.stopPropagation();
+          const card = btn.closest('.product-card');
+          const name = card.getAttribute('data-name');
+          const priceAttr = card.getAttribute('data-price');
+          const img = card.getAttribute('data-img') || (card.querySelector('img') ? card.querySelector('img').src : '');
+          if(!name || !priceAttr){ return; }
+          const price = parseInt(priceAttr, 10) || 0;
+          const product = { name: name, price: price, img: img, qty: 1, shop: 'Gian hàng LazaCase' };
+          let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+          const idx = cart.findIndex(item => item.name === product.name);
+          if (idx > -1) cart[idx].qty += 1; else cart.push(product);
+          localStorage.setItem('cart', JSON.stringify(cart));
+          alert('Thêm vào giỏ thành công!');
         });
       });
     </script>
@@ -772,6 +873,7 @@
             <li><a href="#" data-i18n="Tuyển dụng">Tuyển dụng</a></li>
             <li><a href="#" data-i18n="Điều khoản sử dụng">Điều khoản sử dụng</a></li>
             <li><a href="#" data-i18n="Bảo mật thông tin">Bảo mật thông tin</a></li>
+            <li><a href="#" data-i18n="ĐÂY LÀ ĐỒ ÁN MÔN HỌC, KHÔNG SỬ DỤNG VỚI MỤC ĐÍCH THƯƠNG MẠI">ĐÂY LÀ ĐỒ ÁN MÔN HỌC, KHÔNG SỬ DỤNG VỚI MỤC ĐÍCH THƯƠNG MẠI</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -859,6 +961,78 @@
       };
     </script>
 
+    <!-- Floating Chatbot -->
+    <div id="chatbotWidget" style="
+      position:fixed;right:20px;bottom:20px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:10px;
+    ">
+      <div id="chatbotPanel" style="
+        display:none;width:320px;max-height:70vh;background:#fff;border:1px solid #eaeaea;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.15);overflow:hidden;
+      ">
+        <div style="display:flex;align-items:center;gap:10px;background:#ff6a00;color:#fff;padding:10px 12px;">
+          <div style="width:30px;height:30px;border-radius:50%;background:#fff;color:#ff6a00;display:flex;align-items:center;justify-content:center;font-weight:700;">💬</div>
+          <div style="flex:1;">
+            <div style="font-weight:700;">Trợ lý Lazada</div>
+            <div style="font-size:12px;opacity:0.9;">Hỗ trợ nhanh chóng</div>
+          </div>
+          <button id="chatbotClose" aria-label="Đóng" style="background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer;">×</button>
+        </div>
+        <div id="chatbotMessages" style="padding:10px;height:300px;overflow:auto;background:#fafafa;display:flex;flex-direction:column;gap:8px;">
+          <div style="align-self:flex-start;max-width:85%;background:#fff;border:1px solid #eee;padding:8px 10px;border-radius:12px 12px 12px 4px;font-size:14px;line-height:1.5;">Chào bạn! Mình có thể giúp gì?</div>
+        </div>
+        <div style="display:flex;gap:6px;padding:8px;border-top:1px solid #eee;background:#fff;">
+          <input id="chatbotInput" type="text" placeholder="Nhập tin nhắn..." style="flex:1;border:1px solid #ddd;border-radius:8px;padding:8px 10px;font-size:14px;" />
+          <button id="chatbotSend" class="search-btn" style="min-width:70px;">Gửi</button>
+        </div>
+      </div>
+      <button id="chatbotFab" aria-label="Chat" style="
+        width:56px;height:56px;border-radius:50%;background:#ff6a00;color:#fff;border:none;box-shadow:0 6px 18px rgba(0,0,0,0.18);cursor:pointer;font-size:22px;display:flex;align-items:center;justify-content:center;
+      ">💬</button>
+    </div>
+
+    <script>
+      (function(){
+        const fab = document.getElementById('chatbotFab');
+        const panel = document.getElementById('chatbotPanel');
+        const closeBtn = document.getElementById('chatbotClose');
+        const input = document.getElementById('chatbotInput');
+        const sendBtn = document.getElementById('chatbotSend');
+        const box = document.getElementById('chatbotMessages');
+
+        function openChat(){ panel.style.display = 'block'; setTimeout(()=> input.focus(), 0); }
+        function closeChat(){ panel.style.display = 'none'; }
+        function appendUser(msg){
+          const el = document.createElement('div');
+          el.style.cssText = 'align-self:flex-end;max-width:85%;background:#e6f7ff;border:1px solid #b3e5fc;padding:8px 10px;border-radius:12px 12px 4px 12px;font-size:14px;line-height:1.5;';
+          el.textContent = msg; box.appendChild(el); box.scrollTop = box.scrollHeight;
+        }
+        function appendBot(msg){
+          const el = document.createElement('div');
+          el.style.cssText = 'align-self:flex-start;max-width:85%;background:#fff;border:1px solid #eee;padding:8px 10px;border-radius:12px 12px 12px 4px;font-size:14px;line-height:1.5;';
+          el.textContent = msg; box.appendChild(el); box.scrollTop = box.scrollHeight;
+        }
+        function autoReply(text){
+          const t = (text||'').toLowerCase();
+          let reply = 'Mình đã ghi nhận câu hỏi, vui lòng chờ trong giây lát nhé!';
+          if(t.includes('đơn')||t.includes('order')) reply = 'Bạn có thể xem mục "Kiểm tra đơn hàng" ở thanh trên cùng.';
+          else if(t.includes('đổi trả')||t.includes('refund')||t.includes('return')) reply = 'Chính sách đổi trả trong 15 ngày. Giữ hoá đơn và bao bì giúp mình nhé!';
+          else if(t.includes('thanh toán')||t.includes('payment')) reply = 'Hỗ trợ COD, VNPay, MoMo và thẻ tín dụng/ghi nợ.';
+          else if(t.includes('mã')||t.includes('voucher')||t.includes('giảm giá')) reply = 'Mã giảm giá xuất hiện ở trang chủ và các chiến dịch khuyến mãi.';
+          setTimeout(()=> appendBot(reply), 600);
+        }
+        function send(){
+          const msg = (input.value||'').trim(); if(!msg) return; appendUser(msg); input.value=''; autoReply(msg);
+        }
+        fab.onclick = openChat; closeBtn.onclick = closeChat; sendBtn.onclick = send;
+        input.addEventListener('keypress', function(e){ if(e.key==='Enter') send(); });
+
+        // Intercept top link "Chăm sóc khách hàng" to open chatbot
+        const supportLink = document.querySelector('.top-links a[data-i18n="Chăm sóc khách hàng"]');
+        if(supportLink){
+          supportLink.addEventListener('click', function(e){ e.preventDefault(); openChat(); });
+        }
+      })();
+    </script>
+
     <!-- Lucky Wheel Button -->
 <div id="luckyWheelBtn" style="
   position:fixed;
@@ -928,5 +1102,34 @@
     e.stopPropagation();
   };
 </script>
+    <!-- Marketing Popup -->
+    <div id="marketingPopup" style="display:none;position:fixed;z-index:99999;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,0.45);align-items:center;justify-content:center;">
+      <div style="position:relative;max-width:min(92vw,520px);width:100%;">
+        <button id="popupCloseBtn" aria-label="Đóng" style="position:absolute;right:-6px;top:-6px;background:#fff;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:18px;box-shadow:0 2px 8px rgba(0,0,0,0.2);">×</button>
+        <img src="./images/popupads.png" alt="Khuyến mãi" style="width:100%;height:auto;display:block;border-radius:12px;box-shadow:0 10px 28px rgba(0,0,0,0.25);" onerror="this.style.display='none'">
+      </div>
+    </div>
+    <!-- Mini popup button (bottom-right) -->
+    <div id="miniPopup" style="display:none;position:fixed;right:20px;bottom:100px;z-index:99998;">
+      <button id="miniPopupBtn" aria-label="Mở khuyến mãi" style="background:transparent;border:none;padding:0;cursor:pointer;">
+        <img src="./images/Popupmini.png" alt="Mở khuyến mãi" style="width:120px;height:auto;display:block;">
+      </button>
+    </div>
+    <script>
+      (function(){
+        // Hiển thị popup khi vào trang
+        const popup = document.getElementById('marketingPopup');
+        const closeBtn = document.getElementById('popupCloseBtn');
+        const mini = document.getElementById('miniPopup');
+        const miniBtn = document.getElementById('miniPopupBtn');
+        try{
+          popup.style.display = 'flex';
+          closeBtn.onclick = function(){ popup.style.display='none'; mini.style.display='block'; };
+          miniBtn.onclick = function(){ popup.style.display='flex'; mini.style.display='none'; };
+          // Đóng popup khi click lớp mờ
+          popup.addEventListener('click', function(e){ if(e.target===popup){ popup.style.display='none'; mini.style.display='block'; } });
+        }catch(e){}
+      })();
+    </script>
   </body>
 </html>
