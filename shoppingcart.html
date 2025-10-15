@@ -22,6 +22,70 @@
         img.src = "./images/lazada_icon.png";
       }
     </script>
+    <style>
+      .voucher-modal {
+        position: fixed;
+        left: 0; top: 0; width: 100vw; height: 100vh;
+        background: rgba(0,0,0,0.18);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      .voucher-modal-content {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0,188,212,0.18);
+        padding: 32px 28px 18px 28px;
+        min-width: 320px;
+        max-width: 98vw;
+        text-align: center;
+        position: relative;
+      }
+      .voucher-modal-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #00bcd4;
+        margin-bottom: 18px;
+      }
+      .voucher-item {
+        background: #f7f7fa;
+        border-radius: 8px;
+        margin-bottom: 12px;
+        padding: 12px 18px;
+        box-shadow: 0 2px 8px rgba(0,188,212,0.08);
+        transition: border 0.18s;
+      }
+      .voucher-item.selected {
+        border: 2px solid #00bcd4;
+        background: #e0f7fa;
+      }
+      .voucher-apply-btn {
+        background: #00bcd4;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-weight: 700;
+        font-size: 1rem;
+        padding: 6px 18px;
+        cursor: pointer;
+      }
+      .voucher-modal-close {
+        background: #eee;
+        color: #00bcd4;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 700;
+        padding: 8px 24px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      .voucher-modal-close:hover {
+        background: #00bcd4;
+        color: #fff;
+      }
+    </style>
   </head>
   <body>
     <!-- Top strip -->
@@ -203,20 +267,8 @@
             }</span>
           </div>
           <div class="cart-voucher-row" style="display:flex;gap:8px;margin:12px 0;">
-            <input
-              type="text"
-              class="cart-voucher-input"
-              placeholder="Nhập mã voucher"
-              style="
-                flex: 1;
-                padding: 8px 10px;
-                border-radius: 5px;
-                border: 1px solid #ddd;
-                font-size: 15px;
-              "
-            />
             <button
-              class="cart-voucher-btn"
+              class="cart-voucher-select-btn"
               style="
                 background: #00bcd4;
                 color: #fff;
@@ -226,11 +278,13 @@
                 font-size: 15px;
                 padding: 8px 18px;
                 cursor: pointer;
+                width:100%;
               "
-              data-i18n="ÁP DỤNG"
+              data-i18n="Chọn mã khuyến mãi"
             >
-              ÁP DỤNG
+              Chọn mã khuyến mãi
             </button>
+          </div>
           </div>
           <div class="cart-summary-total" style="font-size:22px;font-weight:700;color:#ff6a00;margin:18px 0 2px 0;">
             <span data-i18n="Tổng cộng">Tổng cộng</span>
@@ -416,6 +470,7 @@
 
       function confirmCheckout() {
         // Lấy phương thức thanh toán
+        const appliedVoucher = localStorage.getItem('appliedVoucher') || '';
         const methodEl = document.querySelector('input[name="payMethod"]:checked');
         const payMethod = methodEl ? methodEl.value : "COD";
         // Lấy thông tin khách hàng
@@ -432,9 +487,72 @@
           closeCheckoutModal();
           return;
         }
+        // Tính tạm tính và phí ship
         const subtotal = selectedItems.reduce((s, it) => s + it.price * it.qty, 0);
-        const shipping = 30000;
-        const total = subtotal + shipping;
+        let shipping = 30000;
+        let voucherDiscount = 0;
+
+        // Lấy thông tin voucher
+        // Đảm bảo biến vouchers là mảng object như đã dùng ở popup
+        const vouchers = [
+          {
+            code: 'LAZADA2025',
+            type: 'discount',
+            img: './images/Sale_voucher_instant.png',
+            name: 'Giảm giá Lazada 2025',
+            start: '2025-01-01',
+            end: '2025-12-31',
+            minOrder: 0,
+            value: 40000
+          },
+          {
+            code: 'MOONCASE',
+            type: 'discount',
+            img: './images/Sale_voucher.png',
+            name: 'Giảm 40% cho đơn Ốp lưng',
+            start: '2025-10-03',
+            end: '2025-10-06',
+            minOrder: 20000,
+            percent: 40
+          },
+          {
+            code: 'FREESHIP2025',
+            type: 'freeship',
+            img: './images/Freeship_voucher.png',
+            name: 'Freeship toàn quốc',
+            start: '2025-10-01',
+            end: '2025-11-1',
+            minOrder: 0,
+            value: 30000
+          }
+        ];
+        let voucherObj = null;
+        if (appliedVoucher) {
+          voucherObj = vouchers.find(v => v.code === appliedVoucher);
+        }
+
+        // Tính giảm giá
+        if (voucherObj) {
+          // Kiểm tra điều kiện minOrder (áp dụng trên tổng hoặc subtotal tuỳ loại)
+          let totalBeforeDiscount = subtotal + shipping;
+          if (totalBeforeDiscount >= (voucherObj.minOrder || 0)) {
+            if (voucherObj.type === 'freeship') {
+              // Giảm phí ship
+              shipping = Math.max(0, shipping - (voucherObj.value || 0));
+              voucherDiscount = voucherObj.value || 0;
+            } else if (voucherObj.percent) {
+              // Giảm theo phần trăm trên tổng (bao gồm phí ship)
+              voucherDiscount = Math.round(totalBeforeDiscount * voucherObj.percent / 100);
+            } else {
+              // Giảm tiền cố định
+              voucherDiscount = voucherObj.value || 0;
+            }
+          }
+        }
+
+        // Tính tổng cuối cùng
+        const total = Math.max(0, subtotal + shipping - voucherDiscount);
+        console.log('Checkout:', {subtotal, shipping, voucherDiscount, total});
         const order = {
           id: Date.now().toString(),
           createdAt: new Date().toISOString(),
@@ -446,7 +564,10 @@
           payMethod,
           status: "Đang xử lý",
           trackingId: 'TRK' + Math.floor(Math.random()*1e9),
+          voucher: appliedVoucher,
+          voucherDiscount: voucherDiscount,
         };
+
         // Lưu đơn hàng
         try {
           const orders = JSON.parse(localStorage.getItem("orders") || "[]");
@@ -457,11 +578,196 @@
         // Xoá các item đã mua khỏi giỏ
         cart = cart.filter((it) => !it.checked);
         localStorage.setItem("cart", JSON.stringify(cart));
+        // XÓA MÃ GIẢM GIÁ SAU KHI MUA
+        localStorage.removeItem('appliedVoucher');
+        localStorage.removeItem('voucherDiscount');
+        localStorage.removeItem('voucherApplied');
         closeCheckoutModal();
         // Điều hướng đến trang chi tiết đơn hàng
         window.location.href = "./orderdetail.html";
       }
     </script>
+<script>
+(function(){
+  // Danh sách mã giảm giá mẫu
+  const vouchers = [
+    {
+      code: 'LAZADA2025',
+      type: 'discount',
+      img: './images/Sale_voucher_instant.png',
+      name: 'Giảm giá Lazada 2025',
+      start: '2025-01-01',
+      end: '2025-12-31',
+      minOrder: 0,
+      value: 40000
+    },
+    {
+      code: 'MOONCASE',
+      type: 'discount',
+      img: './images/Sale_voucher.png',
+      name: 'Giảm 40% cho đơn Ốp lưng',
+      start: '2025-10-03',
+      end: '2025-10-06',
+      minOrder: 20000,
+      percent: 40 // giảm 10%
+    },
+    {
+      code: 'FREESHIP2025',
+      type: 'freeship',
+      img: './images/Freeship_voucher.png', // ảnh freeship
+      name: 'Freeship toàn quốc',
+      start: '2025-10-01',
+      end: '2025-11-1',
+      minOrder: 0,
+      value: 30000
+    }
+  ];
+  let appliedVoucher = localStorage.getItem('appliedVoucher') || '';
+  let discount = Number(localStorage.getItem('voucherDiscount') || '0');
+
+  // Hiện popup chọn mã
+  function openVoucherModal() {
+    const modal = document.getElementById('voucherModal');
+    const list = document.getElementById('voucherList');
+    list.innerHTML = '';
+    const appliedVoucher = localStorage.getItem('appliedVoucher') || '';
+    vouchers.forEach(voucher => {
+      const div = document.createElement('div');
+      div.className = 'voucher-item' + (appliedVoucher === voucher.code ? ' selected' : '');
+      div.innerHTML = `
+        <div style="display:flex;align-items:center;gap:16px;">
+          <img src="${voucher.img}" alt="${voucher.type}" style="width:56px;height:56px;object-fit:contain;border-radius:8px;background:#fff;border:1px solid #eee;">
+          <div style="flex:1;text-align:left;">
+            <div style="font-weight:700;font-size:1.08rem;color:#00bcd4;">${voucher.name}</div>
+            <div style="font-size:0.98rem;color:#222;margin:2px 0 2px 0;">
+              <b>Mã:</b> <span style="color:#e53935">${voucher.code}</span>
+            </div>
+            <div style="font-size:0.95rem;color:#555;">
+              <b>Thời gian:</b> ${voucher.start} - ${voucher.end}
+            </div>
+            <div style="font-size:0.95rem;color:#555;">
+              <b>Giá trị tối thiểu đơn hàng:</b> ${voucher.minOrder.toLocaleString()}đ
+            </div>
+            <div style="font-size:0.95rem;color:#555;">
+            <b>Số tiền giảm:</b> ${
+              voucher.percent
+                ? voucher.percent + '%'
+                : (voucher.type === 'freeship' ? 'Freeship ' : '') + voucher.value.toLocaleString() + 'đ'
+            }
+          </div>
+          </div>
+          <button class="voucher-apply-btn" data-code="${voucher.code}" style="margin-left:12px;">Chọn</button>
+        </div>
+      `;
+      list.appendChild(div);
+    });
+    modal.style.display = 'flex';
+    // Gán sự kiện chọn mã
+    list.querySelectorAll('.voucher-apply-btn').forEach(btn => {
+      btn.onclick = function() {
+        const code = btn.getAttribute('data-code');
+        const voucher = vouchers.find(v => v.code === code);
+        // Tính discount theo phần trăm nếu có
+        let total = 0;
+        const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        cart.forEach(item => {
+          if (item.checked !== false) total += item.price * item.qty;
+        });
+        let discount = voucher.value || 0;
+        if (voucher.percent) {
+          discount = Math.round(total * voucher.percent / 100);
+        }
+        localStorage.setItem('appliedVoucher', voucher.code);
+        localStorage.setItem('voucherApplied', 'true');
+        closeVoucherModal();
+        renderCart();
+      };
+    });
+  }
+  window.openVoucherModal = openVoucherModal;
+
+  function closeVoucherModal() {
+    document.getElementById('voucherModal').style.display = 'none';
+  }
+  window.closeVoucherModal = closeVoucherModal;
+
+  function bindVoucherBtn() {
+    const selectBtn = document.querySelector('.cart-voucher-select-btn');
+    if (selectBtn) selectBtn.onclick = openVoucherModal;
+    const removeBtn = document.querySelector('.cart-voucher-remove');
+    if (removeBtn) removeBtn.onclick = function() {
+      localStorage.removeItem('appliedVoucher');
+      localStorage.removeItem('voucherDiscount');
+      localStorage.removeItem('voucherApplied');
+      renderCart();
+    };
+  }
+
+  // Sửa lại renderCart để trừ tiền giảm giá
+  const oldRenderCart = window.renderCart;
+  window.renderCart = function() {
+    oldRenderCart();
+    // Hiển thị mã đã áp dụng và trừ tiền
+    const orderSummary = document.getElementById("orderSummary");
+    appliedVoucher = localStorage.getItem('appliedVoucher') || '';
+    let voucherObj = null;
+    if (appliedVoucher) {
+      voucherObj = vouchers.find(v => v.code === appliedVoucher);
+    }
+    discount = 0;
+    if (voucherObj) {
+      // Tính lại discount theo giỏ hàng hiện tại
+      let subtotal = 0;
+      const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      cart.forEach(item => {
+        if (item.checked !== false) subtotal += item.price * item.qty;
+      });
+      if (voucherObj.percent) {
+        discount = Math.round(subtotal * voucherObj.percent / 100);
+      } else {
+        discount = voucherObj.value || 0;
+      }
+      // Nếu không đủ minOrder thì không áp dụng
+      if (subtotal < (voucherObj.minOrder || 0)) discount = 0;
+      // Cập nhật lại vào localStorage để các trang khác dùng đúng
+      localStorage.setItem('voucherDiscount', discount);
+    }
+    // Tính lại tổng tiền
+    if (orderSummary) {
+      // Tìm phần tổng cộng
+      const totalEl = orderSummary.querySelector('.cart-summary-total span:last-child');
+      let total = 0;
+      const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      cart.forEach(item => {
+        if (item.checked !== false) total += item.price * item.qty;
+      });
+      total += (total > 0 ? 30000 : 0); // Phí ship
+      total = Math.max(0, total - discount);
+      if (totalEl) totalEl.textContent = total.toLocaleString() + ' đ';
+      // Thêm dòng hiển thị mã giảm giá
+      let voucherRow = orderSummary.querySelector('.cart-summary-voucher');
+      if (appliedVoucher) {
+        if (!voucherRow) {
+          voucherRow = document.createElement('div');
+          voucherRow.className = 'cart-summary-voucher';
+          voucherRow.style = 'color:#00bcd4;font-size:15px;margin-bottom:6px;';
+          orderSummary.insertBefore(voucherRow, orderSummary.querySelector('.cart-summary-total'));
+        }
+        voucherRow.innerHTML = `
+          <span data-i18n="Mã giảm giá đã dùng">Mã giảm giá đã dùng</span>: 
+          <b>${appliedVoucher}</b> (-${discount.toLocaleString()}đ)
+          <button class="cart-voucher-remove" style="margin-left:8px;background:#e53935;color:#fff;border:none;border-radius:4px;padding:2px 8px;cursor:pointer;">Xóa</button>
+        `;
+      } else if (voucherRow) {
+        voucherRow.remove();
+      }
+    }
+    bindVoucherBtn();
+  };
+
+  window.onload = window.renderCart;
+})();
+</script>
     <!-- Checkout Modal -->
     <div id="checkoutModal" style="display:none;position:fixed;z-index:99999;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,0.25);align-items:center;justify-content:center;">
       <div style="background:#fff;padding:24px 24px 18px 24px;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,0.18);min-width:320px;max-width:520px;width:90%;animation: popupShow 0.22s;">
@@ -529,6 +835,13 @@
         </div>
       </div>
     </div>
+  <div id="voucherModal" class="voucher-modal" style="display:none;">
+    <div class="voucher-modal-content">
+      <div class="voucher-modal-title">Chọn mã khuyến mãi</div>
+      <div id="voucherList"></div>
+      <button class="voucher-modal-close" onclick="closeVoucherModal()">Đóng</button>
+    </div>
+  </div>
   </body>
   <script src="./js/translate_script.js"></script>
 </html>

@@ -1106,7 +1106,7 @@
     <div id="marketingPopup" style="display:none;position:fixed;z-index:99999;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,0.45);align-items:center;justify-content:center;">
       <div style="position:relative;max-width:min(92vw,520px);width:100%;">
         <button id="popupCloseBtn" aria-label="Đóng" style="position:absolute;right:-6px;top:-6px;background:#fff;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:18px;box-shadow:0 2px 8px rgba(0,0,0,0.2);">×</button>
-        <img src="./images/popupads.png" alt="Khuyến mãi" style="width:100%;height:auto;display:block;border-radius:12px;box-shadow:0 10px 28px rgba(0,0,0,0.25);" onerror="this.style.display='none'">
+        <img id="popupImg" src="./images/popupads.png" alt="Khuyến mãi" style="width:100%;height:auto;display:block;border-radius:12px;box-shadow:0 10px 28px rgba(0,0,0,0.25);" onerror="this.style.display='none'">
       </div>
     </div>
     <!-- Mini popup button (bottom-right) -->
@@ -1130,6 +1130,15 @@
           popup.addEventListener('click', function(e){ if(e.target===popup){ popup.style.display='none'; mini.style.display='block'; } });
         }catch(e){}
       })();
+    </script>
+    <script>
+      // Marketing popup: click to redirect
+      document.getElementById('marketingPopup').onclick = function(e) {
+        // Nếu click vào ảnh hoặc vùng popup (không phải nút đóng)
+        if (e.target.id === 'popupImg' || e.target === this) {
+          window.location.href = './MoonFes.html';
+        }
+      };
     </script>
   </body>
 </html>

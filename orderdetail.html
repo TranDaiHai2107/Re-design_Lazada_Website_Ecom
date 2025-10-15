@@ -334,7 +334,7 @@
           <div class="order-products">${itemsHtml}</div>
           <div class="order-payment"><div><b>Phương thức thanh toán:</b> ${order.payMethod||'COD'}</div><div><b>Trạng thái thanh toán:</b> <b>${order.payMethod==='COD'?'Chưa thanh toán':'Đã thanh toán'}</b></div></div>
           <div class="order-shipping"><div><b>Nhận hàng:</b> ${(order.customer&&order.customer.name)||''}, ${(order.customer&&order.customer.phone)||''}</div><div><b>Địa chỉ:</b> ${(order.customer&&order.customer.address)||''}</div></div>
-          <div class="order-summary"><div><b>Tổng tiền:</b> ${(Number(order.total||0)).toLocaleString()}đ</div></div>
+          <div class="order-summary"><div><b>Tổng tiền:</b> ${(Number(order.total||0)).toLocaleString()}đ</div>${order.voucher ? `<div><b>Mã giảm giá:</b> ${order.voucher} (-${(order.voucherDiscount||0).toLocaleString()}đ)</div>` : ''}</div>
           <div class="order-actions">${canCancel?'<button class="order-btn order-btn-cancel">Hủy đơn</button>':''}<button class="order-btn order-btn-track">Theo dõi đơn hàng</button></div>
         </section>`;
       });

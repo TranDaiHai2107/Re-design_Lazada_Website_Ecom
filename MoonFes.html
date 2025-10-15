@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+    <link rel="icon" type="image/png" href="./images/icon.ico" />
+    <title>Lazada - Khuyến mãi Trung Thu</title>
+    <style>
+      body {
+        background: #f5f6fa;
+        margin: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+      }
+      .moonfes-banner {
+        background: rgba(0, 0, 0, 0.08);
+        border-radius: 18px;
+        margin: 36px auto 0 auto;
+        max-width: 1200px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        padding: 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .moonfes-banner img {
+        width: 100%;
+        display: block;
+        border-radius: 18px 18px 0 0;
+      }
+      .moonfes-content {
+        background: #fff;
+        padding: 0 0 32px 0;
+        border-radius: 0 0 18px 18px;
+        text-align: center;
+      }
+      .moonfes-title {
+        font-size: 2.1rem;
+        font-weight: 900;
+        color: #ffd600;
+        margin: 0 0 12px 0;
+        text-shadow: 2px 2px 8px #2228;
+        letter-spacing: 1px;
+      }
+      .moonfes-desc {
+        font-size: 1.2rem;
+        color: #333;
+        margin-bottom: 18px;
+      }
+      .moonfes-voucher-row {
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+        margin: 18px 0 0 0;
+      }
+      .moonfes-voucher {
+        background: linear-gradient(90deg, #ff512f 0, #f9d423 100%);
+        color: #fff;
+        font-weight: 700;
+        font-size: 1.1rem;
+        padding: 12px 22px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        letter-spacing: 1px;
+        min-width: 120px;
+        text-align: center;
+      }
+      .moonfes-btn {
+        margin-top: 28px;
+        background: linear-gradient(90deg, #ffe082 0%, #ffb300 100%);
+        color: #ff6a00;
+        font-size: 1.3rem;
+        font-weight: 900;
+        border: none;
+        border-radius: 32px;
+        padding: 14px 54px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        letter-spacing: 2px;
+        text-shadow: 1px 1px 2px #fff8;
+        transition: background 0.2s;
+      }
+      .moonfes-btn:active {
+        background: linear-gradient(90deg, #ffd54f 0%, #ffa000 100%);
+      }
+      @media (max-width: 700px) {
+        .moonfes-banner {
+          max-width: 98vw;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top strip -->
+    <div class="top-strip">
+      <div class="container">
+        <div class="top-links">
+          <a href="./support.html" data-i18n="Chăm sóc khách hàng"
+            >Chăm sóc khách hàng</a
+          >
+          <a href="./orderdetail.html" data-i18n="Kiểm tra đơn hàng"
+            >Kiểm tra đơn hàng</a
+          >
+        </div>
+        <div class="top-actions">
+          <a href="#" data-i18n="Đăng nhập">Đăng nhập</a>
+          <a href="#" data-i18n="Đăng ký">Đăng ký</a>
+        </div>
+        <div class="top-controls">
+          <div class="dark-mode-toggle">
+            <button
+              id="darkModeToggle"
+              class="dark-mode-btn"
+              title="Chuyển đổi chế độ tối"
+            >
+              <span class="dark-icon">🌙</span>
+              <span class="light-icon">☀️</span>
+            </button>
+          </div>
+          <div class="lang-switcher">
+            <button id="langToggleBtn">EN</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+      <div class="container">
+        <!-- Logo lazada -->
+        <div class="logo">
+          <!-- Thay bằng logo thật -->
+          <img src="./images/lazada_icon.png" alt="Logo" />
+        </div>
+
+        <!-- Search bar -->
+        <div class="search-wrap">
+          <div class="search-row">
+            <input
+              type="text"
+              placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..."
+              data-i18n-placeholder="Tìm kiếm trên Lazada, sản phẩm, thương hiệu..."
+              aria-label="Tìm kiếm"
+              class="search-input"
+            />
+            <button
+              aria-label="Tìm kiếm"
+              class="search-btn"
+              data-i18n="Tìm kiếm"
+            >
+              Tìm kiếm
+            </button>
+          </div>
+        </div>
+
+        <!-- Cart -->
+        <div class="cart">
+          <button class="cart-btn" aria-label="Giỏ hàng">
+            <img src="./images/shopping_cart.png" alt="Giỏ hàng" />
+          </button>
+        </div>
+      </div>
+
+      <!-- Mini features -->
+      <div>
+        <div class="mini-features" aria-hidden="true">
+          <span>🔖 LazMall</span>
+          <span data-i18n="Mã giảm giá">🏷 Mã Giảm Giá</span>
+          <span data-i18n="Nạp thẻ">💳 Nạp Thẻ & eVoucher</span>
+          <span
+            class="lazglobal-link"
+            onclick="window.location.href='./lazglobal.html'"
+            >🌍 LazGlobal</span
+          >
+          <span
+            class="lazlive-link"
+            onclick="window.location.href='./live.html'"
+          >
+            <img src="./images/live/logo_lazlive.png" alt="LazLive" />
+            LazLive
+          </span>
+        </div>
+      </div>
+    </header>
+    <div class="moonfes-banner">
+      <img
+        src="./images/popupads1.png"
+        alt="Rước trăng vàng săn deal rộn ràng"
+        style="width: 100%; display: block; border-radius: 18px 18px 0 0"
+      />
+      <div style="width: 100%; background: transparent; padding: 0; margin: 0">
+        <img
+          src="./images/moonfes_voucher_banner.png"
+          alt="Giảm đến 40% Freeship Đơn hàng 8K"
+          style="width: 100%; display: block; border-radius: 0 0 18px 18px"
+        />
+      </div>
+    </div>
+  </body>
+</html>
